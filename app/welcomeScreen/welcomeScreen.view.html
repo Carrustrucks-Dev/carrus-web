@@ -1,0 +1,538 @@
+<!-- ====================================  Login modal ================================================== -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign In</h4>
+            </div>
+            <div class="modal-body">
+                <input id="userName"   placeholder="email"   type="text" ng-model="userName">
+                <input id="userPassword" placeholder="password"  type="password" ng-model="userPassword">
+                <button id="login_button" type="submit" ng-click="">Login</button>
+                <a id="forgot_password"href="" ng-click="forgotPassword();"> Forgot password ?</a>
+            </div>
+            <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+
+<!-- ==================================== End Login modal ================================================== -->
+
+<!-- ==================================== forgot password model ================================================== -->
+
+<div id="forgot_passowrd" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Forgot Password</h4>
+            </div>
+            <div class="modal-body">
+                <p>Please provide your Email id. We will send you the instructions to reset your password</p>
+                <input id="reset_email_id"   placeholder="Enter your Email Id"   type="text" ng-model="email">
+                <button id="login_button" type="submit" ng-click="">Submit</button>
+
+            </div>
+            <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ==================================== end of forgot password model ================================================== -->
+
+
+
+<!-- ==================================== forgot password model ================================================== -->
+
+<div id="SignUp" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign Up</h4>
+            </div>
+            <div class="modal-body">
+               <div class="radio_section"><label class="radio-inline"><input type="radio" name="optradio">Shipper</label>
+                <label class="radio-inline"><input type="radio" name="optradio">Broker</label></div>
+                <input   class="half_width"  placeholder="First Name"   type="text" ng-model="fname">
+                <input class="half_width"  placeholder="Last Name"    type="text" ng-model="lname">
+                <input  class="full_width"  placeholder="email id"     type="email" ng-model="userName">
+                <input  class="half_width"  placeholder="Company name"   type="text" ng-model="companyname">
+                <input   class="half_width"  placeholder="tin"    type="text" ng-model="tin">
+                <input  class="half_width"  placeholder="pav"    type="text" ng-model="pan">
+                <input  class="half_width"  placeholder="Service tax registration"    type="text" ng-model="taxreg">
+                <input   class="half_width"  placeholder="Excise registration"    type="text" ng-model="excisereg">
+                <input  class="half_width"  placeholder="password"    type="password" ng-model="pass">
+                <input  class="half_width"  placeholder="Confirm password"    type="password" ng-model="confmpass">
+                <input  class="full_width"  placeholder="Mobile Number"     type="number" ng-model="mobilenumber">
+                <input  class="half_width"  placeholder="Address"    type="text" ng-model="adress">
+                <input  class="half_width"  placeholder="Cite/Town"    type="text" ng-model="cityTwon">
+                <input  class="half_width"  placeholder="State"    type="text" ng-model="state">
+                <input  class="half_width"  placeholder="zip code"    type="text" ng-model="adress">
+
+
+                <select class="form-control" id="sel1">
+                    <option>Type of Company</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+
+                <button id="login_button" type="submit" ng-click="">Submit</button>
+
+            </div>
+            <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ==================================== end of forgot password model ================================================== -->
+
+
+
+<div class="navbar navbar-default navbar-static-top nv-fixed" id="myScrollspy" data-spy="affix">
+    <div class="container header-containe">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" style="width:200px;text-align:left;margin-top:15px;margin-left: -115px;"
+               href="#"><img src="img/Logo_main.png" width="320px"></a>
+        </div>
+        <div class="collapse navbar-collapse">
+
+            <ul class="nav navbar-nav navbar-right nv-link">
+                <li style="margin-top: 30px;">
+                    <!-- <span class="input-holder">
+                        <input type="text" class="form-control form-bg" placeholder="Track your Shipment">
+                        <i class="fa fa-search fa-icon"></i>
+                    </span> -->
+                </li>
+                <!--<li><a href="#how">HOW IT WORKS</a></li>-->
+                <!--<li><a href="#deal">TARIFF</a></li>-->
+                <!--<li><a href="">DEALS</a></li>-->
+                <!--<li><a href="">FAQs</a></li>-->
+                <!--<li><a href="">POLICY</a></li>-->
+
+                <li><a href="" style="text-align:right;" id="abc"><span class="contct" ng-click="showLogin();">SIGN IN</span></a></li>
+                <li><a href="" style="text-align:right;"><span class="contct" ng-click="SignUp();">SIGN UP</span></a></li>
+                <li><a href="" style="text-align:right;"><span class="contct">CONTACT US</span></a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+
+<div class="" style="float:left;width:100%;">
+
+    <div class="full-width text-center" id="home">
+        <div class="bg-truck">
+
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 pull-right">
+                <h1 class="jumbotron text-left" style="font-size: 4.5em;color:#fff !important;">Book a Truck</h1>
+
+                <h2 class="text-left jumbo-text"
+                    style="color: rgb(255, 255, 255);text-align: left; text-shadow: 7px 0px 20px;"><span
+                        class="resize-text" style="">
+                    <span class="fa fa-phone float-earphone"></span> +91-9800077788</span>
+                </h2>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="full-width">
+    <div class="full-width">
+        <form name="CntactForm" id="contact-form" method="post" action="thank-you.php">
+            <div class="full-width t-filter">
+            <span class="filters">
+            <h5><input type="text" class="form-control input-detail" id="startpoint" name="startpoint"
+                       placeholder="Pick up Location"></h5>
+            </span>
+            <span class="filters filters-drop">
+            <h5><input type="text" class="form-control input-detail" id="endpoint" name="endpoint"
+                       placeholder="Drop off Location"></h5>
+            </span>
+            <span class="filters filters-date">
+            <h5 style="position: relative;"><input type="text" class="form-control input-detail"
+                                                   placeholder="Pick up Date " value="" name="date" id="dp1"><span
+                    class="glyphicon glyphicon-calender t-icon"></span></h5>
+            </span>
+            <span class="filters filters-weight">
+            <h5 style="position: relative;">
+                <input type="text" class="form-control input-detail" placeholder="Weight of cargo" id="weight"
+                       name="weight">
+
+                <!--<span class="fa fa-chevron-down t-icon" style="right: 20px;"></span>-->
+            </h5>
+            </span>
+            <span class="filters filters-mob">
+            <h5><input type="text" class="form-control input-detail" id="phone" name="phone" placeholder="Mobile Number"
+                       onkeypress="return isNumericKey(event);"></h5>
+            </span>
+            <span style="border-right:0px; padding-bottom: 5px; padding-top: 2px;" class="gt-quotes gt-qt">
+            <h5><input type="submit" class="btn btn-link form-control" name="fSubmit" id="fSubmit"
+                       onsubmit="myFunction()" value="Get Quote" style="color:#fff; font-size:18px;"></h5>
+            </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="full-width" id="how">
+    <div class="bg-img" style="">
+        <div class="bg-overlay" style="padding-bottom:45px;padding-top:35px;">
+            <div class="container">
+                <div class="tab-head">
+                    <h1 class="text-center" style="color:white;font-family:lato-bold;">Why Carrus ?</h1>
+
+                    <div class="hr-div">
+                        <hr class="h-bar"></hr>
+                    </div>
+                    <br>
+                    <h4 class="text-center" style="color:white;">We offer a transparent, economical, reliable, and
+                        professional logistics solutions to our customers.</h4>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 b-color">
+                    <div class="how-icons">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
+                                <img src="img/wc1.png">
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <h4 class="">
+                                    Transparent Pricing
+                                </h4>
+                                <h6 class="">
+                                    Get unmatched freight charges.
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
+                                <img src="img/wc2.png">
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <h4 class="">
+                                    Track Your Cargo
+                                </h4>
+                                <h6 class="">
+                                    Know the precise location of your cargo at all times.
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
+                                <img src="img/wc3.png" style="margin-top:-5px;">
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <h4 class="">
+                                    Trusted Drivers
+                                </h4>
+                                <h6 class="">
+                                    We check the background of our drivers
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
+                                <img src="img/wc4.png" style="margin-top:-5px;">
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <h4 class="">
+                                    Load Matching
+                                </h4>
+                                <h6 class="">With a huge inventory of customers and truckers, better load matching and
+                                    improved trucking efficiency</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="full-width" id="waste">
+
+            <div class="col-lg-5 col-md-5 col-xs-12 pull-right" style="padding-top:10%;">
+                <h1 class="text-left">
+                    <b style="color:#fff;text-shadow:0 0 10px #2cc0d6;"><span class="reach"
+                                                                              style="border-bottom: 2px solid rgb(255, 255, 255); padding-bottom: 10px;">Car</span>rus</b>
+                </h1>
+
+                <h1 style="color: white; font-size: 3.5em;" class="text-left">
+
+                    Makes your transportation easy
+                </h1>
+            </div>
+
+        </div>
+        <!--how it works-->
+        <div class="full-width" id="bg-how" style="padding-bottom:45px;padding-top:35px;">
+            <div class="container-fluid" id="deal">
+                <div class="container">
+                    <div class="tab-head">
+                        <h1 class="text-center" style="color:#333;font-family:lato-bold;">How it works ?</h1>
+
+                        <div class="hr-div">
+                            <hr class="h-bars"></hr>
+                        </div>
+                        <br>
+                        <!--<h4 class="text-center" style="color: #333;font-size:19px;">Carrus now has the unique opportunity to help the
+                            people looking for a career change.</h4>-->
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="how-icons">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
+                                    <img src="img/htw1.png">
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                    <h3 class="" style="color: #333;font-size:19px;">
+                                        Request
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
+                                    <img src="img/htw2.png">
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                    <h3 class="" style="color: #333;font-size:19px;">
+                                        Book & Confirm
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
+                                    <img src="img/htw3.png" style="margin-top:-5px;">
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                    <h3 class="" style="color: #333;font-size:19px;">
+                                        Truck comes to pick up cargo
+                                    </h3>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
+                                    <img src="img/htw4.png" style="margin-top:-5px;">
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                    <h3 class="" style="color: #333;font-size:19px;">
+                                        Track & Pay
+                                    </h3>
+                                </div>
+                            </div>
+                            <!--<h3 class="text-center full-width" style="color:#333;margin-top:80px;">
+                              <span>
+                                  <img src="img/check.png" width="30px">
+                              </span>
+                                Reach your destination 100% sure and safe
+                            </h3>-->
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="full-width">
+    <div class="truck-transition">
+        <div class="container">
+            <h2 style="color: white; width: 49%; line-height: 1.39; font-size: 5em;">
+                <span class="reach">Get</span>
+                in touch with <span style="font-family: lato-bold; font-weight: bold;"></span><span
+                    style="font-weight: bold; font-family: lato-bold;">Carrus</span>
+            </h2>
+            <br>
+            <!--<h4 style="color: #f5f5f5;margin-top: 20px;">-->
+            <!--Carrus now has the unique opportunity to help the people looking for a career change.-->
+            <!--</h4>-->
+        </div>
+    </div>
+</div>
+<div id="test" class="full-width">
+    <div class="build" style="float: left; width: 100%;">
+        <div style="background: transparent url(&quot;./img/map_bg_blue.png&quot;) no-repeat scroll 0px 0px;background-size:cover; float: left; width: 100%;"
+             class="dild">
+            <div class="overlayed">
+                <div class="jig">
+                    <div style="margin-bottom: 80px;min-height:700px;" class="container">
+                        <div class="tab-head">
+                            <h1 class="text-center" style="color:white;">Contact Us</h1>
+
+                            <div class="hr-div">
+                                <hr class="h-bar"></hr>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                            <div style="margin-top:50px;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <form value="" id="contact-us" method="">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <input type="text" placeholder="Name" value="" class="form-control">
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <input type="text" placeholder="Email" value="" class="form-control">
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <input type="text" placeholder="Phone Number" value="" class="form-control">
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <textarea placeholder="Comments" class="form-control"></textarea>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <button style="width: 100%;padding:15px 12px;font-size: 20px;border-radius:0px;"
+                                                type="submit"
+                                                class="btn btn-primary btn-p">Submit
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12 con">
+                            <div class="map-point">
+                                <div style="" class="marg-auto">
+                                  <span class="mg1" style="">
+
+                                  <span style="position: relative;">
+                                    <img src="img/location.png" class="delhi">
+                                  <span class="pt-delhi"
+                                        style="width:200px;height:100px;top:-103px;">
+                                    <span style="position: relative; float: left; width: 100%; margin-top: 6px;">
+                                    <span style="width: 100%; font-size: 15px; color: rgb(66, 139, 202); float: left; padding-left: 10px;">New Delhi<br>C856 LGF,
+Defence Colony,
+New Delhi 110024</span>
+                                    <span style="width: 100%; padding-left: 10px; font-size: 15px; color:gray;">India</span>
+                                    <span style="position: absolute; transform: rotate(270deg); left: -9px; bottom: -13%;"
+                                          class="caret locate-point"></span>
+                                    </span>
+                                  </span>
+                                </span>
+                                </span>
+                                <span class="mg2" style="">
+                                <span style="position: relative;">
+                                    <img src="img/location.png" class="kolkata">
+                                  <span class="pt-kolkata"
+                                        style="width:200px;height:100px;top:-103px;left:20px;">
+                                    <span style="position: relative; float: left; width: 100%; margin-top: 6px;">
+                                    <span style="width: 100%; font-size: 15px; color: rgb(66, 139, 202); float: left; padding-left: 10px;">Kolkata <br>22 Canning Street,
+3rd Floor,
+Kolkata 700001</span>
+                                      <span style="width: 100%; padding-left: 10px; font-size: 15px; color: gray;">India</span>
+                                    <span style="position: absolute; transform: rotate(270deg); left: -9px; bottom: -13%;"
+                                          class="caret locate-point"></span>
+                                  </span>
+                                  </span>
+                                </span>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="full-width bg-coming-soon" style="min-height:600px;">
+    <div class="container">
+        <h1 style="color:white;margin-top:15%;">Get carrus on <span style="font-weight: bold; font-family: lato-bold;">mobile</span>
+        </h1>
+    </div>
+</div>
+<div class="full-width" id="">
+    <div class="mob-bg">
+        <div class="overlayr">
+            <div class="container">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 con text-left">
+                    <img src="img/phone.png" class="db1" width="240px">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:50px;">
+                        <div class="mag-auto" style="float: none;">
+
+                            <h1 class="text-center"
+                                style="font-weight: lighter; text-shadow: 0px 0px 10px rgb(255, 255, 255); color: rgb(255, 255, 255);">
+                                Coming Soon</h1>
+                            <br>
+
+                            <h2 class="text-center" style="color: lightgray; font-size: 32px;">On Android</h2>
+                            <br><br>
+                            <hr></hr>
+                            <br>
+
+                            <h3 class="text-center tt">
+                                <span><img src="img/play_store.png"></span>
+
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="full-width" style="position:relative;">
+    <div class="main-foot">
+        <footer>
+            <div class="footer_bottom text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="copyright">
+                                <ul class="list-inline full-width" style="margin-top:10px;">
+                                    <li style="font-size:14px;color:gray;"> Find us on</li>
+                                </ul>
+
+                                <ul class="full-width list-inline social-link" style="margin:0px;">
+                                    <li><span><img src="img/facebook.png" width="30px" class="fb"></span></li>
+                                    <li><span><img src="img/twitter.png" width="30px" class="twit"></span></li>
+                                    <li><span><img src="img/youtube.png" width="30px" class="youtube"></span></li>
+                                    <li><span><img src="img/share.png" width="30px" class="share-it"></span></li>
+                                </ul>
+                                <ul class="list-inline full-width" style="margin-top:10px;">
+                                    <li style="font-size:14px;color:lightgray;"> &copy; CARRUS 2015 copyright.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+<!-- /.container -->
+<!-- script references -->
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
+<!--<script src="js/bootstrap.min.js"></script>-->

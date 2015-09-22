@@ -1,0 +1,313 @@
+<!DOCTYPE html> <!-- html 5 Document -->
+
+<html lang="en" ng-app="carrus">
+<head>
+
+    <title> Carrus Trucks </title>
+
+    <!--  =================  All Meta Tags insert here ===================================== -->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="generator" content="Bootply"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="js/modernizr.custom.js"></script>
+
+    <!-- =================== all Style files insert here ===================================== -->
+
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="css/mockup3.css"/>
+    <link rel="stylesheet" type="text/css" href="css/ihover.min.css"/>
+    <link href="css/datepicker.css" rel="stylesheet">
+    <link href="bower_components/jquery-ui/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/nprogress/nprogress.css">
+    <link rel="stylesheet" href="bower_components/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="bower_components/clockpicker/src/clockpicker.css">
+    <link rel="stylesheet" href="bower_components/clockpicker/src/standalone.css">
+    <link href="bower_components/Select/select.css" rel="stylesheet" />
+    <link href="bower_components/Select/selectize.default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="bower_components/ion.rangeslider/css/normalize.css" />
+    <link rel="stylesheet" href="bower_components/ion.rangeslider/css/ion.rangeSlider.css" />
+    <link rel="stylesheet" href="bower_components/ion.rangeslider/css/ion.rangeSlider.skinHTML5.css" />
+    <link rel="stylesheet" href="bower_components/isteven-multselect/isteven-multi-select.css" />
+
+    <!-- ====================== End of CSS files ========================================== -->
+
+
+    <!-- ====================== All javaScript files here ========================================== -->
+    <script src="bower_components/jquery/dist/jquery.js"> </script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"> </script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular/angular.js"> </script>
+    <script src="bower_components/angular-route/angular-route.js"> </script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"> </script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"> </script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"> </script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"> </script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/nprogress/nprogress.js"> </script>
+    <script src="bower_components/angular-ui-mask/dist/mask.js"></script>
+    <script src="bower_components/datepicker/bootstrap-datepicker.js"> </script>
+    <script src="bower_components/clockpicker/src/clockpicker.js"> </script>
+    <script src="bower_components/Select/select.js"></script>
+    <script src="bower_components/ion.rangeslider/js/ion.rangeSlider.js"></script>
+    <script src="bower_components/isteven-multselect/isteven-multi-select.js"></script>
+
+
+    <!-- ====================== All javaScript files here ========================================== -->
+
+
+</head>
+
+
+<!-- ======================= Body part start from here ============================================ -->
+<body  data-spy="scroll" data-target="#myScrollspy" data-offset="50">
+
+
+<!-- ========================  angular app Files =================================================== -->
+<script src="app/app.js"></script>
+<script src="app/config.js"></script>
+<script src="app/welcomeScreen/welcomeScreen.ctrl.js"></script>
+
+
+
+<!-- ================ shipper ======================================================================  -->
+
+<script src="app/customer/customer.ctrl.js"></script>
+<script src="app/customer/myPosts/myPosts.ctrl.js"></script>
+
+
+<div ui-view></div>
+
+</body>
+<!-- ======================= Body part End here ============================================ -->
+
+
+<!-- ======================= other JS files ============================================ -->
+
+<script src="js/classie.js"></script>
+<script src="js/tab.js"></script>
+<!--<script src="js/bootstrap-select.js"></script>-->
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script>
+
+    $(window).scroll(function (event) {
+        var scroll = $(window).scrollTop();
+        if (scroll > 50) {
+            $(".nv-fixed").css('background', 'white');
+            $(".nv-fixed").css('position', 'fixed');
+            $(".nv-fixed").css('opacity', '0.98');
+            $(".nv-fixed").css('transtion', 'all 0.5s ease-in-out 0s');
+            $(".navbar-brand").css('padding', '0px');
+
+        }
+        else {
+            $(".nv-fixed").css('background', 'white');
+            $(".nv-fixed").css('position', 'fixed');
+
+        }
+
+    });
+
+</script>
+<script>
+    $(window).scroll(function () {
+        $('.db1').each(function () {
+            var imagePos = $(this).offset().top;
+
+            var topOfWindow = $(window).scrollTop();
+            if (imagePos < topOfWindow + 400) {
+                $(this).addClass("slideUp");
+            }
+        });
+        $('.db2').each(function () {
+            var imagePos = $(this).offset().top;
+
+            var topOfWindow = $(window).scrollTop();
+            if (imagePos < topOfWindow + 400) {
+                $(this).addClass("slideLeft");
+            }
+        });
+        $('.db3').each(function () {
+            var imagePos = $(this).offset().top;
+
+            var topOfWindow = $(window).scrollTop();
+            if (imagePos < topOfWindow + 400) {
+                $(this).addClass("slideRight");
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('a[href*=#]').click(function () {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+                    && location.hostname == this.hostname) {
+                var $target = $(this.hash);
+                $target = $target.length && $target
+                        || $('[name=' + this.hash.slice(1) + ']');
+                if ($target.length) {
+                    var targetOffset = $target.offset().top;
+                    $('html,body')
+                            .animate({scrollTop: targetOffset}, 1000);
+                    return false;
+                }
+            }
+        });
+
+//        $('.tariff-thumbnail').click(function () {
+//            console.log($(this).css("background-image"));
+//            $('#bg-car-image').css('background-image', $(this).css("background-image"));
+//        });
+//        $(document).ready(function () {
+//            $('.tariff-thumbnail').click(function () {
+//                var tab_id = $(this).attr('data-tab');
+//                //alert(tab_id);
+//                $('.tariff-thumbnail').removeClass('current');
+//                $('.tab_contents').removeClass('current');
+//
+//                $(this).addClass('current');
+//
+//                $(tab_id).addClass('current');
+////
+//            });
+//        });
+//        $(document).ready(function () {
+//            $('.tariff-thumbnail > div').click(function () {
+//                $('.tariff-thumbnail > div').removeClass('current');
+//            });
+//            $('.tariff-thumbnail > div').click(function () {
+//                $(this).addClass('current');
+//            });
+//        });
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('.share-it').mouseenter(function () {
+            $(this).attr('src', 'img/share_onclick.png');
+
+        });
+        $('.share-it').mouseleave(function () {
+            $(this).attr('src', 'img/share.png');
+        });
+        $('.fb').mouseenter(function () {
+            $(this).attr('src', 'img/facebook_onclick.png');
+
+        });
+        $('.fb').mouseleave(function () {
+            $(this).attr('src', 'img/facebook.png');
+        });
+        $('.twit').mouseenter(function () {
+            $(this).attr('src', 'img/twitter_onclick.png');
+
+        });
+        $('.twit').mouseleave(function () {
+            $(this).attr('src', 'img/twitter.png');
+        });
+        $('.youtube').mouseenter(function () {
+            $(this).attr('src', 'img/youtube_onclick.png');
+
+        });
+        $('.youtube').mouseleave(function () {
+            $(this).attr('src', 'img/youtube.png');
+        });
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('.delhi').mouseenter(function () {
+            $('.pt-delhi').css('display', 'block');
+        });
+        $('.delhi').mouseleave(function () {
+            $('.pt-delhi').css('display', 'none');
+        });
+        $('.kolkata').mouseenter(function () {
+            $('.pt-kolkata').css('display', 'block');
+        });
+        $('.kolkata').mouseout(function () {
+            $('.pt-kolkata').css('display', 'none');
+        });
+        $('#dp1').datepicker()
+    });
+    $(window).scroll(function () {
+        $('.delhi').each(function () {
+            var imagePos = $(this).offset().top;
+
+            var topOfWindow = $(window).scrollTop();
+            if (imagePos < topOfWindow + 400) {
+                $(this).addClass("pulse");
+            }
+        });
+        $('.kolkata').each(function () {
+            var imagePos = $(this).offset().top;
+
+            var topOfWindow = $(window).scrollTop();
+            if (imagePos < topOfWindow + 400) {
+                $(this).addClass("pulse");
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    function isNumericKey(e) {
+        if (window.event) {
+            var charCode = window.event.keyCode;
+        }
+        else if (e) {
+            var charCode = e.which;
+        }
+        else {
+            return true;
+        }
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+
+    function submitMyNumber() {
+        var input = document.getElementById('class').value;
+        return input.match(/^[0-9]+$/) != null;
+    }
+
+    function myFunction() {
+        document.getElementById("#contact-form").reset();
+    }
+
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#contact-form").validate({
+            rules: {
+                startpoint: "required",
+                endpoint: "required",
+                phone: "required",
+                weight: "required",
+                date: "required"
+            }
+        });
+
+    });
+</script>
+
+
+
+
+</html>
