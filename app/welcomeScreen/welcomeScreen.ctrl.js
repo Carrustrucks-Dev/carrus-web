@@ -13,12 +13,31 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope',
             $('#myModal').modal('show');
         },
         $scope.forgotPassword = function(){
-            $('#forgot_passowrd').modal('show');
+            var options = {
+                show     : 'true',
+                backdrop : 'static'
+            }
+            $('#forgot_passowrd').modal(options);
             $('#myModal').modal('hide');
+            $('body').addClass('modal-open')
         },
             $scope.SignUp = function(){
-                $('#SignUp').modal('show');
+                var options = {
+                    show     : 'true',
+                    backdrop : 'static'
+                }
+                $('#SignUp').modal(options);
+            },
+            $scope.checkOTP = function(){
+                var options = {
+                    show     : 'true',
+                    backdrop : 'static'
+                }
+                $('#otp_modal').modal(options);
+
             }
 
 
     }]);
+
+
