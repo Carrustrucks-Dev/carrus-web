@@ -1,89 +1,78 @@
-<!-- new post modal -->
-
-<div class="modal fade" tabindex="-1" id="postNewRequestModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="container-fluid" style="padding-bottom: 4%" ng-show="!firstNewPostScreenSet">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="page-header">
-                            <h2>Post A Request</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="form-group-lg">
-                            <select class="form-control" ng-model="courseIndex" ng-change="getTutorsForCourse()">
-                                <option value="-1">Select a course</option>
-                                <option ng-repeat="mod in courseModel" value="{{$index}}">{{mod.courseTitle}} ({{mod.courseCode}})</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="padding-top: 2%">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"  >
-                        <div>
-
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3" ng-repeat="mod in tutorModel">
-                                    <div class="thumbnail">
-                                        <img ng-src="{{mod.profilePicture}}" style="height: 75px;width:75px">
-                                        <div class="caption">
-                                            <h4>{{mod.firstName}} {{mod.lastName}}</h4>
-                                            <p><span class="fa fa-star" ng-repeat="x in mod.full track by $index"></span>
-                                                <span class="fa fa-star-half-o" ng-repeat="x in mod.half track by $index"></span>
-                                                <span class="fa fa-star-o" ng-repeat="x in mod.empty track by $index" ></span> </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="alert alert-danger" ng-show="errorInModal">
-                                <a ng-click="errorInModal=false" class="close"  aria-label="close" title="close">×</a>
-                                <strong>Error!</strong> {{errorMsg}}
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-offset-0 col-xs-4 col-sm-offset-2 col-sm-3 col-md-offset-3 col-md-2 col-lg-offset-3 col-lg-2">
-                        <a role="button" class="btn btn-lg btn-tuli"  ng-click="">Study Now</a>
-                    </div>
-                    <div class="col-xs-offset-2 col-xs-4 col-sm-offset-2 col-sm-4 col-md-offset-2 col-md-4 col-lg-offset-2 col-lg-4">
-                        <a role="button" class="btn btn-lg  btn-tuli "  ng-click="">Schedule Later</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar navbar-default   nav_top navv" id="">
+    <div class="container header-containe">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <a class="navbar-brand  logo-img" href="#"><img src="img/Logo_main.png" width="390px"></a>
+        </div>
+        <div class="collapse navbar-collapse">
+
+            <ul class="nav navbar-nav navbar-right nv-link">
+
+                <li class="dropdown">
+
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user"></i>Amit Sharma<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="">demo</a></li>
+                        <li><a href="">demo</a></li>
+                    </ul>
+
+                </li>
+
+                <li><div class="notification"><i class="fa fa-bell-o"></i></div></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+
+        <div class="navbar navbar-default   navv nav_all">
+            <div class="container header-containe">
+
+                <div class="collapse navbar-collapse">
+
+                    <ul class="nav navbar-nav pull-right">
+
+                        <li class="active"><a ui-sref="customer.home">home</a></li>
+                        <li><a ui-sref="">track shipment</a></li>
+                        <li><a href="javascript:void(0);">pending request</a></li>
+
+                        <li><a href="javascript:void(0);">promo</a></li>
+
+                        <li><a href="javascript:void(0);">all shipments</a></li>
+                        <li><a href="javascript:void(0);">payment</a></li>
+                        <li><a href="javascript:void(0);">contact us</a></li>
+
+
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li ng-class="{'active-link':getCurrentPath().match('myPosts') || getCurrentPath().match('postDetails')}"><a ui-sref="student.myPosts">My Posts</a></li>
-                <li ng-class="{'active-link':getCurrentPath().match('mySchedules')}"><a ui-sref="student.mySchedules">Schedules</a></li>
-                <li ng-class="{'active-link':getCurrentPath().match('myPayments')}"><a ui-sref="student.myPayments">My Payments</a></li>
-                <li ><a ng-click="showPostNewRequestModal()">Post Request</a></li>
-            </ul>
+    </div>
 
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+
+</div>
 
 <div ui-view></div>
+
+
+<script>
+
+    $(document).ready(function(){
+       $('.navbar-nav > li').on('click', function(){
+           $('li').removeClass('active');
+           $(this).addClass('active');
+
+       });
+   });
+
+</script>

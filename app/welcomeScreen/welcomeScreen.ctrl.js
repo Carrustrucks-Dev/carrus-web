@@ -2,15 +2,19 @@
  * Created by Manjeet  on 22/09/15.
  */
 
-angular.module('carrus').controller('welcomeScreenCtrl',['$scope',
-    function($scope){
+angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state',
+    function($scope,$state){
 
         //console.log("welcomeScreen");
-
 
         $scope.showLogin = function()
         {
             $('#myModal').modal('show');
+
+
+            //$state.go('customer');
+
+
         },
         $scope.forgotPassword = function(){
             var options = {
