@@ -52,6 +52,16 @@ angular.module('carrus').config(function ($stateProvider, $urlRouterProvider) {
             templateUrl:'app/customer/shipments/ongoing/ongoing.view.html',
             controller:'ongoingcrtl'
         })
+        .state('customer.shipments.upcoming',{
+            url:'/upcoming',
+            templateUrl:'app/customer/shipments/upcoming/upcoming.view.html',
+            controller:'upcomingctrl'
+        })
+        .state('customer.shipments.past',{
+            url:'/past',
+            templateUrl:'app/customer/shipments/past/past.view.html',
+            controller:'pastctrl'
+        })
 
 
         // Driver states

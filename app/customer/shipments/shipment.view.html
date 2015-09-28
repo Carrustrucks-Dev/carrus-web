@@ -1,5 +1,34 @@
-<h1>Shipments</h1>
+<div class="shipment_banner">
+    <div class="container">
+
+        <form class="navbar-form banner-search" role="search">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>
+        </form>
+
+
+        <div class="tab-menu pull-right">
+            <ul>
+                <li>
+                    <a ng-class="{'active': getCurrentPath().match('ongoing')}" ui-sref="customer.shipments.ongoing"> On going </a>
+                    <a  ng-class="{'active': getCurrentPath().match('upcoming')}" ui-sref="customer.shipments.upcoming" > Upcoming </a>
+                    <a ng-class="{'active': getCurrentPath().match('past')}" ui-sref="customer.shipments.past"> Past </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
 <div ui-view>
 
 
 </div>
+</div>
+
+
