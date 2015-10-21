@@ -3,38 +3,45 @@
  */
 
 angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state', function($scope,$state){
-
+    var options = {
+        show     : 'true',
+        keyboard: false,
+        backdrop : 'static'
+    };
         //console.log("welcomeScreen");
 
         $scope.showLogin = function()
         {
             $('#myModal').modal('show');
-            //$state.go('customer');
-        },
+            $('body').on('wheel.modal mousewheel.modal', function () {
+                return false;
+            });
+        };
         $scope.forgotPassword = function(){
-            var options = {
-                show     : 'true',
-                backdrop : 'static'
-            };
+
             $('#forgot_passowrd').modal(options);
             $('#myModal').modal('hide');
-            $('body').addClass('modal-open')
-        },
-            $scope.SignUp = function(){
-                var options = {
-                    show     : 'true',
-                    backdrop : 'static'
-                };
-                $('#SignUp').modal(options);
-            },
-            $scope.checkOTP = function(){
-                var options = {
-                    show     : 'true',
-                    backdrop : 'static'
-                };
-                $('#otp_modal').modal(options);
+            $('body').on('wheel.modal mousewheel.modal', function () {
+                return false;
+            });
+        };
+        $scope.SignUp = function(){
 
-            }
+                $('#SignUp').modal(options);
+            $('body').on('wheel.modal mousewheel.modal', function () {
+                return false;
+            });
+        };
+        $scope.checkOTP = function(){
+                $('#otp_modal').modal(options);
+            $('body').on('wheel.modal mousewheel.modal', function () {
+                return false;
+            });
+
+        };
+    $scope.closeModal=function(){
+                    $('body').off('wheel.modal mousewheel.modal');
+                };
 
 
     }]);
