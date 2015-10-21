@@ -354,8 +354,8 @@ blockquote p{
 
 
 .overlayed{float:left;width:100%;background: rgba(255, 180, 125, 0.2) none repeat scroll 0 0;}
-.overlayed1{background:url("../img/section14.png");background-size:cover;float:left;width:100%;}
-.overlayed-down{float:left;width:100%;background: url("../img/map_delhi.png");}
+.overlayed1{background:url("/img/section14.png");background-size:cover;float:left;width:100%;}
+.overlayed-down{float:left;width:100%;background: url("/img/map_delhi.png");}
 .how-icons{float:left;width:100%;min-height:400px;margin-top:8%;}
 .how-icons h4{color:white;font-family: lato-bold;font-size:19px;font-weight:bold !important;}
 .how-icons h6{color:gray;font-size:17px !important;font-family: latolight !important; }
@@ -367,7 +367,13 @@ blockquote p{
 .hero img{width:170px;}
 .mag-auto{margin:0 auto;max-width:400px;width:100%; }
 .tt img{width:180px;}
-.jig{float:left;width:100%;background: rgba(0, 0, 0, 0.19) none repeat scroll 0 0;padding-top:100px;}
+.jig{float:left;width:100%;background: rgba(0, 0, 0, 0.19) none repeat scroll 0 0;/*padding-top:100px;*/}
+.contactUs{
+    background: transparent url('../img/map_bg_blue.png') repeat scroll 0px 0px ;
+    background-size:cover;
+
+    width: 100%;
+}
 #photo-div{background: #084087 none repeat scroll 0 0;}
 
 
@@ -376,7 +382,7 @@ blockquote p{
     background:transparent;background-size:cover;min-height:700px;background-position:center;
 }
 /* css for section4*/
-.dild{background-attachment:fixed;width:1640px !important;}
+/*.dild{background-attachment:fixed;width:1640px !important;}*/
 @media (max-width:480px){
     .dild{width:100% !important;}
 }
@@ -631,6 +637,7 @@ h5, h6{font-family:helvetica ;}
         background:rgba(0, 0, 0, 0) url("../img/map_bg.jpg") no-repeat center top / cover;
         background-attachment: inherit;
     }
+
     .bg-overlay{
         /*background-attachment: local;
         background-clip: border-box;

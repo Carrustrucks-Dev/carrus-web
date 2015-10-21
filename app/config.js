@@ -3,7 +3,7 @@
  */
 
 angular.module("carrus").constant('CONSTANT', {
-    apiURL: '',
+    apiURL: 'http://52.25.204.93:8080/api/v1/shipper',
     sliderRange : [10,60]
 });
 
@@ -11,8 +11,9 @@ angular.module('carrus').config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/welcomeScreen');
     $urlRouterProvider.when('/customer','/customer/home');
-
-
+    /*$urlRouterProvider.otherwise('/customer','/customer/home');
+    $urlRouterProvider.when('/welcomeScreen');
+*/
     $stateProvider
 
         //Common States
