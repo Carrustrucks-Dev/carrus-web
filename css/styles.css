@@ -502,13 +502,13 @@ h5, h6{font-family:helvetica ;}
     font-size: 4em;
 }
 .map-point{
-    padding-top: 240px;
+    padding-top: 320px;
 }
 .marg-auto{
     position: relative; width: 100%; margin: 0px auto; transform: translate(97%, -27%); max-width: 200px;
 }
 .mg1{
-    position: absolute; top: -20px;
+    position: absolute; top: -50px;right:200px;
 }
 .mg2{
     position: absolute; top: 25px; right: 75px;
@@ -864,7 +864,7 @@ body{padding:0 !important;}
     background-color:#f1f1f1;
     border: none; color:#b1b1b1;
     padding: 10px; width: 100%;
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
     border: none !important;
     border-radius: 0 !important;
     -webkit-border-radius: 0 !important;
@@ -878,21 +878,43 @@ body{padding:0 !important;}
 .modal .modal-dialog .modal-content .modal-body input:active,
 .modal .modal-dialog .modal-content .modal-body input:focus,
 .modal .modal-dialog .modal-content .modal-body select:active,
-.modal .modal-dialog .modal-content .modal-body select:focus {
+.modal .modal-dialog .modal-content .modal-body select:focus,
+.modal .modal-dialog .modal-content .modal-body .open button:active,
+.modal .modal-dialog .modal-content .modal-body .open button:focus
+
+{
     /*border:1px solid #f89715 !important;*/
     border:1px solid rgba(248,151,21,1) !important;
     transition: border-color 1s ease;
     box-shadow: 0 0 5px rgba(248, 151, 21, 1);
 }
 
+.modal .modal-dialog .modal-content .modal-body .open button:focus{outline-color: transparent;
+    outline-style: auto;
+    outline-width: 0px;}
+
+
+
 .modal .modal-dialog .modal-content .modal-body #userName {  margin-bottom: 20px;}
 .modal .modal-dialog .modal-content .modal-body #userPassword{ }
-.modal .modal-dialog .modal-content .modal-body #login_button, .modal .modal-dialog .modal-content .modal-body #next_otp { outline:none; background-color:  #4c93fd; color:#fff; border: none; border-radius: 50px;width: 100%; margin-top: 20px; padding: 8px;}
-.modal .modal-dialog .modal-content .modal-body #login_button:hover, .modal .modal-dialog .modal-content .modal-body #next_otp:hover {background-color: #f89715; transition: background-color 0.5s ease; -webkit-transition: background-color 0.5s ease;
--moz-transition: background-color 0.5s ease; -o-transition: background-color 0.5s ease; -ms-transition: background-color 0.5s ease; -khtml-transition: background-color 0.5s ease;}
 .modal .modal-dialog .modal-content .modal-body #forgot_password { text-align: center; margin-top: 15px; display: block;}
+.modal .modal-dialog .modal-content .modal-body #login_button, .modal .modal-dialog .modal-content .modal-body #next_otp ,.modal .modal-dialog .modal-content .modal-body #forgotPasswordSubmit,.modal .modal-dialog .modal-content .modal-body #signUpSubmit{ outline:none; background-color:  #4c93fd; color:#fff; border: none; border-radius: 50px;width: 100%; margin-top: 20px; padding: 8px;}
+.modal .modal-dialog .modal-content .modal-body #login_button:hover, .modal .modal-dialog .modal-content .modal-body #next_otp:hover,.modal .modal-dialog .modal-content .modal-body #forgotPasswordSubmit:hover ,.modal .modal-dialog .modal-content .modal-body #signUpSubmit:hover {background-color: #f89715; transition: background-color 0.5s ease; -webkit-transition: background-color 0.5s ease;
+-moz-transition: background-color 0.5s ease; -o-transition: background-color 0.5s ease; -ms-transition: background-color 0.5s ease; -khtml-transition: background-color 0.5s ease;}
+
+
+
 
 /*============================== Register Model css ==================================*/
+
+
+.modal .modal-dialog .modal-content .modal-header .close{opacity: 0.7}
+.modal .modal-dialog .modal-content .modal-body .open ul.dropdown-menu li{
+    height:30px;
+    background-color: #f1f1f1;
+    color:#b1b1b1;
+}
+.modal .modal-dialog .modal-content .modal-body .open ul.dropdown-menu:before,.modal .modal-dialog .modal-content .modal-body .open ul.dropdown-menu:after{}
 .radio_section {float: left; width: 100%;text-align: center; margin: 0 0 25px 0px;}
 .modal .modal-dialog .modal-content .modal-body input.half_width ,.modal .modal-dialog .modal-content .modal-body select.half_width{ width: 47.5%;float: left; margin: 0 23px 15px 0;}
 .modal .modal-dialog .modal-content .modal-body input.full_width{ background-color:#f1f1f1; border: none; padding: 10px; width: 100%; margin:0 0 15px; }
@@ -1035,13 +1057,15 @@ input.upload {  padding: 5px !important;}
 
 ul.dropdown-menu{
 
-    background: #fff;
-
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 1px;
 }
 ul.dropdown-menu:after, ul.dropdown-menu:before {
     bottom: 100%;
-    left: 93%;
-    border: solid transparent;
+    /*left: 93%;*/
+    right:2%;
+    border: solid rgba(194, 225, 245, 0);
     content: " ";
     height: 0;
     width: 0;
@@ -1050,15 +1074,15 @@ ul.dropdown-menu:after, ul.dropdown-menu:before {
 }
 
 ul.dropdown-menu:after {
-    border-color: rgba(136, 183, 213, 0);
-    border-bottom-color: #fff;
-    border-width: 11px;
+    border-color: rgba(26, 73, 103, 0);
+    border-bottom-color: #f1f1f1;
+    border-width: 0px;
     margin-left: -30px;
 }
 ul.dropdown-menu:before {
-    border-color: rgba(194, 225, 245, 0);
-    border-bottom-color: #E8EAEA;
-    border-width: 13px;
+    border-color: rgba(26, 73, 103, 0);
+    border-bottom-color: #ccc;
+    border-width: 0px;
     margin-left: -32px;
 }
 

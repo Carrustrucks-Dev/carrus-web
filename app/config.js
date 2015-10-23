@@ -3,8 +3,8 @@
  */
 
 angular.module("carrus").constant('CONSTANT', {
-    apiURL: 'http://52.25.204.93:8080/api/v1/shipper',
-    sliderRange : [10,60]
+    apiURL: 'http://52.25.204.93:8080/api/v1/shipper'
+   /* sliderRange : [10,60]*/
 });
 
 angular.module('carrus').config(function ($stateProvider, $urlRouterProvider) {
@@ -23,12 +23,7 @@ angular.module('carrus').config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'app/welcomeScreen/welcomeScreen.view.html',
             controller : 'welcomeScreenCtrl'
         })
-
-
-
-
-
-        // Student states
+     // Student states
 
         .state('customer', {
             url: '/customer',
@@ -62,19 +57,13 @@ angular.module('carrus').config(function ($stateProvider, $urlRouterProvider) {
             url:'/past',
             templateUrl:'app/customer/shipments/past/past.view.html',
             controller:'pastctrl'
-        })
-
-
-        // Driver states
-
-
-
-
+        });
+  // Driver states
 });
 
 
 
-
+/*
 angular.module('carrus').config(function($httpProvider){
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
     $httpProvider.defaults.transformRequest = function(data){
@@ -84,4 +73,4 @@ angular.module('carrus').config(function($httpProvider){
         return $.param(data);
     };
     $httpProvider.defaults.cache= false;
-});
+});*/

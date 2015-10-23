@@ -1,18 +1,20 @@
 <!-- ====================================  Login modal ================================================== -->
-<div id="myModal" class="modal" role="dialog">
+<div id="loginModal" class="modal" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()">&times;</button>
-                <h4 class="modal-title">Sign In</h4>
+                <h3 class="modal-title" >Sign In</h3>
+                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()"  style="margin-top:-50px;font-size: 2em">&times;</button>
+
             </div>
             <div class="modal-body">
-                <input id="userName"   placeholder="email"   type="text" ng-model="userName">
-                <input id="userPassword" placeholder="password"  type="password" ng-model="userPassword">
-                <button id="login_button" type="submit" ng-click="">Login</button>
-                <a id="forgot_password"href="" ng-click="forgotPassword();"> Forgot password ?</a>
+                <div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
+                <input id="userName"   placeholder="Email"   type="email" ng-model="userName">
+                <input id="userPassword" placeholder="Password"  type="password" ng-model="userPassword">
+                <button id="login_button" type="submit" ng-click="loginFn()">Login</button>
+                <a id="forgot_password" style="text-align: center; margin-top: 15px; display: block;" href="" ng-click="forgotPassword();"> Forgot password ?</a>
             </div>
             <!--<div class="modal-footer">-->
             <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
@@ -32,13 +34,15 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()">&times;</button>
-                <h4 class="modal-title">Forgot Password</h4>
+                <h3 class="modal-title">Forgot Password</h3>
+                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()"  style="margin-top:-50px;font-size: 2em">&times;</button>
+
             </div>
             <div class="modal-body">
-                <p>Please provide your Email id. We will send you the instructions to reset your password</p>
-                <input id="reset_email_id"   placeholder="Enter your Email Id"   type="text" ng-model="email">
-                <button id="login_button" type="submit" ng-click="">Submit</button>
+                <div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
+                <p class="text-center" style="margin-top: -20px;margin-bottom: 30px;font-size: 18px;">Please provide your Email id. <br>We will send you the instructions <br>to reset your password.</p>
+                <input id="forgotEmail"   placeholder="Enter your Email Id"   type="email" ng-model="forgotEmail">
+                <button id="forgotPasswordSubmit" type="submit" ng-click="forgotPwd()">Submit</button>
 
             </div>
             <!--<div class="modal-footer">-->
@@ -62,8 +66,9 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()">&times;</button>
-                <h4 class="modal-title">Sign Up</h4>
+               <h3 class="modal-title text-center">Sign Up</h3>
+                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()" style="margin-top:-50px;font-size: 2em">&times;</button>
+
             </div>
             <div class="modal-body">
                <div class="radio_section">
@@ -71,45 +76,54 @@
                 <div class="half_width no-margin"><label class="radio-inline"><input type="radio" name="optradio"><span>Broker</span></label></div></div>
                 <input   class="half_width "  placeholder="First Name"   type="text" ng-model="fname">
                 <input class="half_width no-margin"  placeholder="Last Name"    type="text" ng-model="lname">
-                <input  class="full_width"  placeholder="email id"     type="email" ng-model="userName">
-                <input  class="half_width"  placeholder="Company name"   type="text" ng-model="companyname">
-                <select class="form-control half_width no-margin" id="sel1">
+                <input  class="full_width"  placeholder="Email ID"     type="email" ng-model="userName">
+                <input  class="half_width"  placeholder="Company Name"   type="text" ng-model="companyname">
+                <!--<select class="half_width no-margin" id="sel1">
                     <option>Type of Company</option>
-                    <option>2</option>
+                    <option>Partnership</option>
+                    <option>Limited</option>
                     <option>3</option>
-                    <option>4</option>
-                </select>
+                </select>-->
+                <div dropdown="dropdown" class="open half_width no-margin">
+                    <button dropdown-toggle="" style=" width: 100%;text-align: left;background-color: #f1f1f1;border-radius: 0px;height:45px;border:0px;color:#b1b1b1" class="btn btn-default" aria-haspopup="true" aria-expanded="true">Type of Company<b class="caret" style="float: right;margin-top: 10px"></b>
+                    </button>
+                    <ul role="menu" class="dropdown-menu half_width no-margin" style="width: 100%;background-color: #f1f1f1;">
+                        <li>Partnership</li>
+                        <li>Limited</li>
+                        <li>Whatever</li>
+                    </ul>
+                </div>
                 <div class="half_width" style="position: relative;overflow: hidden;">
-                    <input class="half_width" placeholder="tin"    style="width: 100%;" type="text" ng-model="tin">
+                    <input class="half_width" placeholder="TIN"    style="width: 100%;" type="text" ng-model="tin">
                     <div class="fileUpload files">
                         <input type="file" class="upload" name="tin" accept="image/*"/>
                     </div>
                 </div>
                 <div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">
-                    <input  class="half_width no-margin" style="width: 100%;" placeholder="pan"    type="text" ng-model="pan">
+                    <input  class="half_width no-margin" style="width: 100%;" placeholder="PAN"    type="text" ng-model="pan">
                     <div class="fileUpload files">
                     <input type="file" class="upload" name="tin" accept="image/*"/>
                 </div>
                 </div>
                 <div class="half_width" style="position: relative;overflow: hidden;">
-                    <input  class="half_width "  placeholder="Service tax registration" style="width: 100%;"   type="text" ng-model="taxreg">
+                    <input  class="half_width "  placeholder="Service Tax Registration" style="width: 100%;"   type="text" ng-model="taxreg">
                     <div class="fileUpload files">
                     <input type="file" class="upload"  name="ServiceTaxRegistration" accept="image/*">
                 </div>
                     </div>
                 <div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">
-                    <input   class="half_width no-margin"  style="width: 100%;"  placeholder="Excise registration"    type="text" ng-model="excisereg">
+                    <input   class="half_width no-margin"  style="width: 100%;"  placeholder="Excise Registration"    type="text" ng-model="excisereg">
                     <div class="fileUpload files"><input type="file" class="upload" name="ExciseRegistration" accept="image/*">
                 </div></div>
-                <input  class="half_width "  placeholder="password"    type="password" ng-model="pass">
-                <input  class="half_width no-margin"  placeholder="Confirm password"    type="password" ng-model="confmpass">
+                <input  class="half_width "  placeholder="Password"    type="password" ng-model="pass">
+                <input  class="half_width no-margin"  placeholder="Confirm Password"    type="password" ng-model="confmpass">
                 <input  class="full_width"  placeholder="Mobile Number"     type="number" ng-model="mobilenumber">
                 <input  class="half_width"  placeholder="Address"    type="text" ng-model="adress">
-                <input  class="half_width no-margin"  placeholder="Cite/Town"    type="text" ng-model="cityTwon">
+                <input  class="half_width no-margin"  placeholder="CitY/Town"    type="text" ng-model="cityTwon">
                 <input  class="half_width"  placeholder="State"    type="text" ng-model="state">
-                <input  class="half_width no-margin"  placeholder="zip code"    type="text" ng-model="zipcode">
+                <input  class="half_width no-margin"  placeholder="Zip Code"    type="text" ng-model="zipcode">
 
-                <button id="login_button" type="submit" ng-click="checkOTP();">Submit</button>
+                <button id="signUpSubmit" type="submit" ng-click="checkOTP();">Submit</button>
 
             </div>
             <!--<div class="modal-footer">-->
@@ -131,11 +145,11 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()">&times;</button>
-                <h4 class="modal-title">Enter OTP here</h4>
+                <h3 class="modal-title">Enter OTP here</h3>
+                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()" style="margin-top:-50px;font-size: 2em">&times;</button>
             </div>
             <div class="modal-body">
-                <input id="otpnumber"   placeholder="Enter you OTP"   type="number" ng-model="otpNumber">
+                <input id="otpnumber"   placeholder="Enter OTP"   type="number" ng-model="otpNumber">
                 <button id="next_otp" type="submit" ng-click="">Next</button>
             </div>
             <!--<div class="modal-footer">-->
@@ -460,12 +474,11 @@
 
                                   <span style="position: relative;">
                                     <img src="img/location.png" class="delhi">
-                                  <span class="pt-delhi"
-                                        style="width:200px;height:100px;top:-103px;">
+                                  <span class="pt-delhi" style="width:200px;height:100px;top:-103px;">
                                     <span style="position: relative; float: left; width: 100%; margin-top: 6px;">
                                     <span style="width: 100%; font-size: 15px; color: rgb(66, 139, 202); float: left; padding-left: 10px;">New Delhi<br>C856 LGF,
-Defence Colony,
-New Delhi 110024</span>
+                                        Defence Colony,
+                                        New Delhi 110024</span>
                                     <span style="width: 100%; padding-left: 10px; font-size: 15px; color:gray;">India</span>
                                     <span style="position: absolute; transform: rotate(270deg); left: -9px; bottom: -13%;"
                                           class="caret locate-point"></span>
