@@ -15,11 +15,11 @@
                 <li class="dropdown">
 
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user"></i>Amit Sharma<span class="caret"></span>
+                        <i class="fa fa-user"></i>Tushar Arora<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="">demo</a></li>
-                        <li><a href="">demo</a></li>
+                        <li><a href="">Profile</a></li>
+                        <li><a href="">Logout</a></li>
                     </ul>
 
                 </li>
@@ -33,12 +33,12 @@
 <div class="container">
     <div class="row">
 
-        <div class="navbar navbar-default   navv nav_all">
-            <div class="container header-containe">
+        <div class="navbar navbar-default   navv nav_all" style="padding: 0;margin: 0px;border :0px solid white;">
+            <div class="container header-container" style="padding: 0">
 
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse" style="padding: 0">
 
-                    <ul class="nav navbar-nav pull-right">
+                    <ul class="nav navbar-nav pull-right" style="padding: 0">
 
                         <li class="active"><a ui-sref="customer.home">home</a></li>
                         <li><a href="javascript:void(0);">track shipment</a></li>
@@ -64,7 +64,12 @@
 
 <div ui-view></div>
 
-
+<style>
+    .navbar-nav > li.active{
+        padding:0 0 0 0;
+    }
+    .navbar-nav > li{margin-right: 10px}
+</style>
 <script>
 
     $(document).ready(function(){

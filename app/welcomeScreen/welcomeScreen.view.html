@@ -74,10 +74,10 @@
                <div class="radio_section">
                <div class="half_width"><label class="radio-inline"><input type="radio" class="outler" name="optradio" checked><span>Shipper</span></label></div>
                 <div class="half_width no-margin"><label class="radio-inline"><input type="radio" name="optradio"><span>Broker</span></label></div></div>
-                <input   class="half_width "  placeholder="First Name"   type="text" ng-model="fname">
-                <input class="half_width no-margin"  placeholder="Last Name"    type="text" ng-model="lname">
-                <input  class="full_width"  placeholder="Email ID"     type="email" ng-model="userName">
-                <input  class="half_width"  placeholder="Company Name"   type="text" ng-model="companyname">
+                <input   class="half_width "  placeholder="First Name"   type="text" ng-model="signUp.fname">
+                <input class="half_width no-margin"  placeholder="Last Name"    type="text" ng-model="signUp.lname">
+                <input  class="full_width"  placeholder="Email ID"     type="email" ng-model="signUp.userName">
+                <input  class="half_width"  placeholder="Company Name"   type="text" ng-model="signUp.companyname">
                 <!--<select class="half_width no-margin" id="sel1">
                     <option>Type of Company</option>
                     <option>Partnership</option>
@@ -85,45 +85,68 @@
                     <option>3</option>
                 </select>-->
                 <div dropdown="dropdown" class="open half_width no-margin">
-                    <button dropdown-toggle="" style=" width: 100%;text-align: left;background-color: #f1f1f1;border-radius: 0px;height:45px;border:0px;color:#b1b1b1" class="btn btn-default" aria-haspopup="true" aria-expanded="true">Type of Company<b class="caret" style="float: right;margin-top: 10px"></b>
+                    <button dropdown-toggle="" style=" width: 100%;text-align: left;background-color: #f1f1f1;border-radius: 0px;height:45px;border:0px;color:#b1b1b1" class="btn btn-default" aria-haspopup="true" aria-expanded="true">{{signUp.partnershipName}}<b class="caret" style="float: right;margin-top: 10px"></b>
                     </button>
                     <ul role="menu" class="dropdown-menu half_width no-margin" style="width: 100%;background-color: #f1f1f1;">
-                        <li>Partnership</li>
-                        <li>Limited</li>
-                        <li>Whatever</li><li>Whatever</li><li>Whatever</li><li>Whatever</li>
+                        <li ng-click="partner(0,'Type of Company')">--</li>
+                        <li ng-repeat="data in partnershipArray" ng-click="partner(data._id,data.partnershipName)" >{{data.partnershipName}}</li>    <!--ng-click="addID(data._id,data.model)"-->
+
                     </ul>
                 </div>
                 <div class="half_width" style="position: relative;overflow: hidden;">
-                    <input class="half_width" placeholder="TIN"    style="width: 100%;" type="text" ng-model="tin">
+                    <input class="half_width" placeholder="TIN"  id="tin"  style="width: 100%;" type="text" ng-model="signUp.tin_name" readonly>
                     <div class="fileUpload files">
-                        <input type="file" class="upload" name="tin" accept="image/*"/>
+                        <input type="file" class="upload" name="tin" onchange="angular.element(this).scope().file_tin(this.files)"
+                               data-button-text="Single" uploader="uploader" accept="image/*"/>
                     </div>
+                    <!--
+                    <input filestyle="" type="file" name="service_image" accept="image/*" image="image"
+                               onchange="angular.element(this).scope().file_to_upload(this.files)"
+                               data-button-text="Single" data-class-button="btn btn-default"
+                               data-classinput="form-control inline" nv-file-select="" uploader="uploader"
+                               class="form-control"/>
+
+
+                      <input filestyle="" type="file" name="other_images" accept="image/*" image="image"
+                               onchange="angular.element(this).scope().files_to_upload(this.files)"
+                               data-button-text="Multiple" data-class-button="btn btn-default"
+                               data-classinput="form-control inline" nv-file-select="" uploader="uploader" multiple
+                               class="form-control" />
+
+
+
+                    -->
                 </div>
                 <div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">
-                    <input  class="half_width no-margin" style="width: 100%;" placeholder="PAN"    type="text" ng-model="pan">
+                    <input  class="half_width no-margin" style="width: 100%;" placeholder="PAN"  id="pan"  type="text" ng-model="signUp.pan_name" readonly>
                     <div class="fileUpload files">
-                    <input type="file" class="upload" name="tin" accept="image/*"/>
+                    <input type="file" class="upload" name="pan" onchange="angular.element(this).scope().file_pan(this.files)"
+                           data-button-text="Single" uploader="uploader"  accept="image/*"/>
                 </div>
                 </div>
                 <div class="half_width" style="position: relative;overflow: hidden;">
-                    <input  class="half_width "  placeholder="Service Tax Registration" style="width: 100%;"   type="text" ng-model="taxreg">
+                    <input  class="half_width "  placeholder="Service Tax Registration" style="width: 100%;"  id="tax" type="text" ng-model="signUp.taxreg_name" readonly>
                     <div class="fileUpload files">
-                    <input type="file" class="upload"  name="ServiceTaxRegistration" accept="image/*">
+                    <input type="file" class="upload"  name="ServiceTaxRegistration" onchange="angular.element(this).scope().file_tax(this.files)"
+                           data-button-text="Single" uploader="uploader" accept="image/*">
                 </div>
                     </div>
                 <div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">
-                    <input   class="half_width no-margin"  style="width: 100%;"  placeholder="Excise Registration"    type="text" ng-model="excisereg">
-                    <div class="fileUpload files"><input type="file" class="upload" name="ExciseRegistration" accept="image/*">
-                </div></div>
-                <input  class="half_width "  placeholder="Password"    type="password" ng-model="pass">
-                <input  class="half_width no-margin"  placeholder="Confirm Password"    type="password" ng-model="confmpass">
-                <input  class="full_width"  placeholder="Mobile Number"     type="number" ng-model="mobilenumber">
-                <input  class="half_width"  placeholder="Address"    type="text" ng-model="adress">
-                <input  class="half_width no-margin"  placeholder="CitY/Town"    type="text" ng-model="cityTwon">
-                <input  class="half_width"  placeholder="State"    type="text" ng-model="state">
-                <input  class="half_width no-margin"  placeholder="Zip Code"    type="text" ng-model="zipcode">
+                    <input   class="half_width no-margin"  style="width: 100%;"  placeholder="Excise Registration"  id="excisereg"  type="text" ng-model="signUp.excisereg_name" readonly>
+                    <div class="fileUpload files">
+                        <input type="file" class="upload" name="ExciseRegistration" onchange="angular.element(this).scope().file_excisereg(this.files)"
+                               data-button-text="Single" uploader="uploader" accept="image/*">
+                </div>
+                </div>
+                <input  class="half_width "  placeholder="Password"    type="password" ng-model="signUp.pass">
+                <input  class="half_width no-margin"  placeholder="Confirm Password"    type="password" ng-model="signUp.confmpass">
+                <input  class="full_width"  placeholder="Mobile Number"     type="text" ng-model="signUp.mobilenumber">
+                <input  class="half_width"  placeholder="Address"    type="text" ng-model="signUp.address">
+                <input  class="half_width no-margin"  placeholder="City/Town"    type="text" ng-model="signUp.cityTown">
+                <input  class="half_width"  placeholder="State"    type="text" ng-model="signUp.state">
+                <input  class="half_width no-margin"  placeholder="Zip Code"    type="text" ng-model="signUp.zipcode">
 
-                <button id="signUpSubmit" type="submit" ng-click="checkOTP();">Submit</button>
+                <button id="signUpSubmit" type="submit" ng-click="getOTP();checkOTP();">Submit</button>
 
             </div>
             <!--<div class="modal-footer">-->
@@ -149,8 +172,8 @@
                 <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()" style="margin-top:-50px;font-size: 2em">&times;</button>
             </div>
             <div class="modal-body">
-                <input id="otpnumber"   placeholder="Enter OTP"   type="number" ng-model="otpNumber">
-                <button id="next_otp" type="submit" ng-click="">Next</button>
+                <input id="otpnumber"   placeholder="Enter OTP"   type="text" ng-model="otpNumber">
+                <button id="next_otp" type="submit" ng-click="verifyOTP()">Next</button>
             </div>
             <!--<div class="modal-footer">-->
             <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
