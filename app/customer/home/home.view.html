@@ -7,24 +7,20 @@
             <div class="col-md-7 col-md-offset-5">
                 <div class="requestTruck">
                     <h2>Request a Truck</h2>
-
                     <div class="row_ist">
                         <label>Pick up</label><br>
-                        <input type="text" value="" placeholder="Location">
-                        <input id="PickUpDate" type="text" value="" placeholder="Date">
-                        <select>
+                        <input style="width: 44%" type="text" ng-model="bid.pickUpLocation" placeholder="Location">
+                        <input style="width: 20%" id="PickUpDate" type="text" ng-model="bid.pickUpDate" placeholder="Date">
+                        <select style="width: 30%">
                             <option>Time</option>
-
                         </select>
-
-
                     </div>
 
                     <div class="row_ist">
                         <label>Drop off</label><br>
-                        <input type="text" value="" placeholder="Location">
-                        <input id="DropOffDate" type="text" value="" placeholder="Date">
-                        <select>
+                        <input style="width: 44%" type="text" ng-model="bid.dropOffLocation" placeholder="Location">
+                        <input style="width: 20%" id="DropOffDate" type="text" ng-model="bid.dropOffDate" placeholder="Date">
+                        <select style="width: 30%">
                             <option>Time</option>
 
                         </select>
@@ -34,46 +30,49 @@
                     <div class="row_second">
                         <label>cargo details</label><br>
                         <div class="row_input">
-                            <input type="text" value="" placeholder="weight(in ton)"></div>
+                            <input type="number" min="0" ng-model="bid.cargoWeight" placeholder="Weight(in Ton)">
+                        </div>
                         <div class="row_input n-mrgn">
-
-                            <select>
-                                <option>type of cargo</option>
-
-                            </select></div>
-
-
-                    </div>
-                    <div class="row_second">
-                        <div class="row_input">
-                            <label>type of truck</label><br>
-                            <input type="text" value="" placeholder="weight(in ton)"></div>
-                        <div class="row_input n-mrgn">
-                            <label>number of trucks</label>
-                            <select>
-                                <option>type of cargo</option>
-
-                            </select>
-
+                            <div dropdown="dropdown" >
+                                <button dropdown-toggle="" style=" width: 100%;text-align: left;border:0px;color:#b1b1b1;background-color: #f1f1f1;border-radius: 0px;height:45px;" class="btn btn-default" aria-haspopup="true" aria-expanded="true">Type of Cargo{{$scope.bid.cargoName}}<b class="caret" style="float: right;margin-top: 10px"></b>
+                                </button>
+                                <ul role="menu" class="dropdown-menu half_width no-margin" style="width: 100%;background-color: #f1f1f1;">
+                                    <li ng-click="typeCargo(0,'Type of Cargo')">--</li>
+                                    <li ng-repeat="data in cargoArray" ng-click="typeCargo(data._id,data.typeCargoName)" >{{data.typeCargoName}}</li>    <!--ng-click="addID(data._id,data.model)"-->
+                                </ul>
+                            </div>
                         </div>
                     </div>
-
+                    &nbsp;&nbsp;&nbsp;
+                    <div class="row_second">
+                        <div class="row_input">
+                            <label>Type of truck</label>
+                            <div dropdown="dropdown" >
+                                <button dropdown-toggle="" style=" width: 100%;text-align: left;border:0px;color:#b1b1b1;background-color: #f1f1f1;border-radius: 0px;height:45px;" class="btn btn-default" aria-haspopup="true" aria-expanded="true">Choose Truck{{$scope.bid.truckName}}<b class="caret" style="float: right;margin-top: 10px"></b>
+                                </button>
+                                <ul role="menu" class="dropdown-menu half_width no-margin" style="width: 100%;background-color: #f1f1f1;">
+                                    <li ng-click="trruckType(0,'Choose Truck')">--</li>
+                                    <li ng-repeat="data in truckArray" ng-click="truckType(data._id,data.typeTruckName)" >{{data.typeTruckName}}</li>    <!--ng-click="addID(data._id,data.model)"-->
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row_input n-mrgn">
+                            <label>Number of Trucks</label><br>
+                            <input type="text" ng-model="bid.numberTrucks" placeholder="0">
+                        </div>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
                     <div class="row_second">
                         <label>Budget</label>
-                        <input type="text" value="" placeholder="Enter Amount">
-
+                        <input type="number" min="0" ng-model="bid.budget" placeholder="Enter Amount">
                     </div>
                     <div class="row_second">
-                        <label>NOtes</label>
-                        <textarea placeholder="Write here..."></textarea>
-
+                        <label>Notes</label>
+                        <textarea ng-model="bid.note" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px" placeholder="Write here..."></textarea>
                     </div>
-                    <button id="req_btn" type="submit">Submit</button>
-
+                    <button id="req_btn" ng-click="makeBid()" type="submit">Submit</button>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>

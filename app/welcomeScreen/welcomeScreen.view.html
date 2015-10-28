@@ -11,10 +11,10 @@
             </div>
             <div class="modal-body">
                 <div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
-                <input id="userName"   placeholder="Email"   type="email" ng-model="userName">
-                <input id="userPassword" placeholder="Password"  type="password" ng-model="userPassword">
-                <button id="login_button" type="submit" ng-click="loginFn()">Login</button>
-                <a id="forgot_password" style="text-align: center; margin-top: 15px; display: block;" href="" ng-click="forgotPassword();"> Forgot password ?</a>
+                <input class="userName"   placeholder="Email"   type="email" ng-model="userName">
+                <input class="userPassword" placeholder="Password"  type="password" ng-model="userPassword">
+                <button class="login_button" type="submit" ng-click="loginFn()">Login</button>
+                <a class="forgot_password" style="text-align: center; margin-top: 15px; display: block;" href="" ng-click="forgotPasswordShipper();"> Forgot password ?</a>
             </div>
             <!--<div class="modal-footer">-->
             <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
@@ -28,7 +28,7 @@
 
 <!-- ==================================== forgot password model ================================================== -->
 
-<div id="forgot_passowrd" class="modal" role="dialog">
+<div id="forgot_passwordShipper" class="modal" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -42,7 +42,7 @@
                 <div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
                 <p class="text-center" style="margin-top: -20px;margin-bottom: 30px;font-size: 18px;">Please provide your Email id. <br>We will send you the instructions <br>to reset your password.</p>
                 <input id="forgotEmail"   placeholder="Enter your Email Id"   type="email" ng-model="forgotEmail">
-                <button id="forgotPasswordSubmit" type="submit" ng-click="forgotPwd()">Submit</button>
+                <button class="forgotPasswordSubmit" type="submit" ng-click="forgotPwd()">Submit</button>
 
             </div>
             <!--<div class="modal-footer">-->
@@ -60,7 +60,7 @@
 
 <!-- ==================================== forgot password model ================================================== -->
 
-<div id="SignUp" class="modal" role="dialog">
+<div id="SignUpShipper" class="modal" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -146,7 +146,7 @@
                 <input  class="half_width"  placeholder="State"    type="text" ng-model="signUp.state">
                 <input  class="half_width no-margin"  placeholder="Zip Code"    type="text" ng-model="signUp.zipcode">
 
-                <button id="signUpSubmit" type="submit" ng-click="getOTP();checkOTP();">Submit</button>
+                <button class="signUpSubmit" type="submit" ng-click="getOTP();checkOTPShipper();">Submit</button>
 
             </div>
             <!--<div class="modal-footer">-->
@@ -162,7 +162,7 @@
 
 
 <!-- ====================================  OTP  modal ================================================== -->
-<div id="otp_modal" class="modal" role="dialog">
+<div id="otp_modalShipper" class="modal" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -173,7 +173,7 @@
             </div>
             <div class="modal-body">
                 <input id="otpnumber"   placeholder="Enter OTP"   type="text" ng-model="otpNumber">
-                <button id="next_otp" type="submit" ng-click="verifyOTP()">Next</button>
+                <button class="next_otp" type="submit" ng-click="verifyOTPShipper()">Next</button>
             </div>
             <!--<div class="modal-footer">-->
             <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
@@ -185,6 +185,472 @@
 
 <!-- ==================================== End OTP modal ================================================== -->
 
+
+
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--========================================Fleet Owner Related Modals=====================================-->
+<!--=============================================================================================================-->
+
+<!-- ====================================  Login modal shipper================================================== -->
+<div id="myModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign In</h4>
+            </div>
+            <div class="modal-body">
+                <input class="userName"   placeholder="email"   type="text" ng-model="userName">
+                <input class="userPassword" placeholder="password"  type="password" ng-model="userPassword">
+                <button class="login_button" type="submit" ng-click="">Login</button>
+                <a class="forgot_password" href="" ng-click="forgotPassword();"> Forgot password ?</a>
+            </div>
+            <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+
+<!-- ==================================== End Login modal ================================================== -->
+
+
+
+
+
+
+
+<!-- ==================================== forgot password model ================================================== -->
+
+<div id="forgot_passowrd" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Forgot Password</h4>
+            </div>
+            <div class="modal-body">
+                <p>Please provide your Email id. We will send you the instructions to reset your password</p>
+                <input id="reset_email_id"   placeholder="Enter your Email Id"   type="text" ng-model="email">
+                <button class="login_button" type="submit" ng-click="">Submit</button>
+
+            </div>
+            <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ==================================== end of forgot password model ================================================== -->
+
+<!--=================================== Login modal fleet owner======================-->
+<div ng-app="carrus">
+    <div id="fleet_owner_login_modal" class="modal" role="dialog"  >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close " data-dismiss="modal" >&times;</button>
+                    <h4 class="modal-title">Sign In </h4>
+                </div>
+                <div class="modal-body" ng-controller="welcomeScreenCtrl" >
+                    <input class="full_width" name="email" id="email" type="text" placeholder=" User Name / Email" ng-model="fleetowner.email" >
+                    <input class="full_width" name="password" id="password" type="password" placeholder="Password" ng-model="fleetowner.password" >
+                    <button class="login_button" type="submit" ng-click="fleet_owner_login()" >Login</button>
+                    <a class="forgot_password" href="" ng-click="forgot_password();">Forgot Password</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- ==================================== End Login fleet owner modal ====================================== -->
+
+
+<!-- ==================================== forgot password model ============================================= -->
+<div ng-app="carrus">
+    <div id="fleet_owner_forgot_password_modal" class="modal" role="dialog" >
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" > Forgot Password</h4>
+                </div>
+                <div class="modal-body" ng-controller="welcomeScreenCtrl">
+                    <p> Please provide your Email id. We will send you the instructions to reset your password </p>
+                    <input type="email" placeholder="Email" ng-model="fleetowner.reset_pwd_email">
+                    <button type="submit" class="login_button" ng-click="fleet_owner_forgot_pwd();" >Submit </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- ==================================== shipper sign up modal ================================================== -->
+
+<div id="SignUp" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign Up</h4>
+            </div>
+            <div class="modal-body">
+                <div class="radio_section">
+                    <div class="half_width"><label class="radio-inline"><input type="radio" class="outler" name="optradio" checked><span>Shipper</span></label></div>
+                    <div class="half_width no-margin"><label class="radio-inline"><input type="radio" name="optradio"><span>Broker</span></label></div></div>
+                <input   class="half_width "  placeholder="First Name"   type="text" ng-model="fname">
+                <input class="half_width no-margin"  placeholder="Last Name"    type="text" ng-model="lname">
+                <input  class="full_width"  placeholder="email id"     type="email" ng-model="userName">
+                <input  class="half_width"  placeholder="Company name"   type="text" ng-model="companyname">
+                <select class="form-control half_width no-margin" id="sel1">
+                    <option>Type of Company</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                <div class="half_width" style="position: relative;overflow: hidden;">
+                    <input class="half_width" placeholder="tin"    style="width: 100%;" type="text" ng-model="tin">
+                    <div class="fileUpload files">
+                        <input type="file" class="upload" name="tin" accept="image/*"/>
+                    </div>
+                </div>
+                <div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">
+                    <input  class="half_width no-margin" style="width: 100%;" placeholder="pan"    type="text" ng-model="pan">
+                    <div class="fileUpload files">
+                        <input type="file" class="upload" name="tin" accept="image/*"/>
+                    </div>
+                </div>
+                <div class="half_width" style="position: relative;overflow: hidden;">
+                    <input  class="half_width "  placeholder="Service tax registration" style="width: 100%;"   type="text" ng-model="taxreg">
+                    <div class="fileUpload files">
+                        <input type="file" class="upload"  name="ServiceTaxRegistration" accept="image/*">
+                    </div>
+                </div>
+                <div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">
+                    <input   class="half_width no-margin"  style="width: 100%;"  placeholder="Excise registration"    type="text" ng-model="excisereg">
+                    <div class="fileUpload files"><input type="file" class="upload" name="ExciseRegistration" accept="image/*">
+                    </div></div>
+                <input  class="half_width "  placeholder="password"    type="password" ng-model="pass">
+                <input  class="half_width no-margin"  placeholder="Confirm password"    type="password" ng-model="confmpass">
+                <input  class="full_width"  placeholder="Mobile Number"     type="number" ng-model="mobilenumber">
+                <input  class="half_width"  placeholder="Address"    type="text" ng-model="adress">
+                <input  class="half_width no-margin"  placeholder="Cite/Town"    type="text" ng-model="cityTwon">
+                <input  class="half_width"  placeholder="State"    type="text" ng-model="state">
+                <input  class="half_width no-margin"  placeholder="zip code"    type="text" ng-model="zipcode">
+
+                <button class="login_button" type="submit" ng-click="checkOTP();">Submit</button>
+
+            </div>
+            <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ==================================== end of shipper signup model ================================================== -->
+<!--==================================== fleet owner signup modal-->
+
+<div class="modal t-overflow" role="dialog" id="sign_up_step1" ng-init="steps={percent:5, step1:true, step2:false, step3:false}" ng-app="carrus">
+    <div class="modal-dialog" active="steps.step1" >
+
+        <div class="modal-content">
+            <div class="modal-header" style="margin-bottom: 40px;" >
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Sign Up</h4>
+                <img src="img/bar1.png" style="margin:20px 0px 15px 70px;" >
+                <!--<div class="progress_bar" >-->
+                <!--<progressbar value="steps.percent" class="progress-xs" type="success"></progressbar> </div>-->
+                <div style="float: left; width: 100%">
+                    <p style="color:#1583DD; " class="head1" >Personal Info </p>
+                    <p style=" color:#6C6C6C; " class="head2">Profile </p>
+                    <p style=" color:#6C6C6C;" class="head3" >Documents </p>
+                </div>
+                <div class="modal-body" ng-controller="welcomeScreenCtrl">
+                    <form>
+                        <div class="radio_section">
+                            <div class="half_width"><label class="radio-inline"><input type="radio" class="outler" name="optradio" checked><span class="radio_label" style="">Shipper</span></label></div>
+                            <div class="half_width no-margin"><label class="radio-inline"><input type="radio" name="optradio"><span class="radio_label" style="">Broker</span ></label></div>
+                        </div>
+                        <input name="name"  class="full_width "  placeholder="Full Name"   type="text" ng-model="fleetowner.name"  ng-init="fleetowner.name=''">
+                        <input name="email"  class="full_width"  placeholder="Email"     type="email" ng-model="fleetowner.email"  ng-init="fleetowner.email=''">
+                        <input  name="password" class="full_width"  placeholder="Password"   type="password" ng-model="fleetowner.password"  ng-init="fleetowner.password=''">
+                        <input name="repassword" class="full_width"  placeholder="Confirm Password"   type="password" ng-model="fleetowner.repassword" ng-init="fleetowner.repassword=''" >
+                        <input name="phoneNumber" class="full_width"  placeholder="Mobile Number"   type="number" ng-model="fleetowner.phoneNumber" ng-init="fleetowner.phoneNumber=''" >
+                    </form>
+                    <button class="login_button" type="submit" ng-click="generateOTP();">Next</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal t-overflow" role="dialog" id="sign_up_step2"  ng-init="steps={percent:50, step1:false, step2:true, step3:false}" ng-app="carrus">
+    <div class="modal-dialog" active="steps.step2">
+
+        <div class="modal-content" >
+            <div class="modal-header" style="margin-bottom: 40px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Sign Up</h4>
+                <img src="img/bar2.png" style="margin:20px 0px 15px 70px;" >
+                <!--<div   class="progress_bar">-->
+                <!--<progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>-->
+                <!--</div>-->
+                <div style="float: left; width: 100%">
+                    <p style="color:#1583DD;"  class="head1" >Personal Info </p>
+                    <p style=" color:#4DADFB;"  class="head2" >Profile </p>
+                    <p style=" color:#6C6C6C;"  class="head3" >Documents </p>
+                </div>
+
+
+                <div class="modal-body" ng-controller="welcomeScreenCtrl">
+
+                    <input   class="full_width "  placeholder="Company Name"   type="text" ng-model="fleetowner.companyName">
+                    <!--<input class="half_width no-margin"  placeholder="Last Name"    type="text" ng-model="lname">-->
+                    <input  class="full_width"  placeholder="Area of Operations -States"     type="text" ng-model="fleetowner.areaOfOperation">
+                    <input  class="full_width"  placeholder="Number of Trucks Owned"   type="number" ng-model="fleetowner.numberOfTrucks">
+                    <input  class="half_width"  placeholder="Address"   type="text" ng-model="fleetowner.address">
+                    <input  class="half_width no-margin"  placeholder="City Town"   type="text" ng-model="fleetowner.city">
+                    <input  class="half_width"  placeholder="State"   type="text" ng-model="fleetowner.state">
+                    <input  class="half_width no-margin"  placeholder="Zip Code"   type="number" ng-model="fleetowner.pinCode">
+
+
+                    <div style="margin: 20px 0 20px 0 "> <p style="float: left"> Warehouse Across India</p>
+                        <div style="float: right;">
+                            <div style="float: left" ><label class="radio-inline"><input type="radio" class="outler" name="optradio" checked><span>Yes</span></label></div>
+                            <div style="float: left" ><label class="radio-inline"><input type="radio" name="optradio"><span>No</span></label></div>
+
+                        </div>
+                    </div>
+
+
+
+                    <input type="text" ng-model="collapsed" ng-click="collapsed=!collapsed" class="full_width"  placeholder="Type of Cargo Handled" readonly="" />
+                    <div  class="full_width" style="float: left; background-color: #EEEEEE; width:100%; " >
+                        <div  ng-show="collapsed">
+                            <input class="checkbox1" type="checkbox" /><p class="checkbox_p" >Agricultural Products</p> <br>
+                            <input class="checkbox1" type="checkbox" /><p  class="checkbox_p">Cement</p> <br>
+                            <input class="checkbox1"type="checkbox" /><p  class="checkbox_p">Chemicals</p> <br>
+                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" >Coal</p> <br>
+                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" >Container</p> <br>
+                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p">Electronics/Consumer Durables</p> <br>
+                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p">Fertilizers</p><br>
+                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p">Fruits and Vegetables</p><br>
+                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" style="">Furniture and Wood Products</p> <br>
+                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" style="">Industrial Equipments</p> <br>
+                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" style="" >Liquids</p> <br>
+                            <input class="checkbox1" type="checkbox" /><p class="checkbox_p" >Packaged Food</p> <br>
+                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" >Scrap</p> <br>
+                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" >Iron and Steel </p>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="btns_both">
+                        <button  class="buttons" type="submit" ng-click="SignUpFleetOwner();" data-dismiss="modal" ng-click="step2data();">Previous</button>
+                        <button  class="buttons " type="submit" ng-click="step2data();">Next</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal t-overflow " role="dialog" id="sign_up_step3"  ng-init="steps={percent:90, step1:false, step2:false, step3:true}">
+    <div class="modal-dialog" active="steps.step3" ng-app="carrus" >
+
+        <div class="modal-content" >
+            <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Sign Up</h4>
+                <img src="img/bar4.png" style="margin:20px 0px 15px 70px;" >
+                <!--<div   class="progress_bar">-->
+                <!--<progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>-->
+                <!--</div>-->
+                <div style="float: left; width: 100%">
+                    <p style=" color:#1583DD;" class="head1" >Personal Info </p>
+                    <p style=" color:#1583DD;"  class="head2">Profile </p>
+                    <p style="color:#4DADFB" class="head3" >Documents </p>
+                </div>
+
+
+                <div class="modal-body" ng-controller="welcomeScreenCtrl">
+
+                    <!--<div class="half_width" style="position: relative;overflow: hidden;">-->
+                    <div style="position: relative">
+                        <input class="half_width" placeholder="TIN"    style="width: 100%;" type="text" ng-model="tin">
+                        <div class="fileUpload files">
+                            <input type="file" class="upload" name="tin" onchange="angular.element(this).scope().uploadFile1(this.files,0)"
+                                   accept="image/*"/>
+                        </div>
+                    </div>
+                    <div style="position: relative; float: left; width: 100%; ">
+                        <!--<div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">-->
+                        <input  class="half_width " style="width: 100%;" placeholder="PAN"    type="text" >
+                        <div class="fileUpload files">
+                            <input class="upload" type="file" name="panCard"
+                                   onchange="angular.element(this).scope().uploadFile1(this.files,1)" accept="image/*"/>
+                        </div>
+                    </div>
+                    <!--<div class="half_width" style="position: relative;overflow: hidden;">-->
+                    <div style="position: relative; float: left;
+                     width: 100%; ">
+                        <input  class="half_width "  placeholder="Service tax registration" style="width: 100%;"   type="text" ng-model="taxreg">
+                        <div class="fileUpload files">
+                            <input type="file" class="upload"   name="ServiceTaxRegistration" onchange="angular.element(this).scope().uploadFile1(this.files,2)" accept="image/*">
+                        </div>
+                    </div>
+                    <!--<div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">-->
+                    <div style="position: relative; float: left;
+                     width: 100%; ">
+                        <input   class="half_width "  style="width: 100%;"  placeholder="Excise registration"    type="text" ng-model="excisereg">
+                        <div class="fileUpload files">
+                            <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile1(this.files,3)" name="ExciseRegistration" accept="image/*">
+                        </div>
+                    </div>
+                    <div>
+                        <span> Bank Details</span> </div>
+                    <input  class="half_width "  placeholder="Bank Name"   type="text" ng-model="fleetowner.bankName">
+                    <input  class="half_width no-margin"  placeholder="Account No."   type="number" ng-model="fleetowner.accountNumber">
+                    <input  class="half_width "  placeholder="RTGS Code"   type="text" ng-model="fleetowner.rtgsCode">
+
+                    <input  class="half_width no-margin"  placeholder="MICR Code"   type="text" ng-model="fleetowner.micrCode">
+
+                    <div style="position: relative; left: 176px;">
+                        <a href="#" ><span> Add Bank Account</span> </a> </div>
+                    <!--<div style="position:relative;">-->
+                    <div style="    float: left; width: 100%; margin-top: 20px;">
+                        <input style="width: 10%; height: 20px; float: left;" type="checkbox" name="tnc" value="Yes">
+                        <p style="float: left; width: 70%; text-align: center">  I agree with Terms of Use and Privacy</p> </div>
+
+
+
+                    <div class="btns_both">
+                        <button  class="buttons" type="submit" ng-click="SignUpFleetOwnerStep2();" data-dismiss="modal">Back</button>
+                        <button  class="buttons " type="submit" ng-click="register();">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div id="sign_up_step4" class="modal t-overflow" role="dialog" ng-init="steps={percent:100, step1:false, step2:false, step3:true}">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign Up</h4>
+                <img src="img/bar5.png" style="margin:20px 0px 15px 70px;" >
+                <!--<div   class="progress_bar">-->
+                <!--<progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>-->
+                <!--</div>-->
+                <div style="float: left; width: 100%">
+                    <p style=" color:#1583DD;"class="head1">Personal Info </p>
+                    <p style=" color:#1583DD;" class="head2" >Profile </p>
+                    <p style=" color:#1583DD" class="head3">Documents </p>
+                </div>
+
+                <div class="modal-body" style="text-align: center;">
+                    <!--<div class="finish_pic">-->
+                    <img src="img/submit_request_icon.png">
+                    <!--</div>-->
+                    <div style="text-align: center">   <h3 style="color: #9b9b9b; ">Thanks for submitting your request <br> Your profile is under review </h3> </div>
+                    <button class="next_otp" type="submit" ng-click="" data-dismiss="modal" >Proceed</button>
+                </div>
+                <!--<div class="modal-footer">-->
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ====================================  OTP  modal ================================================== -->
+<div id="otp_modal" class="modal" role="dialog" ng-app="carrus " >
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Enter OTP here</h4>
+            </div>
+            <div class="modal-body" ng-controller="welcomeScreenCtrl">
+                <input id="otpnumber1"   placeholder="Enter your OTP"   type="text" ng-model="fleetowner.OTP">
+                <button class="next_otp" type="submit" ng-click="verifyOTP();" data-dismiss="modal" >Next</button>
+            </div>
+            <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+
+<!-- ==================================== End OTP modal ================================================== -->
+
+
+
+
+
+
+
+
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
+<!--=============================================================================================================-->
 
 
 <div class="navbar navbar-default navbar-static-top nv-fixed navv" id="myScrollspy" data-spy="affix">
@@ -205,12 +671,20 @@
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SIGN IN <span class="caret"></span></a>
                      <ul class="dropdown-menu">
-                        <li><a href="" ng-click="showLogin();">Sign in as shipper</a></li>
-                        <li><a href="">Sign in as fleet owner</a></li>
+                        <li><a href="" ng-click="showLoginShipper();">Sign in as shipper</a></li>
+                        <li><a href="" ng-click="showLogin1();">Sign in as fleet owner</a></li>
                     </ul>
 
                 </li>
-                <li><a href="" style="text-align:right;"> <span class="contct" ng-click="SignUp();">SIGN UP</span></a></li>
+                <!--<li><a href="" style="text-align:right;"> <span class="contct" ng-click="SignUpShipper();">SIGN UP</span></a></li>-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SIGN UP <span class="caret" ></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="" ng-click="SignUpShipper();">Sign up as shipper</a></li>
+                        <li><a href="" ng-click="SignUpFleetOwner();">Sign up as fleet owner</a></li>
+                    </ul>
+
+                </li>
                 <li><a href="" style="text-align:right;"><span class="contct">CONTACT US</span></a></li>
             </ul>
         </div>
@@ -491,7 +965,7 @@
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12 con">
-                            <div class="map-point">
+                            <div class="map-point" style="padding-top: 280px;">
                                 <div style="" class="marg-auto">
                                   <span class="mg1" style="">
 

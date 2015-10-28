@@ -729,7 +729,7 @@ h5, h6{font-family:helvetica ;}
         top: 0;
     }
     .jumbo-text{font-size: 2.3em !important;}
-    .map-point{display:none;}
+   /* .map-point{display:none;}*/
 }
 .btn-p{
     background-color: #2766C2;
@@ -814,7 +814,7 @@ h5, h6{font-family:helvetica ;}
 .filters-mob:after {
     background: rgba(0, 0, 0, 0) url("../img/mobile_icon.png") no-repeat scroll 0 0;
 }
-.t-filter input{text-transform: capitalize;}
+.t-filter input
 @media(min-width:1400px) and (max-width:1460px){
     .filters::after {
         /*background: rgba(0, 0, 0, 0) url("../img/location_icon.png") no-repeat scroll 0 0;*/
@@ -864,7 +864,7 @@ body{padding:0 !important;}
     background-color:#f1f1f1;
     border: none; color:#b1b1b1;
     padding: 10px; width: 100%;
-    /*text-transform: capitalize;*/
+    //
     border: none !important;
     border-radius: 0 !important;
     -webkit-border-radius: 0 !important;
@@ -895,11 +895,11 @@ body{padding:0 !important;}
 
 
 
-.modal .modal-dialog .modal-content .modal-body #userName {  margin-bottom: 20px;}
-.modal .modal-dialog .modal-content .modal-body #userPassword{ }
-.modal .modal-dialog .modal-content .modal-body #forgot_password { text-align: center; margin-top: 15px; display: block;}
-.modal .modal-dialog .modal-content .modal-body #login_button, .modal .modal-dialog .modal-content .modal-body #next_otp ,.modal .modal-dialog .modal-content .modal-body #forgotPasswordSubmit,.modal .modal-dialog .modal-content .modal-body #signUpSubmit{ outline:none; background-color:  #4c93fd; color:#fff; border: none; border-radius: 50px;width: 100%; margin-top: 20px; padding: 8px;}
-.modal .modal-dialog .modal-content .modal-body #login_button:hover, .modal .modal-dialog .modal-content .modal-body #next_otp:hover,.modal .modal-dialog .modal-content .modal-body #forgotPasswordSubmit:hover ,.modal .modal-dialog .modal-content .modal-body #signUpSubmit:hover {background-color: #f89715; transition: background-color 0.5s ease; -webkit-transition: background-color 0.5s ease;
+.modal .modal-dialog .modal-content .modal-body .userName {  margin-bottom: 20px;}
+.modal .modal-dialog .modal-content .modal-body .userPassword{ }
+.modal .modal-dialog .modal-content .modal-body .forgot_password { text-align: center; margin-top: 15px; display: block;}
+.modal .modal-dialog .modal-content .modal-body .login_button, .modal .modal-dialog .modal-content .modal-body .next_otp ,.modal .modal-dialog .modal-content .modal-body .forgotPasswordSubmit,.modal .modal-dialog .modal-content .modal-body .signUpSubmit{ outline:none; background-color:  #4c93fd; color:#fff; border: none; border-radius: 50px;width: 100%; margin-top: 20px; padding: 8px;}
+.modal .modal-dialog .modal-content .modal-body .login_button:hover, .modal .modal-dialog .modal-content .modal-body .next_otp:hover,.modal .modal-dialog .modal-content .modal-body .forgotPasswordSubmit:hover ,.modal .modal-dialog .modal-content .modal-body .signUpSubmit:hover {background-color: #f89715; transition: background-color 0.5s ease; -webkit-transition: background-color 0.5s ease;
 -moz-transition: background-color 0.5s ease; -o-transition: background-color 0.5s ease; -ms-transition: background-color 0.5s ease; -khtml-transition: background-color 0.5s ease;}
 
 
@@ -1164,7 +1164,6 @@ ul.dropdown-menu:before {
     padding: 0px 15px;
     width: 100%;
     margin: 0px 0 15px 0;
-    text-transform: capitalize;
     border: none !important;
     height: 45px;
     border-radius: 0 !important;

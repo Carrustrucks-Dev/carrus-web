@@ -1,0 +1,135 @@
+<div class="shipment_banner">
+    <div class="" style="background-image: url(img/small_strip.png); width:100% text-align:center; height:90px;" >
+
+        <div class="container" >
+            <div style="float: left; margin: 15px 0 30px; color: #fff "  > <h3> Trucks</h3></div>
+            <div class="tab-menu pull-right right"  >
+                <ul style="margin: 30px 0px 30px 0px; ">
+                    <li>
+                        <a ng-click="add_truck_modal()" > Add Truck </a>
+
+                        <!--<a  ng-class="{'active': getCurrentPath().match('pending_quotes')}" ui-sref="shipper.requests.pending_quotes" > Pending Quotes </a>-->
+                        <!--<a ng-class="{'active': getCurrentPath().match('pending_assignments')}" ui-sref="shipper.requests.pending_assignments"> Pending Assignments </a>-->
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<form class="navbar-form banner-search container" role="search" style="margin-left: 75%;">-->
+    <!--<div class="input-group">-->
+        <!--<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">-->
+        <!--<div class="input-group-btn">-->
+            <!--<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</form>-->
+
+
+<div class="container">
+
+    <div ui-view>
+
+
+    </div>
+</div>
+
+<div class="modal t-overflow " role="dialog" id="add_truck"  >
+    <div class="modal-dialog"  ng-app="carrus" ng-controller="add_a_truck">
+
+        <div class="modal-content" >
+            <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Add Truck</h4>
+
+
+
+                <div class="modal-body" >
+                    <input  class="full_width"  placeholder="Truck Number"     type="text" ng-model="trucker.truckNumber">
+                    <input  class="full_width"  placeholder="Truck Nick Name"     type="text" ng-model="trucker.truckName">
+                    <select class=" dropdown_dynamic " name="truckerIds" style="margin-bottom: 10px;"
+                            data-ng-model="trucker.truckerIds" placeholder="Truck Category" >
+
+                        <option value="" selected disabled>Driver Assigned</option>
+                        <option data-ng-repeat="driver in driverlist" value="{{driver._id}}">
+                            {{driver.driverName}}
+                        </option>
+                    </select>
+                    <input  class="full_width"  placeholder="Contact Detail"     type="text" ng-model="trucker.address">
+
+
+                    <!--<div class="half_width" style="position: relative;overflow: hidden;">-->
+
+
+
+                    <div style="position: relative; width: 70%; float: left;">
+                        <input class="half_width" style="width: 100%;" placeholder="Registration Certificate"     type="text">
+                        <div class="fileUpload files">
+                            <input type="file" class="upload" name="rcDoc" onchange="angular.element(this).scope().uploadFile1(this.files,0)"
+                                   accept="image/*"/>
+                        </div>
+                    </div>
+                    <input  class="full_width" style="width: 25%; margin-left: 5%;" placeholder="Validity"     type="date" ng-model="trucker.rcValidity">
+                    <div style="position: relative; float: left; width: 70%; ">
+                        <!--<div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">-->
+                        <input  class="half_width " style="width: 100%;" placeholder="Fitness Certificate"    type="text" >
+                        <div class="fileUpload files">
+                            <input class="upload" type="file" name="fcDoc"
+                                   onchange="angular.element(this).scope().uploadFile1(this.files,1)" accept="image/*"/>
+                        </div>
+                    </div>
+                    <input  class="full_width"  placeholder="Validity"  style="width: 25%; margin-left: 5%;"   type="date" ng-model="trucker.fcValidity">
+                    <!--<div class="half_width" style="position: relative;overflow: hidden;">-->
+                    <div style="position: relative; float: left;width: 70%; ">
+                        <input  class="half_width "  placeholder="National Permit" style="width: 100%;"   type="text" >
+                        <div class="fileUpload files">
+                            <input type="file" class="upload"   name="npDoc" onchange="angular.element(this).scope().uploadFile1(this.files,2)" accept="image/*">
+                        </div>
+                    </div>
+                    <input  class="full_width"  placeholder="Validity"   style="width: 25%; margin-left: 5%;"  type="date" ng-model="trucker.npValidity">
+                    <!--<div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">-->
+                    <div style="position: relative; float: left;width: 70%; ">
+                        <input   class="half_width "  style="width: 100%;"  placeholder="Tax Token"    type="text" >
+                        <div class="fileUpload files">
+                            <input type="file" class="upload" name="ttDoc" onchange="angular.element(this).scope().uploadFile1(this.files,3)"  accept="image/*">
+                        </div>
+                    </div>
+                    <input  class="full_width"  placeholder="Validity"  style="width: 25%; margin-left: 5%;"   type="date" ng-model="trucker.ttValidity">
+
+
+
+
+                    <input  class="full_width"  placeholder="Model"     type="text" ng-model="trucker.model">
+                    <!--<input  class="full_width"  placeholder="Truck Category"     type="text" ng-model="trucker.model">-->
+                    <select class=" dropdown_dynamic " name="typeTruckIds" style="margin-bottom: 10px;"
+                            data-ng-model="trucker.typeTruckIds" placeholder="Truck Category" >
+
+                        <option value="" selected disabled>Truck Category</option>
+                        <option data-ng-repeat="truck in trucklist" value="{{truck._id}}">
+                            {{truck.typeTruckName}}
+                        </option>
+                    </select>
+                    <input  class="full_width"  placeholder="Year of Manufacture"     type="text" ng-model="trucker.manufactureDate">
+                    <input  class="full_width"  placeholder="Truck Make (OEM)"     type="text" ng-model="trucker.oem">
+                    <div>
+                        <span> Insurance</span> </div>
+                    <input  class="full_width"  placeholder="Insurance Company"  style="float: left; width: 30%"   type="text" ng-model="trucker.company">
+
+                    <input  class="full_width"  placeholder="Policy"  style="float: left; width: 30%; margin-left: 5%;"   type="text" ng-model="trucker.policy">
+                    <input  class="full_width"  placeholder="Validity"  style="float: left; width: 30%; margin-left: 5%;"   type="date" ng-model="trucker.validity">
+
+
+
+
+
+                    <div class="btns_both">
+                        <button id="next_otp" class="buttons " type="submit" ng-click="addTruck();">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
