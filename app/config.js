@@ -36,6 +36,16 @@ angular.module('carrus').config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'app/customer/home/home.view.html',
             controller : 'homeShipperCtrl'
         })
+        .state('customer.profile',{
+            url: '/profile',
+            templateUrl: 'app/customer/profile/profile.view.html',
+            controller : 'profileShipperCtrl'
+        })
+        .state('customer.contact',{
+            url: '/contact',
+            templateUrl: 'app/customer/contact/contact.view.html',
+            controller : 'contactCtrl'
+        })
         .state('customer.shipments',{
             url:'/shipments',
             abstract: true,

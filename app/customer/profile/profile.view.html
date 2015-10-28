@@ -1,0 +1,27 @@
+<div id="changePswdModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" >Change Password</h3>
+                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()"  style="margin-top:-50px;font-size: 2em">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
+                <input id="oldPassword" placeholder="Old Password"   type="password" ng-model="change.oldPass">
+                <input id="newPassword" style="margin-top:10px" placeholder="New Password"  type="password" ng-model="change.newPass">
+                <input id="confirmPassword" style="margin-top:10px" placeholder="Confirm New Password"  type="password" ng-model="change.confirmPass">
+                <button id="login_button" type="submit" ng-click="changePswd()">Reset</button>
+            </div>
+            <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+        <div class="full-width">
+            <button ng-click="changePass()">Change Password</button>
+        </div>

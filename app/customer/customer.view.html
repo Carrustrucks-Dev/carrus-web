@@ -18,8 +18,8 @@
                         <i class="fa fa-user"></i>Tushar Arora<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="">Profile</a></li>
-                        <li><a href="">Logout</a></li>
+                        <li><a ui-sref="customer.profile">Profile</a></li>
+                        <li><a href="" ng-click="logout()">Logout</a></li>
                     </ul>
 
                 </li>
@@ -40,15 +40,15 @@
 
                     <ul class="nav navbar-nav pull-right" style="padding: 0">
 
-                        <li class="active"><a ui-sref="customer.home">home</a></li>
-                        <li><a href="javascript:void(0);">track shipment</a></li>
-                        <li><a href="javascript:void(0);">pending request</a></li>
+                        <li id="home" class="active"><a ui-sref="customer.home">home</a></li>
+                        <li id="track"><a href="javascript:void(0);">track shipment</a></li>
+                        <li id="pending"><a href="javascript:void(0);">pending request</a></li>
 
-                        <li><a href="javascript:void(0);">promo</a></li>
+                        <li id="promo"><a href="javascript:void(0);">promo</a></li>
 
-                        <li><a href="javascript:void(0);">all shipments</a></li>
-                        <li><a href="javascript:void(0);">payment</a></li>
-                        <li><a href="javascript:void(0);">contact us</a></li>
+                        <li id="all"><a ui-sref="customer.shipments.ongoing">all shipments</a></li>
+                        <li id="payment"><a href="javascript:void(0);">payment</a></li>
+                        <li id="contact"><a ui-sref="customer.contact">contact us</a></li>
 
 
                     </ul>
@@ -64,6 +64,35 @@
 
 <div ui-view></div>
 
+<div class="full-width" style="position:relative;">
+    <div class="main-foot">
+        <footer>
+            <div class="footer_bottom text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="copyright">
+                                <ul class="list-inline full-width" style="margin-top:10px;">
+                                    <li style="font-size:14px;color:gray;"> Find us on</li>
+                                </ul>
+
+                                <ul class="full-width list-inline social-link" style="margin:0px;">
+                                    <li><span><img src="img/facebook.png" width="30px" class="fb"></span></li>
+                                    <li><span><img src="img/twitter.png" width="30px" class="twit"></span></li>
+                                    <li><span><img src="img/youtube.png" width="30px" class="youtube"></span></li>
+                                    <li><span><img src="img/share.png" width="30px" class="share-it"></span></li>
+                                </ul>
+                                <ul class="list-inline full-width" style="margin-top:10px;">
+                                    <li style="font-size:14px;color:lightgray;"> &copy; CARRUS 2015 copyright.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
 <style>
     .navbar-nav > li.active{
         padding:0 0 0 0;
@@ -78,6 +107,9 @@
            $(this).addClass('active');
 
        });
+        console.log(window.location.href);
+        if(window.location.href=="http://localhost:63342/carrus-web/index.html#/customer/contact"){$('li').removeClass('active');
+            $("#contact").addClass('active');}
    });
 
 </script>

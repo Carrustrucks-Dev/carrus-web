@@ -57,16 +57,16 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
 
 
         $scope.loginFn=function(){
-            $http.post('http://52.25.204.93:8080/api/v1/shipper/login', {email: $scope.userName, password: $scope.userPassword})
+            $http.post('http://52.25.204.93:8080/api/v1/shipper/login', {email: $scope.userName, password: $scope.userPassword,"deviceType": "WEB","deviceName": "Mac","deviceToken": "12345"})
                 .success(function (data, status) {
                     $scope.userName='';
                     $scope.userPassword='';
                     $('#loginModal').modal('hide');
                     $scope.closeModal();
 
-                    var someSessionObj = {'accessToken': data.data.accessToken};
-                    console.log(someSessionObj);
-                    $cookieStore.put('obj', someSessionObj);
+                    var Obj = {'accessToken': data.data.accessToken};
+                    console.log(Obj);
+                    $cookieStore.put('obj',Obj);
                     $state.go('customer.home');
                 })
                 .error(function (data, status) {
