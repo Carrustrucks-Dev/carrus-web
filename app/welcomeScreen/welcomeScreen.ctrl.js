@@ -2,7 +2,7 @@
  * Created by Manjeet  on 22/09/15.
  */
 
-angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$http','$cookieStore','CONSTANT', function($scope,$state,$http,$cookieStore,CONSTANT,ngDialog){
+angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$http','$cookieStore','CONSTANT', function($scope,$state,$http,$cookieStore,CONSTANT){
     var try1 = [];
     var try2 = [];
     var options = {
@@ -282,7 +282,7 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
             h.partnershipName = column.partnershipName;
             partnershipArray.push(h);
             $scope.partnershipArray = partnershipArray;
-            console.log($scope.partnershipArray)
+           /* console.log($scope.partnershipArray)*/
         });
 });
     $scope.partner=function(id,name){
