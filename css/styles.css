@@ -526,7 +526,14 @@ h5, h6{font-family:helvetica ;}
     background:url("../img/sec7_bg.jpg");background-size:cover;min-height: 350px;background-repeat:no-repeat;background-attachment: fixed;
 }
 .con{display:block;}
-
+.shipment_banner {
+    background:url("../img/section4_bg.jpg");
+    background-size:contain;
+    min-height: 150px;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+}
 @media (min-width:1201px) and (max-width:1210px){
     /*.marg-auto {*/
     /*margin: 0 auto;*/

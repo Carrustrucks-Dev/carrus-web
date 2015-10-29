@@ -6,7 +6,12 @@ angular.module("carrus").constant('CONSTANT', {
     apiURL: 'http://52.25.204.93:8080/api/v1/shipper'
    /* sliderRange : [10,60]*/
 });
+/*angular.module("carrus").config(["$locationProvider",function(a){a.html5Mode(!0)}]);*/
+/*angular.module('carrus',[]).config(function($locationProvider) {
 
+
+        $locationProvider.html5Mode(true);
+    });*/
 angular.module('carrus').config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/welcomeScreen');
