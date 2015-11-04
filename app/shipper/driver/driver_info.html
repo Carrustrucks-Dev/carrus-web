@@ -1,0 +1,105 @@
+<div class="shipment_banner">
+    <div class="" style="background-image: url(img/small_strip.png); width:100% text-align:center; height:90px;" >
+
+        <div class="container" >
+            <div style="float: left; margin: 15px 0 30px; color: #fff "  > <h3> Driver</h3></div>
+            <div class="tab-menu pull-right right"  >
+                <ul style="margin: 30px 0px 30px 0px; ">
+                    <li>
+
+
+                        <a  ng-class="{'active': getCurrentPath().match('pending_quotes')}" ui-sref="shipper.requests.pending_quotes" > Edit Driver </a>
+                        <!--<a ng-class="{'active': getCurrentPath().match('pending_assignments')}" ui-sref="shipper.requests.pending_assignments"> Pending Assignments </a>-->
+                        <a ng-click="add_driver_modal()" > Block This Driver </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<form class="navbar-form banner-search container" role="search" style="margin-left: 75%;">-->
+<!--<div class="input-group">-->
+<!--<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">-->
+<!--<div class="input-group-btn">-->
+<!--<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</form>-->
+
+
+<div class="container">
+
+    <div ui-view>
+
+
+    </div>
+</div>
+
+<div class="modal t-overflow " role="dialog" id="add_driver"  >
+    <div class="modal-dialog"  ng-app="carrus" >
+
+        <div class="modal-content" >
+            <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Add Driver</h4>
+
+
+
+                <div class="modal-body" ng-controller="add_a_driver">
+
+
+                    <input  class="full_width"  placeholder="Driver Name"  style="margin-left: 40%; width: 60%;"   type="text" ng-model="driver.driverName">
+                    <input  class="full_width"  placeholder="Mobile Number"  style="margin-left: 40%;width: 60%;"   type="text" ng-model="driver.phoneNumber">
+
+                    <input  class="full_width"  placeholder="Address"  style="margin-left: 40%; width: 60%;"   type="text" ng-model="driver.fullAddress">
+
+
+                    <!--<div class="half_width" style="position: relative;overflow: hidden;">-->
+
+
+
+                    <div style="position: relative; width: 100%; float: left;">
+                        <input class="half_width" style="width: 100%;" placeholder="Adhaar Card"  ng-model="driver.adharNo"   type="text">
+                        <div class="fileUpload files">
+                            <input type="file" class="upload" name="rcDoc" onchange="angular.element(this).scope().uploadFile1(this.files,1)"
+                                   accept="image/*"/>
+                        </div>
+                    </div>
+
+                    <div style="position: relative; float: left; width: 100%; ">
+                        <!--<div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">-->
+                        <input  class="half_width " style="width: 100%;" placeholder="Voter ID Card"  ng-model="driver.VoterIdNo"  type="text" >
+                        <div class="fileUpload files">
+                            <input class="upload" type="file" name="fcDoc"
+                                   onchange="angular.element(this).scope().uploadFile1(this.files,2)" accept="image/*"/>
+                        </div>
+                    </div>
+
+                    <!--<div class="half_width" style="position: relative;overflow: hidden;">-->
+                    <div style="position: relative; float: left;width: 70%; ">
+                        <input  class="half_width "  placeholder="Driving Licence" style="width: 100%;"  ng-model="driver.drivingLicenseNo" type="text" >
+                        <div class="fileUpload files">
+                            <input type="file" class="upload"   name="npDoc" onchange="angular.element(this).scope().uploadFile1(this.files,3)" accept="image/*">
+                        </div>
+                    </div>
+                    <input  class="full_width"  placeholder="Validity"   style="width: 25%; margin-left: 5%;"  type="date" ng-model="driver.validity">
+                    <!--<div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">-->
+
+
+                    <input  class="full_width"  placeholder="State where DL is Issued"     type="text" ng-model="driver.stateDl">
+
+
+
+
+
+
+                    <div class="btns_both">
+                        <button id="next_otp" class="buttons " type="submit" ng-click="addDriver();">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

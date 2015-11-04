@@ -1,0 +1,95 @@
+<div id="addAccountModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" >Add Account</h3>
+                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()"  style="margin-top:-50px;font-size: 2em">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
+                <input id="accNumber" placeholder="Account Number"   type="text" ng-model="add.accountNumber">
+                <input id="micr" style="margin-top:10px" placeholder="MICR Code"  type="text" ng-model="add.micr">
+                <input id="ifsc" style="margin-top:10px" placeholder="IFSC Code"  type="text" ng-model="add.ifsc">
+                <button class="login_button" type="submit" ng-click="addAccount()">Reset</button>
+            </div>
+            <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+<div>
+    <div class="col-lg-12" style="margin-top:15px;margin-bottom: 35px;right:0px">
+        <button class="pull-right editProfile" ng-click="editButton()"><span id="symbol" class="fa fa-pencil"></span>  {{edit}}</button>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="col-lg-12">
+                <div class="graph-container">
+                    <div class="head-container"><span class="graphHead">TIN</span></div>
+                    <div class="input-group" style="width: 100%" >
+                        <input type="text" class="profileShipper"  placeholder="TIN" ></div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="graph-container">
+                    <div class="head-container"><span class="graphHead">PAN</span></div>
+                    <div class="input-group" style="width: 100%" >
+                        <input type="text" class="profileShipper"  placeholder="PAN">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="graph-container">
+                    <div class="head-container"><span class="graphHead">Bank Details</span></div>
+                    <div class="input-group" style="width: 100%" >  <label class="labels" >Bank Name </label>
+                        <input type="text" class="fleet_home" placeholder="Bank Name"></div>
+                    <div class="input-group" style="width: 100%"> <label class="labels" >A/C Number</label>
+                        <input type="text"  class="fleet_home"   placeholder="A/C Number" ></div>
+                    <div class="input-group" style="width: 100%"><label class="labels" > MICR Number</label>
+                        <input type="text" class="fleet_home"  placeholder="MICR Number"></div>
+               <div class="input-group" style="width: 100%"><label class="labels" > IFSC Code</label>
+                        <input type="text" class="fleet_home"  placeholder="IFSC Code"></div>
+                    <div class="pull-right">
+                        <button class="addAccount" ng-click="addModal()">Add Account</button>
+                    </div>
+                    <br><br>
+                    <br>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="col-lg-12">
+                <div class="graph-container">
+                    <div class="head-container"><span class="graphHead">Copy of TIN Certificate of Consigner</span></div>
+                    <div class="input-group text-center" style="width: 100%" >
+                        <img src="{{personalDetails.doc.tin}}" height="150" style="margin: 10px auto">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="graph-container">
+                    <div class="head-container"><span class="graphHead">Excise Registration</span></div>
+                    <div class="input-group text-center" style="width: 100%" >
+                        <img src="{{personalDetails.doc.exciseRegistrationDoc}}" height="150" style="margin: 10px auto">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="graph-container">
+                    <div class="head-container"><span class="graphHead">Service Tax Registration</span></div>
+                    <div class="input-group text-center" style="width: 100%" >
+                        <img src="{{personalDetails.doc.serviceTax}}" height="150" style="margin: 10px auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+</div>

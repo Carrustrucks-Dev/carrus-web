@@ -24,7 +24,7 @@ angular.module('carrus').controller('homeShipperCtrl',['$scope','$http','$cookie
                 h.typeTruckName = column.typeTruckName;
                 truckArray.push(h);
                 $scope.truckArray = truckArray;
-               // console.log($scope.truckArray);
+
             })
         })
         .error(function(data,status){});
@@ -42,7 +42,7 @@ angular.module('carrus').controller('homeShipperCtrl',['$scope','$http','$cookie
                 c.typeCargoName = column.typeCargoName;
                 cargoArray.push(c);
                 $scope.cargoArray = cargoArray;
-                //console.log($scope.cargoArray);
+
             })
         })
         .error(function(data,status){});

@@ -1,6 +1,56 @@
-<div ng-app="carrus" ng-controller="trucks">
-    <div id="map"></div>
-    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
-        <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+<!--<div ng-app="carrus" ng-controller="trucks">-->
+    <!--<div id="map"></div>-->
+    <!--<div id="class" ng-repeat="marker in markers | orderBy : 'title'">-->
+        <!--<a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="container" ng-controller="trucks" >
+    <div class="row" style="margin-top: 8%;">
+        <div class="table-responsive ongoing_view" >
+
+            <table id="table-pagination" class="table table-striped" >
+                <thead>
+
+                <tr>
+                    <th>Truck Name</th>
+                    <th>Truck Number</th>
+                    <th>Model</th>
+                    <th>OEM</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--<div style="text-align: center"><img src="img/icon-no_pending_quote.png" style="height: 150px; width:150px;"  ></div>-->
+                <tr ng-repeat="data in list" >
+
+
+                    <!--<td>-->
+                        <!--<div class="row_define">-->
+                            <!--<div class="dirver_pic"><img src="img/profile_pic.jpg"></div>-->
+                            <!--<div class="dirver_name">{{data.driver_name}}</div>-->
+                        <!--</div>-->
+                    <!--</td>-->
+
+                    <td>     <div class="row_define"><div class="truck_type"> {{data.truck_name}} </div></div></td>
+                    <td>     <div class="row_define"><div class="truck_type"> {{data.truck_number}} </div></div></td>
+                    <td>     <div class="row_define"><div class="truck_type"> {{data.model}} </div></div></td>
+                    <td>     <div class="row_define"><div class="view_details">{{data.oem}} </div></div> </td>
+                    <td>     <div class="row_define"><div class="view_details">{{data.address}} </div></div> </td>
+                    <td>     <div class="row_define"><div class="view_details">{{data.status}} </div></div> </td>
+
+                    <td>     <div class="row_define">
+                        <div class="view_details">
+                            <a href="" ui-sref="shipper.trucker.truck_detail" ng-click="view_profile(data);">View Details</a>
+                        </div>
+
+                    </div>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

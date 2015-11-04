@@ -18,7 +18,7 @@
                         <i class="fa fa-user"></i>Tushar Arora<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a ui-sref="customer.profile">Profile</a></li>
+                        <li><a ui-sref="customer.profile.personalDetails">Profile</a></li>
                         <li><a href="" ng-click="logout()">Logout</a></li>
                     </ul>
 
@@ -42,12 +42,12 @@
 
                         <li id="home" class="active"><a ui-sref="customer.home">home</a></li>
                         <li id="track"><a href="javascript:void(0);">track shipment</a></li>
-                        <li id="pending"><a href="javascript:void(0);">pending request</a></li>
+                        <li id="pending"><a ui-sref="customer.pendingRequests.quoteReceived">pending request</a></li>
 
-                        <li id="promo"><a href="javascript:void(0);">promo</a></li>
+                        <li id="promo"><a ui-sref="customer.promo">promo</a></li>
 
                         <li id="all"><a ui-sref="customer.shipments.ongoing">all shipments</a></li>
-                        <li id="payment"><a href="javascript:void(0);">payment</a></li>
+                        <li id="payment"><a ui-sref="customer.payment">payment</a></li>
                         <li id="contact"><a ui-sref="customer.contact">contact us</a></li>
 
 
@@ -108,8 +108,32 @@
 
        });
         console.log(window.location.href);
-        if(window.location.href=="http://localhost:63342/carrus-web/index.html#/customer/contact"){$('li').removeClass('active');
+        if(window.location.href=="http://52.25.204.93/carrus_dev/carrus-web/index.html#/customer/contact"
+                ||window.location.href=="http://localhost:63342/carrus-web/index.html#/customer/contact")
+        {$('li').removeClass('active');
             $("#contact").addClass('active');}
+        if(window.location.href=="http://52.25.204.93/carrus_dev/carrus-web/index.html#/customer/payment"
+                ||window.location.href=="http://localhost:63342/carrus-web/index.html#/customer/payment")
+        {$('li').removeClass('active');
+            $("#payment").addClass('active');}
+        if(window.location.href=="http://52.25.204.93/carrus_dev/carrus-web/index.html#/customer/promo"
+                ||window.location.href=="http://localhost:63342/carrus-web/index.html#/customer/promo")
+        {$('li').removeClass('active');
+            $("#promo").addClass('active');}
+        if(window.location.href=="http://52.25.204.93/carrus_dev/carrus-web/index.html#/customer/pendingRequests/quoteReceived"
+                ||window.location.href=="http://52.25.204.93/carrus_dev/carrus-web/index.html#/customer/pendingRequests/bidClosed"
+                ||window.location.href=="http://localhost:63342/carrus-web/index.html#/customer/pendingRequests/quoteReceived"
+                ||window.location.href=="http://localhost:63342/carrus-web/index.html#/customer/pendingRequests/bidClosed")
+        {$('li').removeClass('active');
+            $("#pending").addClass('active');}
+        if(window.location.href=="http://52.25.204.93/carrus_dev/carrus-web/index.html#/customer/shipments/ongoing"
+                ||window.location.href=="http://52.25.204.93/carrus_dev/carrus-web/index.html#/customer/shipments/past"
+                ||window.location.href=="http://52.25.204.93/carrus_dev/carrus-web/index.html#/customer/shipments/upcoming"
+                ||window.location.href=="http://localhost:63342/carrus-web/index.html#/customer/shipments/ongoing"
+                ||window.location.href=="http://localhost:63342/carrus-web/index.html#/customer/shipments/upcoming"
+                ||window.location.href=="http://localhost:63342/carrus-web/index.html#/customer/shipments/past")
+        {$('li').removeClass('active');
+            $("#all").addClass('active');}
    });
 
 </script>

@@ -36,50 +36,127 @@ var cities = [
 ];
 
 //Angular App Module and Controller
-angular.module('carrus').controller('trucks',['$scope',function($scope) {
+angular.module('carrus').controller('trucks',['$scope','$cookies','$cookieStore','CONSTANT','$state','$rootScope', function($scope,$cookies,$cookieStore, CONSTANT, $state,$rootScope) {
 
     console.log("map waala controller ");
+    var getTruckList = function () {
+
+        var access_token = $cookieStore.get('obj');
+        var dataArray = [];
+        access_token = access_token.accesstoken;
+        $.ajax({
 
 
+            type: "GET",
+            url: CONSTANT.apiURL + 'api/v1/fleetOwner/allTruck',
+            headers: {'authorization': access_token},
+            async: false,
+            processData: false,
+            contentType: false,
+            // 'https://devadmin.secretspa.co.uk:2600/register_artist', $scope.therapist).
+            success: function (data) {
+                console.log(data);
+
+                data= data.data;
 
 
-        var mapOptions = {
-            zoom: 16,
-            center: new google.maps.LatLng(30.75, 76.78),
-            mapTypeId: google.maps.MapTypeId.TERRAIN
-        }
+                data.forEach(function (column) {
 
-        $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                    var d = {
+                        truck_name: "",
+                        truck_number: "",
+                        address: "",
+                        oem: "",
 
-        $scope.markers = [];
+                        address:"",
+                        //gender: "",
+                        status: ""
+                    };
+                    var fc_validity = column.fitnessCertificate.fcValidity.toString().split("T")[0];
+                    var rc_validity = column.registrationCertificate.rcValidity.toString().split("T")[0];
+                    var np_validity = column.notionalPermit.npValidity.toString().split("T")[0];
+                    var tt_validity = column.taxToken.ttValidity.toString().split("T")[0];
+                    var insurance_validity = column.insurance.validity.toString().split("T")[0];
 
-        var infoWindow = new google.maps.InfoWindow();
+                    var manufacture_date=column.manufactureDate.toString().split("T")[0];
+                    d.truck_name=column.truckName;
+                    d.truck_number=column.truckNumber;
+                    d.model= column.model;
+                    d.oem=column.oem;
+                    d.address= column.address;
+                    d.status=column.status;
+                    d.fitnessCertificate=column.fitnessCertificate.fcDoc;
+                    d.fc_validity=fc_validity;
+                    d.notionalPermit=column.notionalPermit.npDoc;
+                    d.np_validity=np_validity;
+                    d.registrationCertificate=column.registrationCertificate.rcDoc;
+                    d.rc_validity=rc_validity;
+                    d.taxToken=column.taxToken.ttDoc;
+                    d.tt_validity=tt_validity;
+                    d.insurace_company=column.insurance.company;
+                    d.insurance_policy=column.insurance.policy;
+                    d.insurance_validity=insurance_validity;
+                    d.manufacture_date=manufacture_date;
+                    d.truck_id=column._id;
 
-        var createMarker = function (info){
 
-            var marker = new google.maps.Marker({
-                map: $scope.map,
-                position: new google.maps.LatLng(info.lat, info.long),
-                title: info.city
-            });
-            marker.content = '<div class="infoWindowContent">' + info.desc + '</div>';
+                    dataArray.push(d);
+                    $scope.list=dataArray;
+                });
+            }
 
-            google.maps.event.addListener(marker, 'click', function(){
-                infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
-                infoWindow.open($scope.map, marker);
-            });
 
-            $scope.markers.push(marker);
+        });
+    }
 
-        }
+    getTruckList();
 
-        //for (i = 0; i < cities.length; i++){
-        //    createMarker(cities[i]);
+    $scope.view_profile=function(json)
+    {
+        $rootScope.json=json;
+        console.log($rootScope.json);
+        console.log('yodapda');
+
+        $state.go('shipper.trucker.truck_detail');
+    }
+        //var mapOptions = {
+        //    zoom: 16,
+        //    center: new google.maps.LatLng(30.75, 76.78),
+        //    mapTypeId: google.maps.MapTypeId.TERRAIN
         //}
+        //
+        //$scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        //
+        //$scope.markers = [];
+        //
+        //var infoWindow = new google.maps.InfoWindow();
+        //
+        //var createMarker = function (info){
+        //
+        //    var marker = new google.maps.Marker({
+        //        map: $scope.map,
+        //        position: new google.maps.LatLng(info.lat, info.long),
+        //        title: info.city
+        //    });
+        //    marker.content = '<div class="infoWindowContent">' + info.desc + '</div>';
+        //
+        //    google.maps.event.addListener(marker, 'click', function(){
+        //        infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+        //        infoWindow.open($scope.map, marker);
+        //    });
+        //
+        //    $scope.markers.push(marker);
+        //
+        //}
+        //
+        ////for (i = 0; i < cities.length; i++){
+        ////    createMarker(cities[i]);
+        ////}
+        //
+        //$scope.openInfoWindow = function(e, selectedMarker){
+        //    e.preventDefault();
+        //    google.maps.event.trigger(selectedMarker, 'click');
 
-        $scope.openInfoWindow = function(e, selectedMarker){
-            e.preventDefault();
-            google.maps.event.trigger(selectedMarker, 'click');
-        }
+        //}
 
     }]);

@@ -1,0 +1,214 @@
+<style>
+
+    .table-striped>tbody>tr:nth-child(odd)>td,
+    .table-striped>tbody>tr:nth-child(odd)>th {
+        background-color: #E9EBEF;
+    }
+</style>
+<div>
+    <div class="row" style="border: 2px solid #e3e3e3;margin-top: 30px">
+        <div class="blue_banner text-center"><!--margin-bottom: 0px;padding-bottom: 28px;padding-top: 28px;padding-left: 32%;-->
+            <div style="margin-bottom: 0px;">
+                <div class="col-lg-1" style="padding-top: 12px;"><p style="color: white;">Chandigarh</p><p style="color: white;font-size: 10px">20 Nov , 2015</p><p style="font-size: 10px;color: white;">4 PM - 8 PM</p></div>
+                <div class="col-lg-10" style="padding-bottom: 28px;padding-top: 28px;"><p style="color: white;"> --------------------------------------------------------------------- <img src="img/bannerLogo.png" style="color: #fff" height="30px" width="80px"> --------------------------------------------------------------------- </p> </div>
+                <div class="col-lg-1" style="padding-top: 12px;"><p style="color: white;">Delhi </p></div>
+        </div>
+        </div>
+        <div class="col-lg-11" style="margin-left:4.16%">
+        <div class="col-lg-12 quoteRow" style="margin-top:20px;">
+            <div class="col-lg-2 pull-left">Truck Type</div>
+            <div class="col-lg-2 col-lg-offset-8 "><p class="pull-right" style="margin-bottom: 0px">Tata Ace</p></div>
+        </div>
+
+        <div class="col-lg-12 quoteRow" style="margin-top:15px;">
+            <div class="col-lg-2">Type of Cargo</div>
+             <div class="col-lg-2 col-lg-offset-8 "><p class="pull-right" style="margin-bottom: 0px">Chemical</p></div>
+        </div>
+
+        <div class="col-lg-12 quoteRow" style="margin-top:15px;">
+            <div class="col-lg-2">Cargo Weight</div>
+             <div class="col-lg-2 col-lg-offset-8 "><p class="pull-right" style="margin-bottom: 0px">10 Ton</p></div>
+        </div>
+
+        <div class="col-lg-12 quoteRow" style="margin-top:15px;">
+            <div class="col-lg-2">Budget</div>
+             <div class="col-lg-2 col-lg-offset-8 "><p class="pull-right" style="margin-bottom: 0px">Rs 10000</p></div>
+        </div>
+
+        <div class="col-lg-12 quoteRow" style="margin-top:15px;margin-bottom: 30px">
+            Notes: Carrus now has the unique opportunity to help people looking for a career change.
+        </div>
+        </div>
+
+
+    </div>
+    <div ng-if="!quotes.length" class="row" style="min-height: 115px;padding-top: 35px;padding-bottom: 35px;">
+        <div class="col-lg-6 col-lg-offset-4">
+           <a class="modify text-center" ng-click="modifyForm();">Modify</a>
+           <a class="cancelA text-center" style="margin-left: 20px" ng-click="">Cancel</a>
+    </div>
+    </div>
+    <div ng-if="quotes.length" class="row" style="min-height: 115px;padding-top: 35px;padding-bottom: 35px;">
+        <div class="col-lg-6 col-lg-offset-4">
+            <a class="cancelA text-center" ng-click="">Cancel</a>
+    </div>
+        </div>
+    <div ng-if="!quotes.length" class="row">
+        <img src="img/icon_quote.png" style="margin-left:40% ">
+    </div>
+
+    <div class="row">
+        <div class="table-responsive ongoing_view">
+
+            <table ng-if="quotes.length" id="table-pagination" class="table table-striped">
+
+                <thead>
+                <tr>
+                    <th>Fleet Owner Rating</th>
+                    <th>Truck Type</th>
+                    <th>Offered Cost</th>
+                    <th class="truck_type">Notes</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="row_define  text-center">
+                            <div class="star_rating">
+                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>     <div class="row_define text-center"><div > Tata Ace-1 </div></div></td>
+                    <td>
+                        <div class="row_define text-center">
+                            <div class="final_cost">Rs 10,000</div>
+                        </div></td>
+                    <td>     <div class="row_define text-center">
+                       We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time and focus on your project.
+                    </div>
+
+                    </td>
+                    <td>     <div class="row_define text-center">
+                        <div class="accept"><a ng-click="modifyForm();">Accept</a></div><br>
+                        <div  class="ignore"><a>Ignore</a></div>
+                    </div> </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row_define text-center">
+                            <div class="star_rating">
+                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>     <div class="row_define text-center"><div > Tata Ace-1 </div></div></td>
+                    <td>
+                        <div class="row_define text-center">
+                            <div class="final_cost">Rs 10,000</div>
+                        </div></td>
+                    <td>     <div class="row_define text-center">
+                       We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time and focus on your project.
+                    </div>
+
+                    </td>
+                    <td>     <div class="row_define text-center">
+                        <div class="accept" ><a ng-click="modifyForm();">Accept</a></div><br>
+                        <div class="ignore" ><a>Ignore</a></div>
+                    </div> </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row_define text-center">
+                            <div class="star_rating">
+                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>     <div class="row_define text-center"><div > Tata Ace-1 </div></div></td>
+                    <td>
+                        <div class="row_define text-center">
+                            <div class="final_cost">Rs 10,000</div>
+                        </div></td>
+                    <td>     <div class="row_define text-center">
+                       We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time and focus on your project.
+                    </div>
+
+                    </td>
+                    <td>     <div class="row_define text-center">
+                        <div class="accept"><a ng-click="modifyForm();">Accept</a></div><br>
+                        <div  class="ignore"><a>Ignore</a></div>
+                    </div> </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row_define text-center">
+                            <div class="star_rating">
+                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>     <div class="row_define text-center"><div > Tata Ace-1 </div></div></td>
+                    <td>
+                        <div class="row_define text-center">
+                            <div class="final_cost">Rs 10,000</div>
+                        </div></td>
+                    <td>     <div class="row_define text-center">
+                       We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time and focus on your project.
+                    </div>
+
+                    </td>
+                    <td>
+                        <div class="row_define text-center">
+                        <div class="accept"><a ng-click="modifyForm();">Accept</a></div><br>
+                        <div class="ignore"><a>Ignore</a></div>
+                        </div>
+                    </td>
+
+                </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="modifyModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Enter OTP here</h3>
+                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()" style="margin-top:-50px;font-size: 2em">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input id="otpnumber"   placeholder="Enter OTP"   type="text" ng-model="otpNumber">
+                <button class="next_otp" type="submit" ng-click="">Submit</button>
+            </div>
+            <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+<!-- <td>
+                      <div class="row_define">
+                          <div class="dilivery_shdule">
+                              <p class="text-center" style="margin-bottom: -10px;">29th may-29th may</p>
+                              <p class="text-center"style="margin-bottom: -10px;"><br></i>(4 PM- 8 PM) to </i>(4 PM- 8 PM)</p>
+                          </div>
+                      </div>
+                  </td>
+
+
+                  <td>     <div class="row_define"><div class="truck_type">We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time and focus on your project.</div></div></td>
+
+                  <td>     <div class="row_define"><div class="cargo_detail">10 Ton</div></div></td>-->

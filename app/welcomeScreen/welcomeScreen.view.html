@@ -143,7 +143,44 @@
                 <input  class="full_width"  placeholder="Mobile Number"     type="text" ng-model="signUp.mobilenumber">
                 <input  class="half_width"  placeholder="Address"    type="text" ng-model="signUp.address">
                 <input  class="half_width no-margin"  placeholder="City/Town"    type="text" ng-model="signUp.cityTown">
-                <input  class="half_width"  placeholder="State"    type="text" ng-model="signUp.state">
+                <!--<input  class="half_width"  placeholder="State"    type="text" ng-model="signUp.state">-->
+                <select ng-model="signUp.state" class="half_width" style="height: 45px;padding: 0 50px 0 15px;">
+                    <option value="0">State</option>
+                    <option disabled>--------------</option>
+
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="New Delhi">New Delhi</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Pondicherry">Pondicherry</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                </select>
                 <input  class="half_width no-margin"  placeholder="Zip Code"    type="text" ng-model="signUp.zipcode">
 
                 <button class="signUpSubmit" type="submit" ng-click="getOTP();checkOTPShipper();">Submit</button>
@@ -401,7 +438,7 @@
                         <input name="email"  class="full_width"  placeholder="Email"     type="email" ng-model="fleetowner.email"  ng-init="fleetowner.email=''">
                         <input  name="password" class="full_width"  placeholder="Password"   type="password" ng-model="fleetowner.password"  ng-init="fleetowner.password=''">
                         <input name="repassword" class="full_width"  placeholder="Confirm Password"   type="password" ng-model="fleetowner.repassword" ng-init="fleetowner.repassword=''" >
-                        <input name="phoneNumber" class="full_width"  placeholder="Mobile Number"   type="number" ng-model="fleetowner.phoneNumber" ng-init="fleetowner.phoneNumber=''" >
+                        <input name="phoneNumber" class="full_width"  placeholder="Mobile Number"   type="text" ng-model="fleetowner.phoneNumber" ng-init="fleetowner.phoneNumber=''" >
                     </form>
                     <button class="login_button" type="submit" ng-click="generateOTP();">Next</button>
                 </div>

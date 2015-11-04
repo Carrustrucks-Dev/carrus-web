@@ -15,7 +15,9 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
     $scope.forgotEmail='';
     $scope.authMsg='';
     $scope.otpNumber='';
-    $scope.signUp={};
+    $scope.signUp={
+        state:"0"
+    };
     $scope.signUp.partnershipName="Type of Company";
 
     /*console.log(CONSTANT);
@@ -619,40 +621,61 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
 
         if ($scope.fleetowner.password == $scope.fleetowner.repassword) {
 
-            var options = {
-                show: 'true',
-                backdrop: 'static'
-            }
-            $('#otp_modal').modal(options);
-            console.log('generate OTP called')
+            //var options = {
+            //    show: 'true',
+            //    backdrop: 'static'
+            //}
+            //
+            //console.log('generate OTP called')
             $cookieStore.put('email', $scope.fleetowner.email);
             $cookieStore.put('phoneNumber', $scope.fleetowner.phoneNumber);
             $cookieStore.put('password', $scope.fleetowner.password);
             $cookieStore.put('fullName', $scope.fleetowner.name);
 
 
-            $.post(CONSTANT.apiURL + 'api/v1/phoneVerification/generate',
+            $http.post(CONSTANT.apiURL + 'api/v1/phoneVerification/generate',
                 {
-                    email: $scope.fleetowner.email,
-                    phoneNumber: $scope.fleetowner.phoneNumber,
-                    userType: 'FLEET_OWNER',
-                    duringRegister: true
+                    "email": $scope.fleetowner.email,
+                    "phoneNumber": $scope.fleetowner.phoneNumber,
+                    "userType": 'FLEET_OWNER',
+                    "duringRegister": true
 
 
-                }).then(
-                function (data) {
-                    console.log(data);
-                    //return false;
-                    if (data.error) {
-                        console.log('you have already registered')
-                        $scope.authMsg = data.error;
-                        $scope.$apply();
-                    } else {
-                        alert('Your OTP is successfully sent to your mobile number !!')
+                })
+
+                .error(function (data, status) {
+                    $scope.loading=false;
+                    $scope.forgotEmail='';
+                    console.log('I entered here');
+                    if (status == 400)
+                    { if(data.message=="phoneNumber length must be 10 characters long")
+                        alert("Phone Number length must be 10.");
+                    else if (data.message=="Wrong parameter.")alert("Wrong parameter.");
+                    else if(data.message=="email must be a valid email")alert("Email must be valid");
+                    else if(data.message=="Invalid email.")alert("Invalid email.");
+                    else if(data.message=="phoneNumber must be a string")alert("phoneNumber must be a string");
+                    else if(data.message=="email is not allowed to be empty")alert("Please fill the Email");
+
+                    }
+                    if (status == 404)
+                    {  }
+                    if (status == 500)
+                    {  }
+                    if(status==417){
 
                     }
 
-                });
+                })
+            .success(function(data,status){
+
+                var options = {
+                    show: 'true',
+                    backdrop: 'static'
+                }
+                $('#otp_modal').modal(options);
+            })
+
+
         }
         else
         {

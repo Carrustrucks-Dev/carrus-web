@@ -1,1 +1,130 @@
-<p> hi </p>
+<div ng-app="carrus" ng-controller="shipper_home" >
+<div class="" style="background-image: url(img/small_strip.png); width:100% text-align:center; height:90px;" >
+    </div>
+<div class="navbar-form banner-search container"  style="margin-left: 75%;">
+    <div class="input-group">
+
+        <div class="input-group-btn">
+            <button class="btn btn-default" style="border-radius: 50px;" type="submit" ng-click="EditFleetOwner();"><i class="glyphicon glyphicon-edit"></i> Edit </button>
+        </div>
+    </div>
+</div>
+<div class="container"  >
+<div class="row">
+    <div class="col-lg-6">
+        <div class="graph-container">
+            <div class="head-container"><span class="graphHead">Personal</span></div>
+            <div class="input-group" style="width: 100%" >  <label class="try2" > Name </label>
+                <input type="text" class="fleet_home" ng-model="fleetowner.fullName"   placeholder="Name"></div>
+            <div class="input-group" style="width: 100%"> <label class="try2" > Email</label>
+                <input type="text"  class="fleet_home"   placeholder="Email" ng-model="fleetowner.email" readonly=""></div>
+            <div class="input-group" style="width: 100%"><label class="try2" > Mobile Number</label>
+                <input type="text" class="fleet_home"  placeholder="Mobile Number" ng-model="fleetowner.phoneNumber" readonly=""></div>
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+        <div class="graph-container">
+            <div class="head-container"><span class="graphHead">Profile</span></div>
+            <div class="input-group" style="width: 100%" >  <label class="try2" > Company Name </label>
+                <input type="text"  class="fleet_home  "  placeholder="Company Name" ng-model="fleetowner.companyName" ng-value="" ></div>
+            <div class="input-group" style="width: 100%"> <label class="try2" > No. of Trucks</label>
+                <input type="number"  class="fleet_home"  placeholder="Number of Trucks" ng-model="fleetowner.numberOfTrucks" ng-value="" ></div>
+            <div class="input-group" style="width: 100%"><label class="try2" > Address</label>
+                <input type="text"  class="fleet_home"  placeholder="Address" ng-model="fleetowner.address" ng-value="" > </div>
+        </div>
+
+
+</div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="graph-container">
+            <div class="head-container"><span class="graphHead">Documents</span></div>
+            <div class="input-group" style="width: 100%" >  <label class="try2" > PAN Card </label>  <input type="text" class="fleet_home  " ng-value="" ng-model="fleetowner.panCardNumber" placeholder="PAN Card"  >
+                <div class="fileUploadView files">
+                    <input class="upload" type="file" name="panCard"
+                           onchange="angular.element(this).scope().uploadFile1(this.files,0)" accept="image/*"/>
+                </div>
+
+                <div class="fileView files">
+                    <a class="file_view"  target="_blank" href="{{fleetowner.panCard}}"  name="pan" > </a>
+                </div>
+            </div>
+            <div></div>
+            <div class="input-group" style="width: 100%"> <label class="try2" >TIN</label><input  class="fleet_home"  placeholder="TIN " ng-value="" ng-model="fleetowner.tinNumber" >
+                <div class="fileUploadView files">
+                    <input class="upload" type="file" name="panCard"
+                           onchange="angular.element(this).scope().uploadFile1(this.files,1)" accept="image/*"/>
+                </div>
+                <div class="fileView files">
+                    <a class="file_view"  target="_blank" href="{{fleetowner.tin}}"  name="pan" ></a>
+                </div>
+            </div>
+            <div class="input-group" style="width: 100%"><label class="try2" > Service Tax Reg.</label><input  class="fleet_home" ng-value="" placeholder="Service Tax Registration" ng-model="fleetowner.serviceTaxNumber"  >
+                <div class="fileUploadView files">
+                    <input class="upload" type="file" name="panCard"
+                           onchange="angular.element(this).scope().uploadFile1(this.files,2)" accept="image/*"/>
+                </div>
+                <div class="fileView files">
+                    <a class="file_view"  target="_blank" href="{{fleetowner.serviceTax}}"  name="pan" ></a>
+                </div>
+            </div>
+            <div class="input-group" style="width: 100%"><label class="try2" > Trade Licence</label><input  class="fleet_home" ng-value="" placeholder="Trade Licence Number" ng-model="fleetowner.tradeLicenceNumber">
+                <div class="fileUploadView files">
+                    <input class="upload" type="file" name="panCard"
+                           onchange="angular.element(this).scope().uploadFile1(this.files,3)" accept="image/*"/>
+                </div>
+                <div class="fileView files">
+                    <a class="file_view"  target="_blank" href="{{fleetowner.tradeLicence}}"  name="pan" ></a>
+                </div>
+            </div>
+            <!--<canvas id="barFuture" data="futureBooking" labels="labelBookings" legend="true" class="chart chart-bar" series="seriesFuture" colours ="coloursBook"></canvas>-->
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+        <div class="graph-container">
+            <div class="head-container"><span class="graphHead">Opeartion Areas</span></div>
+
+            <div class="input-group" style="width: 100%"><label class="try2" > States of Operation</label><div  class="fleet_home"  placeholder="Mobile Number">{{data.areaOfOperation}}</div></div>
+            <!--<canvas id="barStaff" data="staffBooking" labels="labelBookings" legend="true" class="chart chart-bar" series="seriesStaff" colours ="coloursBook"></canvas>-->
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="graph-container">
+            <div class="head-container"><span class="graphHead">Bank Details</span></div>
+            <div class="input-group" style="width: 100%"><label class="try2" > Bank Name </label>
+                <input  class="fleet_home" ng-model="fleetowner.bankName" ></div>
+            <div class="input-group" style="width: 100%"><label class="try2" > Account Number</label>
+                <input  class="fleet_home" ng-model="fleetowner.accountNumber" ng-value="" ></div>
+            <div class="input-group" style="width: 100%"><label class="try2" > RTGS Code</label>
+                <input  class="fleet_home"ng-model="fleetowner.rtgsCode" ></div>
+            <div class="input-group" style="width: 100%"><label class="try2" > MICR Code</label>
+                <input  class="fleet_home" ng-model="fleetowner.micrCode" ></div>
+
+            <!--<canvas id="barCustomer" data="customerBooking" labels="labelCustomer" legend="true" class="chart chart-bar" series="seriesCustomer" colours ="coloursBook"></canvas>-->
+        </div>
+
+    </div>
+    <div class="col-lg-6">
+        <div class="graph-container">
+            <div class="head-container"><span class="graphHead">Cargo Detail</span></div>
+            <div class="input-group" style="width: 100%"><label class="try2" > Type of Cargo Handled</label><input  class="fleet_home"  placeholder="Mobile Number"     type="number"></div>
+            <!--<canvas id="barStaff" data="staffBooking" labels="labelBookings" legend="true" class="chart chart-bar" series="seriesStaff" colours ="coloursBook"></canvas>-->
+        </div>
+
+    </div>
+</div>
+
+
+
+</div>
+    <div style="margin: 30px 40% 20px 40%; width: 100%; font-size:20px; color: #7b7b7b; ">Consignment Note to be generated by Admin </div>
+    <div style="padding-top:30px; border-bottom:solid 1px #7b7b7b; margin-bottom: 30px;"></div>
+</div>

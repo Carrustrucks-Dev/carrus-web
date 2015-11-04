@@ -1,25 +1,67 @@
 <div class="container">
     <div class="row">
-        <div class="table-responsive ongoing_view">
+        <div class="ongoing_view">
 
             <table id="table-pagination" class="table table-striped">
 
                 <thead>
-                <tr>
-                    <th>Shiper Name</th>
-                    <th>CRN</th>
-                    <th>Driver</th>
-                    <th>Schedule</th>
-                    <th>Final Cost</th>
-                    <th>Cargo Detail</th>
-                    <th>Truck Type</th>
-                    <th>Action</th>
+                <tr class="text-center">
+                    <th class="text-center">Shiper Name</th>
+                    <th class="text-center">CRN</th>
+                    <th class="text-center">Driver</th>
+                    <th class="text-center">Schedule</th>
+                    <th class="text-center">Final Cost</th>
+                    <th class="text-center">Cargo Detail</th>
+                    <th class="text-center">Truck Type</th>
+                    <th class="text-center">Action</th>
                 </tr>
                 </thead>
 
                 <tbody>
+                <tr ng-repeat="data in ongoingList">
+                    <td>
+                        <div class="row_define">
+                            <div class="company_vendor">{{data.pickUp.companyName}}</div>
+                            <div class="driver_number">{{data.pickUp.contactNumber}}</div>
+                            <div class="star_rating">
+                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>    <div class="row_define">{{data.crn}}&nbsp;&nbsp;&nbsp;</div></td>
+                    <td>
+                        <div class="row_define">
+                            <div class="dirver_pic"><img src="img/profile_pic.jpg"></div>
+                            <div class="dirver_name"> {{data.pickUp.name}}</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row_define">
+                            <div class="dilivery_shdule"><span class="time_est">{{data.pickUp.city}}<br>
+                <i class="fa fa-calendar-o"></i><br>{{data.pickUp.date|date2:'ddoo MMM'}}<br>({{data.pickUp.time}})
 
-                <tr>
+                </span>
+                    <span class="time_estm">{{data.dropOff.city}}<br>
+
+                <i class="fa fa-calendar-o"></i><br>
+                {{data.dropOff.date|date2:'ddoo MMM'}}<br>
+                    ({{data.dropOff.time}})
+                </span>
+
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row_define">
+                            <div class="final_cost">Rs 10,000</div>
+                        </div></td>
+
+                    <td>     <div class="row_define"><div class="cargo_detail"> {{data.cargo.cargoType.typeCargoName}} {{data.cargo.weight}} Ton</div></div></td>
+                    <td>     <div class="row_define"><div class="truck_type">  {{data.truck.truckType.typeTruckName}} </div></div></td>
+                    <td>     <div class="row_define"><div class="view_details"><a>View Details</a> </div></div> </td>
+
+                </tr>
+                <!--<tr>
                     <td>
                         <div class="row_define">
                             <div class="company_vendor">Tata Moters </div>
@@ -59,326 +101,14 @@
 
                     <td>     <div class="row_define"><div class="cargo_detail"> Chemical 10 Ton</div></div></td>
                     <td>     <div class="row_define"><div class="truck_type"> Tata Ace-1 </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details"><a href="#">View Details</a> </div></div> </td>
+                    <td>     <div class="row_define"><div class="view_details"><a>View Details</a> </div></div> </td>
 
-                </tr>
+                </tr>-->
 
 
                 <!-- -->
 
-                <tr>
-                    <td>
-                        <div class="row_define">
-                            <div class="company_vendor">Tata Moters </div>
-                            <div class="driver_number">9780289100</div>
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>    <div class="row_define">345678</div></td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dirver_pic"><img src="img/profile_pic.jpg"></div>
-                            <div class="dirver_name">Sumit Verma</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dilivery_shdule"><span class="time_est">Chandigarh<br>
-                <i class="fa fa-calendar-o"></i><br>29th may<br>(4 PM- 8 PM)
 
-                </span>
-                    <span class="time_estm">Delhi<br>
-
-                <i class="fa fa-calendar-o"></i><br>
-                29th may<br>
-                    (4 PM- 8 PM)
-                </span>
-
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="final_cost">Rs 10,000</div>
-                        </div></td>
-
-                    <td>     <div class="row_define"><div class="cargo_detail"> Chemical 10 Ton</div></div></td>
-                    <td>     <div class="row_define"><div class="truck_type"> Tata Ace-1 </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details"><a href="#">View Details</a> </div></div> </td>
-
-                </tr>
-
-
-                <tr>
-                    <td>
-                        <div class="row_define">
-                            <div class="company_vendor">Tata Moters </div>
-                            <div class="driver_number">9780289100</div>
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>    <div class="row_define">345678</div></td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dirver_pic"><img src="img/profile_pic.jpg"></div>
-                            <div class="dirver_name">Sumit Verma</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dilivery_shdule"><span class="time_est">Chandigarh<br>
-                <i class="fa fa-calendar-o"></i><br>29th may<br>(4 PM- 8 PM)
-
-                </span>
-                    <span class="time_estm">Delhi<br>
-
-                <i class="fa fa-calendar-o"></i><br>
-                29th may<br>
-                    (4 PM- 8 PM)
-                </span>
-
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="final_cost">Rs 10,000</div>
-                        </div></td>
-
-                    <td>     <div class="row_define"><div class="cargo_detail"> Chemical 10 Ton</div></div></td>
-                    <td>     <div class="row_define"><div class="truck_type"> Tata Ace-1 </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details"><a href="#">View Details</a> </div></div> </td>
-
-                </tr>
-
-
-                <tr>
-                    <td>
-                        <div class="row_define">
-                            <div class="company_vendor">Tata Moters </div>
-                            <div class="driver_number">9780289100</div>
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>    <div class="row_define">345678</div></td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dirver_pic"><img src="img/profile_pic.jpg"></div>
-                            <div class="dirver_name">Sumit Verma</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dilivery_shdule"><span class="time_est">Chandigarh<br>
-                <i class="fa fa-calendar-o"></i><br>29th may<br>(4 PM- 8 PM)
-
-                </span>
-                    <span class="time_estm">Delhi<br>
-
-                <i class="fa fa-calendar-o"></i><br>
-                29th may<br>
-                    (4 PM- 8 PM)
-                </span>
-
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="final_cost">Rs 10,000</div>
-                        </div></td>
-
-                    <td>     <div class="row_define"><div class="cargo_detail"> Chemical 10 Ton</div></div></td>
-                    <td>     <div class="row_define"><div class="truck_type"> Tata Ace-1 </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details"><a href="#">View Details</a> </div></div> </td>
-
-                </tr>
-
-
-                <tr>
-                    <td>
-                        <div class="row_define">
-                            <div class="company_vendor">Tata Moters </div>
-                            <div class="driver_number">9780289100</div>
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>    <div class="row_define">345678</div></td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dirver_pic"><img src="img/profile_pic.jpg"></div>
-                            <div class="dirver_name">Sumit Verma</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dilivery_shdule"><span class="time_est">Chandigarh<br>
-                <i class="fa fa-calendar-o"></i><br>29th may<br>(4 PM- 8 PM)
-
-                </span>
-                    <span class="time_estm">Delhi<br>
-
-                <i class="fa fa-calendar-o"></i><br>
-                29th may<br>
-                    (4 PM- 8 PM)
-                </span>
-
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="final_cost">Rs 10,000</div>
-                        </div></td>
-
-                    <td>     <div class="row_define"><div class="cargo_detail"> Chemical 10 Ton</div></div></td>
-                    <td>     <div class="row_define"><div class="truck_type"> Tata Ace-1 </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details"><a href="#">View Details</a> </div></div> </td>
-
-                </tr>
-
-
-                <tr>
-                    <td>
-                        <div class="row_define">
-                            <div class="company_vendor">Tata Moters </div>
-                            <div class="driver_number">9780289100</div>
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>    <div class="row_define">345678</div></td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dirver_pic"><img src="img/profile_pic.jpg"></div>
-                            <div class="dirver_name">Sumit Verma</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dilivery_shdule"><span class="time_est">Chandigarh<br>
-                <i class="fa fa-calendar-o"></i><br>29th may<br>(4 PM- 8 PM)
-
-                </span>
-                    <span class="time_estm">Delhi<br>
-
-                <i class="fa fa-calendar-o"></i><br>
-                29th may<br>
-                    (4 PM- 8 PM)
-                </span>
-
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="final_cost">Rs 10,000</div>
-                        </div></td>
-
-                    <td>     <div class="row_define"><div class="cargo_detail"> Chemical 10 Ton</div></div></td>
-                    <td>     <div class="row_define"><div class="truck_type"> Tata Ace-1 </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details"><a href="#">View Details</a> </div></div> </td>
-
-                </tr>
-
-
-                <tr>
-                    <td>
-                        <div class="row_define">
-                            <div class="company_vendor">Tata Moters </div>
-                            <div class="driver_number">9780289100</div>
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>    <div class="row_define">345678</div></td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dirver_pic"><img src="img/profile_pic.jpg"></div>
-                            <div class="dirver_name">Sumit Verma</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dilivery_shdule"><span class="time_est">Chandigarh<br>
-                <i class="fa fa-calendar-o"></i><br>29th may<br>(4 PM- 8 PM)
-
-                </span>
-                    <span class="time_estm">Delhi<br>
-
-                <i class="fa fa-calendar-o"></i><br>
-                29th may<br>
-                    (4 PM- 8 PM)
-                </span>
-
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="final_cost">Rs 10,000</div>
-                        </div></td>
-
-                    <td>     <div class="row_define"><div class="cargo_detail"> Chemical 10 Ton</div></div></td>
-                    <td>     <div class="row_define"><div class="truck_type"> Tata Ace-1 </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details"><a href="#">View Details</a> </div></div> </td>
-
-                </tr>
-
-
-                <tr>
-                    <td>
-                        <div class="row_define">
-                            <div class="company_vendor">Tata Moters </div>
-                            <div class="driver_number">9780289100</div>
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>    <div class="row_define">345678</div></td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dirver_pic"><img src="img/profile_pic.jpg"></div>
-                            <div class="dirver_name">Sumit Verma</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dilivery_shdule"><span class="time_est">Chandigarh<br>
-                <i class="fa fa-calendar-o"></i><br>29th may<br>(4 PM- 8 PM)
-
-                </span>
-                    <span class="time_estm">Delhi<br>
-
-                <i class="fa fa-calendar-o"></i><br>
-                29th may<br>
-                    (4 PM- 8 PM)
-                </span>
-
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="final_cost">Rs 10,000</div>
-                        </div></td>
-
-                    <td>     <div class="row_define"><div class="cargo_detail"> Chemical 10 Ton</div></div></td>
-                    <td>     <div class="row_define"><div class="truck_type"> Tata Ace-1 </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details"><a href="#">View Details</a> </div></div> </td>
-
-                </tr>
 
                 </tbody>
             </table>

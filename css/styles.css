@@ -375,7 +375,9 @@ blockquote p{
     width: 100%;
 }
 #photo-div{background: #084087 none repeat scroll 0 0;}
-
+.container{
+    padding:0px;
+}
 
 
 #bg-car-image{
@@ -529,10 +531,40 @@ h5, h6{font-family:helvetica ;}
 .shipment_banner {
     background:url("../img/section4_bg.jpg");
     background-size:contain;
-    min-height: 150px;
+    max-height: 90px;
     background-repeat:no-repeat;
     background-attachment: fixed;
     width: 100%;
+}
+.promo_banner {
+    background:url("../img/invite_earn_bg.png");
+    background-size:cover;
+    height: 330px;
+    background-repeat:no-repeat;
+
+    width: 100%;
+}
+.emailInput{
+    width :40%;
+    border-radius:22px;
+    background-color: transparent;
+    color: #fff;
+    margin-top: 30px;
+    border : 1px solid white;
+    margin-left:30%;
+    height: 45px;
+
+    font-size: 12px;
+    padding-left: 20px;
+
+}
+.emailInput:focus{
+    outline : transparent auto 0px;
+}
+.promoSubmit{
+    max-width :40%;
+    margin-left:30%;
+    height: 45px;
 }
 @media (min-width:1201px) and (max-width:1210px){
     /*.marg-auto {*/
@@ -905,11 +937,11 @@ body{padding:0 !important;}
 .modal .modal-dialog .modal-content .modal-body .userName {  margin-bottom: 20px;}
 .modal .modal-dialog .modal-content .modal-body .userPassword{ }
 .modal .modal-dialog .modal-content .modal-body .forgot_password { text-align: center; margin-top: 15px; display: block;}
-.modal .modal-dialog .modal-content .modal-body .login_button, .modal .modal-dialog .modal-content .modal-body .next_otp ,.modal .modal-dialog .modal-content .modal-body .forgotPasswordSubmit,.modal .modal-dialog .modal-content .modal-body .signUpSubmit{ outline:none; background-color:  #4c93fd; color:#fff; border: none; border-radius: 50px;width: 100%; margin-top: 20px; padding: 8px;}
-.modal .modal-dialog .modal-content .modal-body .login_button:hover, .modal .modal-dialog .modal-content .modal-body .next_otp:hover,.modal .modal-dialog .modal-content .modal-body .forgotPasswordSubmit:hover ,.modal .modal-dialog .modal-content .modal-body .signUpSubmit:hover {background-color: #f89715; transition: background-color 0.5s ease; -webkit-transition: background-color 0.5s ease;
+.modal .modal-dialog .modal-content .modal-body .login_button, .modal .modal-dialog .modal-content .modal-body .next_otp ,.modal .modal-dialog .modal-content .modal-body .forgotPasswordSubmit,.modal .modal-dialog .modal-content .modal-body .signUpSubmit,.promoSubmit{ outline:none; background-color:  #4c93fd; color:#fff; border: none; border-radius: 50px;width: 100%; margin-top: 20px; padding: 8px;}
+.modal .modal-dialog .modal-content .modal-body .login_button:hover, .modal .modal-dialog .modal-content .modal-body .next_otp:hover,.modal .modal-dialog .modal-content .modal-body .forgotPasswordSubmit:hover ,.modal .modal-dialog .modal-content .modal-body .signUpSubmit:hover,.promoSubmit:hover {background-color: #f89715; transition: background-color 0.5s ease; -webkit-transition: background-color 0.5s ease;
 -moz-transition: background-color 0.5s ease; -o-transition: background-color 0.5s ease; -ms-transition: background-color 0.5s ease; -khtml-transition: background-color 0.5s ease;}
 
-
+.modal .modal-dialog .modal-content .modal-body .modifySubmit, .modal .modal-dialog .modal-content .modal-body .modifySubmit:hover,.promoSubmit,.promoSubmit:hover{-moz-transition: background-color 0.5s ease; -o-transition: background-color 0.5s ease; -ms-transition: background-color 0.5s ease; -khtml-transition: background-color 0.5s ease;}
 
 
 /*============================== Register Model css ==================================*/
@@ -936,6 +968,11 @@ body{padding:0 !important;}
     display: block;
     width: auto !important;
     float: left;
+}
+.radio-details{
+    position: relative !important;
+    display: block;
+    width: auto !important;
 }
 div.half_width { width: 47.5%;float: left; margin: 0 23px 0 0;}
 div.half_width.no-margin {  margin-right: 0px; }
@@ -1181,7 +1218,23 @@ ul.dropdown-menu:before {
     -ms-transition: all 0.30s ease-in-out;
     -o-transition: all 0.30s ease-in-out;
 }
-
+.textArea{
+    background-color: #f1f1f1;
+    border: none;
+    color: #b1b1b1;
+    padding: 0px 15px;
+    width: 100%;
+    margin: 0px 0 15px 0;
+    border: none !important;
+    height: 65px;
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    outline: none;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+}
 .requestTruck  input:active,
 .requestTruck  input:focus,
 .requestTruck  select:active,
@@ -1264,12 +1317,19 @@ ul.dropdown-menu:before {
 
 }
 .ongoing_view table tr td{
-    padding: 15px 12px !important;
+   /* padding: 15px 12px !important;*/
+    vertical-align: middle !important;
+
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    padding-left: 15px !important;
+    padding-right: 0px !important;
 
 }
 .ongoing_view tr td div.row_define {
     border-right: 2px solid #e3e3e3;
-    min-height: 90px;
+
+    min-height: 75px;
 }
 .ongoing_view tr td:last-child div.row_define {
     border: none;
@@ -1278,6 +1338,27 @@ ul.dropdown-menu:before {
 {
     text-align: center;
 
+}
+.blue_banner{
+    margin-top:20px;
+    height:88px;
+    background-color: #339cf2}
+.quoteRow{
+
+    border-bottom: 2px solid #e3e3e3;
+    width: 90%;
+    padding-left: 0px;
+    padding-right: 0px;
+
+    /*margin-top:20px;
+
+    margin-bottom:20px;*/
+}
+.quoteRow .col-lg-2{
+    padding:0px;
+}
+.col-lg-11 .col-lg-12{
+    padding:0px;
 }
 .dirver_pic img {
     width: 52px;
@@ -1294,6 +1375,94 @@ ul.dropdown-menu:before {
     font-weight: normal;
     font-size: 13px;
 }
+.modify{
+    background-color: #f89715;
+    color: #fff;
+    padding: 11px 20px;
+    border-radius: 25px;
+    font-weight: normal;
+    font-size: 14px;
+    height: 42px;
+    display: inline-block;
+    width: 180px;
+    border:none;
+}
+.addAccount{
+    background-color: #f89715;
+    color: #fff;
+    /*padding: 11px 20px;*/
+    margin-right:10px;
+    margin-top:10px;
+    margin-bottom:25px;
+    border-radius: 12.5px;
+    font-weight: normal;
+    font-size: 10px;
+    height: 25px;
+    display: inline-block;
+    width: 80px;
+    border:none;
+}
+.editProfile{
+    background-color: #fff;
+    color: #f89715;
+   /* padding: 11px 20px;*/
+    border-radius: 25px;
+    font-weight: normal;
+    font-size: 16px;
+    height: 42px;
+    display: block;
+    width: 120px;
+    border:1px solid #f89715;
+}
+.editProfile:focus,.modify:focus,.cancelA:focus{
+    outline: transparent auto 0px;
+}
+.cancelA{
+    background-color: #515356;
+    color: #fff;
+    display: inline-block;
+    padding: 11px 20px;
+    border-radius: 25px;
+    font-weight: normal;
+    font-size: 14px;
+    height: 42px;
+    width: 180px;
+}
+.accept a{
+    background-color: #f89715;
+    color: #fff;
+    padding: 7px 20px;
+    border-radius: 14px;
+    font-weight: normal;
+    font-size: 13px;
+    height: 28px;
+    display: inline-block;
+    width: 95px;
+}
+
+.ignore a{
+    background-color: #515356;
+    color: #fff;
+    display: inline-block;
+    padding: 7px 20px;
+    border-radius: 14px;
+    font-weight: normal;
+    font-size: 13px;
+    height:28px;
+    width: 95px;
+}
+.viewDetails{
+    background-color: #f89715;
+    color: #fff;
+    padding: 7px 20px;
+    border-radius: 13px;
+    font-weight: normal;
+    font-size: 13px;
+    height: 28px;
+    display: inline-block;
+    width: 115px;
+}
+.truck_type{width:40%}
 .dilivery_shdule
 {
     /*text-align: center;*/
@@ -1331,3 +1500,254 @@ a:hover{ text-decoration: none !important;}
     padding: 11px 30px;
 
 }
+
+
+.progress_bar {
+    width: 80%;
+    margin: 20px auto;
+
+
+}
+
+.progress_bar .progress-bar-success {
+    background-color: #1583DD;
+}
+
+.buttons{
+    outline:none; background-color:  #4c93fd; color:#fff; border: none; border-radius: 50px;width: 48%; margin-top: 20px; padding: 8px;
+    float: left;
+
+}
+
+
+.btns_both
+{
+    width: 100%;
+    display: inline-block;
+    padding: 0 25px
+}
+
+.btns_both button.buttons:first-child {
+    margin-right: 10px;
+}
+
+.finish_pic img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    display: inline-block;
+    margin: 7px 0;
+    text-align: center;
+}
+
+
+
+/*============================heading tabs*/
+
+.head1
+{
+    width: 30%;
+    float: left;
+    margin-left: 40px;
+    font-size: 20px;
+}
+
+.head2
+{
+    width: 20%;
+    float: left;
+    margin-left: 40px;
+    font-size: 20px;
+}
+
+.head3
+{
+    width: 20%;
+    float: left;
+    margin-left: 40px;
+    font-size: 20px;
+}
+
+.modal .modal-content .modal-body .full_width .checkbox1{
+    float: left;
+    width: 6%;
+    height:15px;
+    background: url("../img/small_uncheck_icon.png") no-repeat;
+
+}
+
+.modal .modal-content .modal-body .full_width .checkbox1.selected{
+    float: left;
+    width: 6%;
+    height:15px;
+    background: url("../img/small_check_icon.png") no-repeat;
+
+}
+
+.checkbox_p{
+
+    color: #4DADFB;
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+
+
+.checkbox_p{
+
+    color: #4DADFB;
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+
+.radio_label{
+    font-size:18px; color:#6C6C6C; margin-top: -2px;
+}
+
+
+
+
+/*================= gogle maps--=======*/
+#map {
+    height:400px;
+    width:100%;
+    float: left;
+}
+.infoWindowContent {
+    font-size:  14px !important;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+h2 {
+    margin-bottom:0;
+    margin-top: 0;
+}
+
+.dropdown_dynamic{
+    background-color:#f1f1f1; border: none; padding: 10px; width: 100%; margin:0 0 15px; height:40px;
+}
+
+/*====shipper home page css====*/
+
+.graphHead {
+    text-align: left;
+    position: relative;
+    top: -10px;
+    background-color: #fff;
+    padding: 0 18px 0 18px;
+
+}
+
+.graph-container{
+    border:1px solid #d4d4d4;
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+.head-container{
+    text-align:left;
+    margin-left: 20px;
+    font-size: 20px;
+    color:#323438;
+    float: left;
+    font-weight: bold;
+}
+
+.fleet_home
+{ background-color:#f1f1f1; border: none; padding: 10px; width: 60%; margin:0 30px 15px 0px ; float: right}
+.profileShipper{
+    background-color:#f1f1f1; border: none;
+    margin:14px 14px;
+    padding: 10px;
+    width: 95%;
+}
+ .try2
+{
+    float: left;
+    width: 30%;
+    margin-left: 20px;
+     padding-top: 8px;
+     font-size: 18px;
+     color: #7b7b7b;
+     font-weight: normal;
+}
+ .labels{
+     float: left;
+     width: 30%;
+     margin-left: 20px;
+     padding-top: 8px;
+     font-size: 14px;
+     color: #7b7b7b;
+     font-weight: normal;
+ }
+
+
+ /*============== file view button ============*/
+.fileView {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;
+    border-radius: 0 !important;
+    margin-left: -4px;
+    margin-right: 5px;
+    margin-top: 0;
+    height: 35px;
+    width: 35px;
+    background: url("../img/icon_view.png") no-repeat !important;
+    background-position: center;
+}
+
+.fileView input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    outline: none;
+}
+.w-80 { width: 80% !important; display: inline-block;}
+input.upload {  padding: 5px !important;}
+.fileView.files {
+    position: absolute;
+    right: 26px;
+}
+
+.file_view{width: 39px;height: 39px; float: left; }
+
+/*========file upload beside file view ========*/
+
+.fileUploadView {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;
+    border-radius: 0 !important;
+    margin-left: -4px;
+    margin-top: 0;
+    height: 37px;
+    width: 37px;
+    margin-right: 13%;
+    background: url("../img/upload_button.png") no-repeat !important;
+    background-position: center;
+}
+.fileUploadView input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    outline: none;
+}
+.w-80 { width: 80% !important; display: inline-block;}
+input.upload {  padding: 5px !important;}
+.fileUploadView.files {
+    position: absolute;
+    right: 0;
+}
+

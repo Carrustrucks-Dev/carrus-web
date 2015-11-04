@@ -17,7 +17,7 @@
                 </thead>
                 <tbody>
                 <!--<div style="text-align: center"><img src="img/icon-no_pending_quote.png" style="height: 150px; width:150px;"  ></div>-->
-                <tr>
+                <tr ng-repeat="data in list">
                     <td>
                         <div class="row_define">
                             <!--<div class="company_vendor">Tata Moters </div>-->
@@ -41,15 +41,15 @@
                                 <span class="time_est">
                 <!--<i class="glyphicon glyphicon-map-marker"></i>-->
                                     <img src="img/icon_location.png" >
-                                    <br>29th may<br>(4 PM- 8 PM)
+                                    <br>{{data.pickup_date}}<br> {{data.pickup_time}}
 
                 </span>
                     <span class="time_estm">
 
                 <!--<i class="glyphicon glyphicon-map-marker"></i>-->
                          <img src="img/icon_location.png" >
-                        <br>29th may<br>
-                    (4 PM- 8 PM)
+                        <br>{{data.dropoff_date}}<br>
+                    {{data.dropoff_time}}
                 </span>
 
                             </div>
@@ -61,14 +61,14 @@
                         <!--</div></td>-->
 
                     <td>
-                        <div class="row_define"><div class="cargo_detail"> Budget Rs 10000</div>
-                        <div class="cargo_detail"> Final Cost Rs 10000</div> </div>
+                        <div class="row_define"><div class="cargo_detail"> Budget Rs. {{data.budget}}</div>
+                        <div class="cargo_detail"> Final Cost Rs {{data.offered_cost}}</div> </div>
 
 
                     </td>
-                    <td>     <div class="row_define"><div class="truck_type"> Tata Ace 2 </div></div></td>
-                    <td>     <div class="row_define"><div class="truck_type"> Chandigarh to Delhi </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details">Chemical 10 Ton </div></div> </td>
+                    <td>     <div class="row_define"><div class="cargo_detail"> {{data.truck_type}}</div></div></td>
+                    <td>     <div class="row_define"><div class="truck_type"> {{data.pickup_location}} to <br> {{data.dropoff_location}} </div></div></td>
+                    <td>     <div class="row_define"><div class="view_details">{{data.cargo_details}} <br> {{data.cargo_weight}} </div></div> </td>
                     <td>     <div class="row_define">
                         <div class="view_details">
                             <a href="#">Update</a>

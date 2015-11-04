@@ -2,21 +2,20 @@
     <div class="container">
 
         <form class="navbar-form banner-search" role="search" style="margin-top: 30px;margin-bottom: 30px;">
-            <div class="input-group" style="border-radius: 16px;background-color: transparent">
-                 <div class="input-group-btn">
-                     <input type="text" class="form-control" placeholder="Search Shipment" name="srch-term" id="srch-term" style="border-radius: 16px;background-color: transparent">
-                     <button class="btn btn-default" type="submit" style="border-radius: 16px;background-color: transparent"><i class="glyphicon glyphicon-search"></i></button>
+            <div class="input-group" >
+                 <div class="input-group-btn" style="border-radius: 16px;background-color: transparent">
+                     <button style="border-top-left-radius:16px;border-bottom-left-radius:16px;border-right-color:transparent;border-right-width: 0px;background-color: transparent" class="btn btn-default" type="submit" ><i style="color: #fff" class="glyphicon glyphicon-search"></i></button>
+                     <input style="float: right;border-top-right-radius:16px;border-bottom-right-radius:16px;border-left-color:transparent;border-left-width:0px;background-color: transparent;color: #fff" type="text" class="form-control" placeholder="Search Shipment" name="srch-term" id="srch-term" >
+
                  </div>
             </div>
         </form>
-
-
         <div class="tab-menu pull-right" style="margin-top: 30px;margin-bottom: 30px;">
             <ul>
                 <li>
-                    <a ng-class="{'active': getCurrentPath().match('ongoing')}" ui-sref="customer.shipments.ongoing"> On going </a>
-                    <a  ng-class="{'active': getCurrentPath().match('upcoming')}" ui-sref="customer.shipments.upcoming" > Upcoming </a>
-                    <a ng-class="{'active': getCurrentPath().match('past')}" ui-sref="customer.shipments.past"> Past </a>
+                    <a ng-class="{'active': getCurrentPath().match('ongoing')}" ui-sref="customer.shipments.ongoing" > On going </a>
+                    <a ng-class="{'active': getCurrentPath().match('upcoming')}" ui-sref="customer.shipments.upcoming"  > Upcoming </a>
+                    <a ng-class="{'active': getCurrentPath().match('past')}" ui-sref="customer.shipments.past" > Past </a>
                 </li>
             </ul>
         </div>
@@ -30,5 +29,7 @@
 
 </div>
 </div>
-
-
+<style>
+    .tab-menu ul li a {color:#337ab7;
+    text-decoration: none}
+</style>

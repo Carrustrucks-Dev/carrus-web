@@ -1,0 +1,98 @@
+<div id="changePswdModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" >Change Password</h3>
+                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()"  style="margin-top:-50px;font-size: 2em">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
+                <input id="oldPassword" placeholder="Old Password"   type="password" ng-model="change.oldPass">
+                <input id="newPassword" style="margin-top:10px" placeholder="New Password"  type="password" ng-model="change.newPass">
+                <input id="confirmPassword" style="margin-top:10px" placeholder="Confirm New Password"  type="password" ng-model="change.confirmPass">
+                <button class="login_button" type="submit" ng-click="changePswd()">Reset</button>
+            </div>
+            <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
+
+<div>
+    <div class="col-lg-12" style="margin-top:15px;margin-bottom: 35px;right:0px">
+        <button class="pull-right editProfile" ng-click="editButton()"><span id="symbol" class="fa fa-pencil"></span>  {{edit}}</button>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="graph-container">
+                <div class="head-container"><span class="graphHead">Company Name</span></div>
+                <div class="input-group" style="width: 100%" >
+                    <input type="text" class="profileShipper"  placeholder="Company Name" ng-model="personalDetails.companyName"></div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="graph-container">
+                <div class="head-container"><span class="graphHead">Type of Company</span></div>
+                <div class="input-group" style="width: 100%" >
+                    <input type="text" class="profileShipper"  placeholder="Type of Company" ng-model="personalDetails.partnership[0].partnershipName"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="graph-container">
+                <div class="head-container"><span class="graphHead">Name</span></div>
+                <div class="input-group" style="width: 100%" >
+                    <input type="text" class="profileShipper"  placeholder="Name" ng-model="personalDetails.firstName"></div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="graph-container">
+                <div class="head-container"><span class="graphHead">CIN</span></div>
+                <div class="input-group" style="width: 100%" >
+                    <input type="text" class="profileShipper"  placeholder="CIN"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="graph-container">
+                <div class="head-container"><span class="graphHead">Email</span></div>
+                <div class="input-group" style="width: 100%" >
+                    <input type="text" class="profileShipper"  placeholder="Email" ng-model="personalDetails.email"></div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="graph-container">
+                <div class="head-container"><span class="graphHead">Copy of Certificate</span></div>
+                <div class="input-group" style="width: 100%" >
+                    <input type="text" class="profileShipper"  placeholder="Copy of Certificate"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="graph-container">
+                <div class="head-container"><span class="graphHead">Address</span></div>
+                <div class="input-group" style="width: 100%" >
+                    <input type="text" class="profileShipper"  placeholder="Address" ng-model="personalDetails.addressDetails.address"></div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="graph-container">
+                <div class="head-container"><span class="graphHead">Phone Number</span></div>
+                <div class="input-group" style="width: 100%" >
+                    <input type="text" class="profileShipper"  placeholder="Phone Number" ng-model="personalDetails.phoneNumber"></div>
+            </div>
+        </div>
+    </div>
+    <div class="full-width text-center">
+        <button class="modify" ng-click="changePass()">Change Password</button>
+    </div>
+</div>
