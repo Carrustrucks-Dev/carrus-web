@@ -1,14 +1,14 @@
 <div class="container" >
-    <div class="row" style="margin-top: 8%;">
+    <div class="row" style="margin-top: 8%;" ng-show="list_length != 0">
         <div class="table-responsive ongoing_view" >
 
-            <table id="table-pagination" class="table table-striped" >
+            <table id="table-pagination" class="table table-striped" style="overflow: scroll; width: 1150px;" >
                 <thead>
 
                 <tr>
                     <th>Shipper Details</th>
                     <th>Schedule</th>
-                    <th>Freight</th>
+                    <th>Final Cost</th>
                     <th> Truck Info</th>
                     <th>Route</th>
                     <th>Cargo Details</th>
@@ -17,14 +17,14 @@
                 </thead>
                 <tbody>
                 <!--<div style="text-align: center"><img src="img/icon-no_pending_quote.png" style="height: 150px; width:150px;"  ></div>-->
-                <tr>
+                <tr ng-repeat="data in list">
                     <td>
                         <div class="row_define">
-                            <div class="company_vendor">Tata Moters </div>
-                            <div class="driver_number">9780289100</div>
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
+                            <div class="company_vendor">{{data.shipper_name}} </div>
+                            <div class="driver_number">{{data.shipper_mobile}}</div>
+                            <rating ng-model="data.shipper_rating" max="5" readonly="true"
+                                    state-on="'fa fa-star text-yellow'"
+                                    state-off="'fa fa-star-o'"></rating>
                         </div>
                     </td>
 
@@ -35,21 +35,21 @@
                     <!--</div>-->
                     <!--</td>-->
 
-                    <td>
+                    <td style="width:300px">
                         <div class="row_define">
                             <div class="dilivery_shdule">
                                 <span class="time_est">
                 <!--<i class="glyphicon glyphicon-map-marker"></i>-->
                                     <img src="img/icon_location.png" >
-                                    <br>29th may<br>(4 PM- 8 PM)
+                                    <br>{{data.pickup_date}}<br> {{data.pickup_time}}
 
                 </span>
                     <span class="time_estm">
 
                 <!--<i class="glyphicon glyphicon-map-marker"></i>-->
                          <img src="img/icon_location.png" >
-                        <br>29th may<br>
-                    (4 PM- 8 PM)
+                        <br>{{data.dropoff_date}}<br>
+                    {{data.dropoff_time}}
                 </span>
 
                             </div>
@@ -61,17 +61,20 @@
                     <!--</div></td>-->
 
                     <td>
-                        <div class="row_define"><div class="cargo_detail"> Budget Rs 10000</div>
-                            <div class="cargo_detail"> Final Cost Rs 10000</div> </div>
+
+                        <div class="row_define">   <div class="cargo_detail" style="text-align: center"> Final Cost Rs {{data.acceptPrice}}</div> </div>
 
 
                     </td>
-                    <td>     <div class="row_define"><div class="truck_type"> Tata Ace 2 </div></div></td>
-                    <td>     <div class="row_define"><div class="truck_type"> Chandigarh to Delhi </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details">Chemical 10 Ton </div></div> </td>
-                    <td>     <div class="row_define">
-                        <div class="view_details">
-                            <a href="" ng-click="Quote();">Update</a>
+        <td>
+            <div  ng-show="data.tracking == 'YES'" style="text-align: center;  border-right: 2px solid #e3e3e3;"> <img src="img/button_location.png" ></div>
+            <div class="row_define"><div class="cargo_detail"> {{data.truck_type}}</div></div>
+
+        </td>
+        <td>     <div class="row_define"><div class="truck_type" style="text-align: center"> {{data.pickup_location}} to <br> {{data.dropoff_location}} </div></div></td>
+        <td>     <div class="row_define"><div class="view_details" style="text-align: center">{{data.cargo_details}} <br> {{data.cargo_weight}} Ton </div></div> </td>
+                       <td style="width:200px">  <div class="row_define"> <div class="view_details">
+                            <a href="" ng-click="get_trucker_for_bid(data);">Assign Driver</a>
                         </div>
 
                     </div>
@@ -81,6 +84,9 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div style="text-align: center; margin-top: 10%; " ng-show="list_length == 0"><img src="img/icon-no_pending_quote.png"><br>
+        <div class="no_request_text">No Pending Assignments</div>
     </div>
 </div>
 
@@ -99,43 +105,21 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-body row table-striped" style="padding: 20px;">
+            <div class="modal-body row table-striped" style="padding: 20px;" ng-repeat="driver in json">
                <div class="row" style="padding: 10px; " >
                    <div class="col-xs-2" >
-                       <img src="img/profile_pic.jpg" style="width: 60px; height:60px; border-radius: 50px;"  >
+                       <img src="{{ driver.profilePicture.thumb || 'img/profile_pic.jpg'}}" style="width: 60px; height:60px; border-radius: 50px;"  >
                    </div>
-                   <div class="col-xs-4" style="float: left; width:40%;">Sumit Verma <br> Driver ID 12312312 </div>
+                   <div class="col-xs-4" style="float: left; width:40%;">{{driver.driverName}} <br> Driver ID {{driver.driverId}} </div>
                    <div class="view_details" style="margin-left: 80%; margin-top: 2%;">
-                       <a href="" >Select</a>
+                       <a href="" ng-click="select_driver_id(driver)" >Select</a>
                    </div>
                </div>
 
 
-
-                <div class="row" style="padding: 10px; " >
-                    <div class="col-xs-2" >
-                        <img src="img/profile_pic.jpg" style="width: 60px; height:60px; border-radius: 50px;"  >
-                    </div>
-                    <div class="col-xs-4" style="float: left; width:40%;">Amit Verma <br> Driver ID 12312312 </div>
-                    <div class="view_details" style="margin-left: 80%; margin-top: 2%;">
-                        <a href="" >Select</a>
-                    </div>
-                </div>
-
-
-
-                <div class="row" style="padding: 10px; " >
-                    <div class="col-xs-2" >
-                        <img src="img/profile_pic.jpg" style="width: 60px; height:60px; border-radius: 50px;"  >
-                    </div>
-                    <div class="col-xs-4" style="float: left; width:40%;">Mudit Verma <br> Driver ID 12312312 </div>
-                    <div class="view_details" style="margin-left: 80%; margin-top: 2%;">
-                        <a href="" >Select</a>
-                    </div>
-                </div>
-                <button id="next_otp" type="submit" ng-click="" data-dismiss="modal" style="width: 80%; margin-left: 10%;">Submit</button>
   <!-- =========================Use odd even of angular to give color to background ===================-->
             </div>
+            <button id="login" class="submit_button" type="submit" ng-click="assign_driver();" data-dismiss="modal" style="width: 80%; margin-left: 10%;">Assign Driver</button>
 
         </div>
 

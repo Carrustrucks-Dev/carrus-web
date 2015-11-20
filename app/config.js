@@ -6,12 +6,7 @@ angular.module("carrus").constant('CONSTANT', {
     apiURL: 'http://52.25.204.93:8080/'
    /* sliderRange : [10,60]*/
 });
-/*angular.module("carrus").config(["$locationProvider",function(a){a.html5Mode(!0)}]);*/
-/*angular.module('carrus',[]).config(function($locationProvider) {
 
-
-        $locationProvider.html5Mode(true);
-    });*/
 angular.module('carrus').config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/welcomeScreen');
@@ -62,6 +57,26 @@ angular.module('carrus').config(function ($stateProvider, $urlRouterProvider) {
             url: '/promo',
             templateUrl: 'app/customer/promo/promo.view.html',
             controller : 'promoCtrl'
+        })
+        .state('customer.track',{
+            url: '/track',
+            templateUrl: 'app/customer/track/track.view.html',
+            controller : 'trackCtrl'
+        })
+        .state('customer.confirmShipment',{
+            url: '/confirmShipment',
+            templateUrl: 'app/customer/confirmShipment/confirmShipment.view.html',
+            controller : 'confirmShipmentCtrl'
+        })
+        .state('customer.ongoingShipment',{
+            url: '/ongoingShipment',
+            templateUrl: 'app/customer/ongoingShipment/ongoingShipment.view.html',
+            controller : 'ongoingShipmentCtrl'
+        })
+        .state('customer.pastShipment',{
+            url: '/pastShipment',
+            templateUrl: 'app/customer/pastShipment/pastShipment.view.html',
+            controller : 'pastShipmentCtrl'
         })
         .state('customer.shipments',{
             url:'/shipments',
@@ -156,6 +171,34 @@ angular.module('carrus').config(function ($stateProvider, $urlRouterProvider) {
             controller:'pending_requests'
         })
 
+        .state('shipper.booking',{
+            url:'/booking',
+            abstract: true,
+            templateUrl:'app/shipper/bookings/booking_home.html',
+            controller:'abc'
+
+        })
+        .state('shipper.booking.ongoing_booking',{
+            url:'/ongoing_booking',
+            templateUrl:'app/shipper/bookings/ongoing/ongoing_booking.html',
+            controller:'ongoing_booking'
+        })
+        .state('shipper.booking.upcoming_booking',{
+            url:'/upcoming_booking',
+            templateUrl:'app/shipper/bookings/upcoming/upcoming_booking.html',
+            controller:'upcoming_booking'
+        })
+        .state('shipper.upcoming_booking_detail',{
+            url:'/upcoming_booking_detail',
+            templateUrl:'app/shipper/upcoming_detail/upcoming_booking_detail.html',
+            controller:'upcoming_booking_detail'
+        })
+        .state('shipper.booking.past_booking',{
+            url:'/past_booking',
+            templateUrl:'app/shipper/bookings/past/past_booking.html',
+            controller:'past_booking'
+        })
+
         .state('shipper.trucker',{
             url:'/trucker',
             abstract: true,
@@ -181,15 +224,23 @@ angular.module('carrus').config(function ($stateProvider, $urlRouterProvider) {
             controller:'driver_home'
 
         })
+
         .state('shipper.driver.drivers',{
             url:'/drivers',
             templateUrl:'app/shipper/driver/driver_info/driver.html',
-            controller:'driver'
+
         })
-        .state('shipper.driver.driver_detail',{
+        .state('shipper.driver_info',{
             url:'/driver_info',
-            templateUrl:'app/shipper/driver/driver_info/driver_info.html',
-            controller:'driver'
+            abstract: true,
+            templateUrl:'app/shipper/driver/driver_info.html',
+            controller:'driver_info'
+
+        })
+        .state('shipper.driver_info.driver_detail',{
+            url:'/driver_detail',
+            templateUrl:'app/shipper/driver/driver_info/driver_detail.html',
+            controller:'driver_detail'
         })
         .state('shipper.home',{
             url:'/shipperhome',
@@ -232,6 +283,7 @@ angular.module('carrus').filter('date2', function($filter) {
     };
 });
 
+
 /*
 angular.module('carrus').config(function($httpProvider){
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -243,6 +295,48 @@ angular.module('carrus').config(function($httpProvider){
     };
     $httpProvider.defaults.cache= false;
 });*/
+
+angular.module("carrus").controller('DatepickerDemoCtrl', ['$scope', function ($scope) {
+    $scope.today = function () {
+        $scope.dt = new Date();
+    };
+    $scope.today();
+
+    $scope.clear = function () {
+        $scope.dt = null;
+    };
+
+    // Disable weekend selection
+    //$scope.disabled = function (date, mode) {
+    //    //return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    //};
+
+    $scope.toggleMin = function () {
+        $scope.minDate = $scope.minDate ? null : new Date();
+    };
+    $scope.toggleMin();
+
+    $scope.open = function ($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 1
+    };
+
+    $scope.initDate = new Date('2016-15-20');
+    $scope.formats = ['yyyy-MM-dd', 'dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[0];
+
+}]);
+
+
+
+
 angular.module("carrus").factory('convertdatetime', function () {
     return {
 
@@ -360,4 +454,6 @@ angular.module("carrus").factory('convertdatetime', function () {
             return _utc;
         }
     };
+
+
 });

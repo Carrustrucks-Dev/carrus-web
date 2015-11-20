@@ -4,193 +4,423 @@
     .table-striped>tbody>tr:nth-child(odd)>th {
         background-color: #E9EBEF;
     }
+    .row_ist label,.row_second label{
+        margin-bottom: 7px;
+        text-transform: uppercase;
+        color: #A6A6A6;
+        font-size: 17px;
+    }
+    .modal .modal-dialog .modal-content .modal-body input{
+        padding: 0 10px 0 15px;
+    }
+    .fleet_title{
+        color: #363636 !important;;
+        text-align: left !important;
+        background-color: #f1f1f1 !important;
+        padding: 17px 0 17px 20px !important;
+    }
 </style>
-<div>
-    <div class="row" style="border: 2px solid #e3e3e3;margin-top: 30px">
-        <div class="blue_banner text-center"><!--margin-bottom: 0px;padding-bottom: 28px;padding-top: 28px;padding-left: 32%;-->
-            <div style="margin-bottom: 0px;">
-                <div class="col-lg-1" style="padding-top: 12px;"><p style="color: white;">Chandigarh</p><p style="color: white;font-size: 10px">20 Nov , 2015</p><p style="font-size: 10px;color: white;">4 PM - 8 PM</p></div>
-                <div class="col-lg-10" style="padding-bottom: 28px;padding-top: 28px;"><p style="color: white;"> --------------------------------------------------------------------- <img src="img/bannerLogo.png" style="color: #fff" height="30px" width="80px"> --------------------------------------------------------------------- </p> </div>
-                <div class="col-lg-1" style="padding-top: 12px;"><p style="color: white;">Delhi </p></div>
-        </div>
-        </div>
-        <div class="col-lg-11" style="margin-left:4.16%">
-        <div class="col-lg-12 quoteRow" style="margin-top:20px;">
-            <div class="col-lg-2 pull-left">Truck Type</div>
-            <div class="col-lg-2 col-lg-offset-8 "><p class="pull-right" style="margin-bottom: 0px">Tata Ace</p></div>
-        </div>
-
-        <div class="col-lg-12 quoteRow" style="margin-top:15px;">
-            <div class="col-lg-2">Type of Cargo</div>
-             <div class="col-lg-2 col-lg-offset-8 "><p class="pull-right" style="margin-bottom: 0px">Chemical</p></div>
-        </div>
-
-        <div class="col-lg-12 quoteRow" style="margin-top:15px;">
-            <div class="col-lg-2">Cargo Weight</div>
-             <div class="col-lg-2 col-lg-offset-8 "><p class="pull-right" style="margin-bottom: 0px">10 Ton</p></div>
-        </div>
-
-        <div class="col-lg-12 quoteRow" style="margin-top:15px;">
-            <div class="col-lg-2">Budget</div>
-             <div class="col-lg-2 col-lg-offset-8 "><p class="pull-right" style="margin-bottom: 0px">Rs 10000</p></div>
-        </div>
-
-        <div class="col-lg-12 quoteRow" style="margin-top:15px;margin-bottom: 30px">
-            Notes: Carrus now has the unique opportunity to help people looking for a career change.
-        </div>
-        </div>
-
-
-    </div>
-    <div ng-if="!quotes.length" class="row" style="min-height: 115px;padding-top: 35px;padding-bottom: 35px;">
-        <div class="col-lg-6 col-lg-offset-4">
-           <a class="modify text-center" ng-click="modifyForm();">Modify</a>
-           <a class="cancelA text-center" style="margin-left: 20px" ng-click="">Cancel</a>
-    </div>
-    </div>
-    <div ng-if="quotes.length" class="row" style="min-height: 115px;padding-top: 35px;padding-bottom: 35px;">
-        <div class="col-lg-6 col-lg-offset-4">
-            <a class="cancelA text-center" ng-click="">Cancel</a>
-    </div>
-        </div>
-    <div ng-if="!quotes.length" class="row">
-        <img src="img/icon_quote.png" style="margin-left:40% ">
-    </div>
-
-    <div class="row">
-        <div class="table-responsive ongoing_view">
-
-            <table ng-if="quotes.length" id="table-pagination" class="table table-striped">
-
-                <thead>
-                <tr>
-                    <th>Fleet Owner Rating</th>
-                    <th>Truck Type</th>
-                    <th>Offered Cost</th>
-                    <th class="truck_type">Notes</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr>
-                    <td>
-                        <div class="row_define  text-center">
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>     <div class="row_define text-center"><div > Tata Ace-1 </div></div></td>
-                    <td>
-                        <div class="row_define text-center">
-                            <div class="final_cost">Rs 10,000</div>
-                        </div></td>
-                    <td>     <div class="row_define text-center">
-                       We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time and focus on your project.
-                    </div>
-
-                    </td>
-                    <td>     <div class="row_define text-center">
-                        <div class="accept"><a ng-click="modifyForm();">Accept</a></div><br>
-                        <div  class="ignore"><a>Ignore</a></div>
-                    </div> </td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <div class="row_define text-center">
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>     <div class="row_define text-center"><div > Tata Ace-1 </div></div></td>
-                    <td>
-                        <div class="row_define text-center">
-                            <div class="final_cost">Rs 10,000</div>
-                        </div></td>
-                    <td>     <div class="row_define text-center">
-                       We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time and focus on your project.
-                    </div>
-
-                    </td>
-                    <td>     <div class="row_define text-center">
-                        <div class="accept" ><a ng-click="modifyForm();">Accept</a></div><br>
-                        <div class="ignore" ><a>Ignore</a></div>
-                    </div> </td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <div class="row_define text-center">
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>     <div class="row_define text-center"><div > Tata Ace-1 </div></div></td>
-                    <td>
-                        <div class="row_define text-center">
-                            <div class="final_cost">Rs 10,000</div>
-                        </div></td>
-                    <td>     <div class="row_define text-center">
-                       We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time and focus on your project.
-                    </div>
-
-                    </td>
-                    <td>     <div class="row_define text-center">
-                        <div class="accept"><a ng-click="modifyForm();">Accept</a></div><br>
-                        <div  class="ignore"><a>Ignore</a></div>
-                    </div> </td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <div class="row_define text-center">
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>     <div class="row_define text-center"><div > Tata Ace-1 </div></div></td>
-                    <td>
-                        <div class="row_define text-center">
-                            <div class="final_cost">Rs 10,000</div>
-                        </div></td>
-                    <td>     <div class="row_define text-center">
-                       We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time and focus on your project.
-                    </div>
-
-                    </td>
-                    <td>
-                        <div class="row_define text-center">
-                        <div class="accept"><a ng-click="modifyForm();">Accept</a></div><br>
-                        <div class="ignore"><a>Ignore</a></div>
-                        </div>
-                    </td>
-
-                </tr>
-
-
-
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div ng-if="mesg=='No Record Found.'">
+    <br>
+    <img style="margin-left: 40%;" src="img/icon_quote.png" >
+    <h3 style="text-align: center;color:#b1b1b1">No Bids</h3>
 </div>
-<div id="modifyModal" class="modal" role="dialog">
-    <div class="modal-dialog">
+<div ng-if="mesg!='No Record Found.'">
+   <!-- <div style="background-color: #001a35"><p ng-repeat="quotes in bidsList">1234234</p></div>-->
+        <div id="carousel-example-captions" data-interval="false" class="carousel slide bs-docs-carousel-example">
+
+            <div class="carousel-inner" >
+               <div  style="width: 66%;left:17%"  class="item active">
+                    <div class="row" style="border: 2px solid #e3e3e3;margin-top: 30px">
+                        <div class="blue_banner text-center">
+                            <div style="margin-bottom: 0px;">
+                                <div class="col-lg-2" style="padding-top: 12px;"><p style="color: white;font-size: 16px;">{{bid.pickUp.location}}</p><p style="color: white;font-size: 12px;margin-bottom:3px">{{bid.pickUp.date|date:'dd MMM , yyyy'}}</p><p style="font-size: 10px;color: white;">{{bid.pickUp.time}}</p></div>
+                                <div class="col-lg-8" style="padding-bottom: 28px;padding-top: 28px;"><p style="color: white;"> --------------------------------------------<img src="img/bannerLogo.png" style="color: #fff" height="30px" width="80px">-------------------------------------------- </p> </div>
+                                <div class="col-lg-2" style="padding-top: 12px;"><p style="color: white;font-size: 16px">{{bid.dropOff.location}}</p><p style="color: white;font-size: 12px;margin-bottom:3px">{{bid.dropOff.date|date:'dd MMM , yyyy'}}</p><p style="font-size: 10px;color: white;">{{bid.dropOff.time}}</p></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-11" style="margin-left:4.16%">
+                            <div class="col-lg-12 quoteRow" style="margin-top:20px;">
+                                <div class="col-lg-2 pull-left">Truck Type</div>
+                                <div class="col-lg-4 col-lg-offset-6 "><p class="pull-right" style="margin-bottom: 0px">{{bid.truckTypeName}}</p></div>
+                            </div>
+
+                            <div class="col-lg-12 quoteRow" style="margin-top:15px;">
+                                <div class="col-lg-2">Type of Cargo</div>
+                                <div class="col-lg-4 col-lg-offset-6 "><p class="pull-right" style="margin-bottom: 0px">{{bid.cargoTypeName}}</p></div>
+                            </div>
+
+                            <div class="col-lg-12 quoteRow" style="margin-top:15px;">
+                                <div class="col-lg-2">Cargo Weight</div>
+                                <div class="col-lg-2 col-lg-offset-8 "><p class="pull-right" style="margin-bottom: 0px">{{bid.cargo.weight}} Ton</p></div>
+                            </div>
+
+                            <div class="col-lg-12 quoteRow" style="margin-top:15px;">
+                                <div class="col-lg-2">Budget</div>
+                                <div class="col-lg-2 col-lg-offset-8 "><p class="pull-right" style="margin-bottom: 0px">Rs {{bid.budget}}</p></div>
+                            </div>
+
+                            <div class="col-lg-12 quoteRow" style="margin-top:15px;margin-bottom: 30px">
+                                <div class="col-lg-2">Notes</div>
+                                <div class="col-lg-8 col-lg-offset-2" style="padding: 0 0 0 0"><p class="pull-right" style="margin-bottom: 0px">{{bid.note}}</p></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div ng-if="!quotes.length" class="row" style="min-height: 115px;padding-top: 35px;padding-bottom: 35px;">
+                        <div class="col-lg-8 col-lg-offset-2 text-center">
+                            <a class="modify text-center" ng-click="modifyForm(bid);">Modify</a>
+                            <a class="cancelA text-center" style="margin-left: 20px" ng-click="cancelBid(bid._id)">Cancel</a>
+                        </div>
+                    </div>
+                    <div ng-if="quotes.length" class="row" style="min-height: 115px;padding-top: 35px;padding-bottom: 35px;">
+                        <div style="margin-left: 40%">
+                            <a class="cancelA text-center" ng-click="cancelBid(bid._id)">Cancel</a>
+                        </div>
+                    </div>
+                    <div ng-if="!quotes.length" class="row text-center">
+                        <img src="img/icon_quote.png">
+                        <h3 style="text-align: center;color:#b1b1b1">No Received Quotes</h3><!-- style="margin-left:40% "-->
+                    </div>
+
+                    <div class="row">
+                        <div class="table-responsive ongoing_view">
+
+                            <table ng-if="quotes.length" id="table-pagination" class="table table-striped">
+
+                                <thead>
+                                <tr>
+                                    <th  class="text-center">Fleet Owner Rating</th>
+                                    <th class="text-center">Truck Type</th>
+                                    <th class="text-center">Offered Cost</th>
+                                    <th class="truck_type text-center">Notes</th>
+                                    <th  class="text-center">Action</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr ng-repeat="quotes in quotes">
+                                    <td>
+                                        <div class="row_define  text-center">
+                                            <div class="star_ratingTA">
+                                                <rating1 ng-model="rate" max="max" aria-disabled="true" disabled aria-labelledby="default-rating"></rating1>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>     <div class="row_define text-center"><div >{{bid.truckTypeName}}</div></div></td>
+                                    <td>
+                                        <div class="row_define text-center">
+                                            <div class="final_cost">Rs {{quotes.offerCost}}</div>
+                                        </div></td>
+                                    <td>     <div class="row_define text-center">
+                                        {{quotes.note}}
+                                    </div>
+
+                                    </td>
+                                    <td>     <div class="row_define text-center">
+                                        <div class="accept"><a ng-click="acceptModal(quotes._id,quotes.bid,quotes.fleetOwner.fullName);">Accept</a></div><br>
+                                        <div  class="ignore"><a ng-click="ignoreQuote(quotes._id,quotes.bid)">Ignore</a></div>
+                                    </div> </td>
+
+                                </tr>
+
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+               <div  style="width: 66%;left:17%"  class="item">
+                    <div class="row" style="border: 2px solid #e3e3e3;margin-top: 30px">
+                        <div class="blue_banner text-center">
+                            <div style="margin-bottom: 0px;">
+                                <div class="col-lg-2" style="padding-top: 12px;"><p style="color: white;font-size: 16px;">{{bid.pickUp.location}}</p><p style="color: white;font-size: 12px;margin-bottom:3px">{{bid.pickUp.date|date:'dd MMM , yyyy'}}</p><p style="font-size: 10px;color: white;">{{bid.pickUp.time}}</p></div>
+                                <div class="col-lg-8" style="padding-bottom: 28px;padding-top: 28px;"><p style="color: white;"> --------------------------------------------<img src="img/bannerLogo.png" style="color: #fff" height="30px" width="80px">-------------------------------------------- </p> </div>
+                                <div class="col-lg-2" style="padding-top: 12px;"><p style="color: white;font-size: 16px">{{bid.dropOff.location}}</p><p style="color: white;font-size: 12px;margin-bottom:3px">{{bid.dropOff.date|date:'dd MMM , yyyy'}}</p><p style="font-size: 10px;color: white;">{{bid.dropOff.time}}</p></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-11" style="margin-left:4.16%">
+                            <div class="col-lg-12 quoteRow" style="margin-top:20px;">
+                                <div class="col-lg-2 pull-left">Truck Type</div>
+                                <div class="col-lg-4 col-lg-offset-6 "><p class="pull-right" style="margin-bottom: 0px">{{bid.truckTypeName}}</p></div>
+                            </div>
+
+                            <div class="col-lg-12 quoteRow" style="margin-top:15px;">
+                                <div class="col-lg-2">Type of Cargo</div>
+                                <div class="col-lg-4 col-lg-offset-6 "><p class="pull-right" style="margin-bottom: 0px">{{bid.cargoTypeName}}</p></div>
+                            </div>
+
+                            <div class="col-lg-12 quoteRow" style="margin-top:15px;">
+                                <div class="col-lg-2">Cargo Weight</div>
+                                <div class="col-lg-2 col-lg-offset-8 "><p class="pull-right" style="margin-bottom: 0px">{{bid.cargo.weight}} Ton</p></div>
+                            </div>
+
+                            <div class="col-lg-12 quoteRow" style="margin-top:15px;">
+                                <div class="col-lg-2">Budget</div>
+                                <div class="col-lg-2 col-lg-offset-8 "><p class="pull-right" style="margin-bottom: 0px">Rs {{bid.budget}}</p></div>
+                            </div>
+
+                            <div class="col-lg-12 quoteRow" style="margin-top:15px;margin-bottom: 30px">
+                                <div class="col-lg-2">Notes</div>
+                                <div class="col-lg-8 col-lg-offset-2 " style="padding: 0 0 0 0"><p class="pull-right" style="margin-bottom: 0px">{{bid.note}}</p></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div ng-if="!quotes.length" class="row" style="min-height: 115px;padding-top: 35px;padding-bottom: 35px;">
+                        <div class="col-lg-8 col-lg-offset-2 text-center">
+                            <a class="modify text-center" ng-click="modifyForm(bid);">Modify</a>
+                            <a class="cancelA text-center" style="margin-left: 20px" ng-click="cancelBid(bid._id)">Cancel</a>
+                        </div>
+                    </div>
+                    <div  ng-if="quotes.length" class="row" style="min-height: 115px;padding-top: 35px;padding-bottom: 35px;">
+                        <div style="margin-left: 40%">
+                            <a class="cancelA text-center" ng-click="cancelBid(bid._id)">Cancel</a>
+                        </div>
+                    </div>
+                    <div ng-if="!quotes.length" class="row text-center">
+                        <img src="img/icon_quote.png" >
+                        <h3 style="text-align: center;color:#b1b1b1">No Received Quotes</h3>
+                    </div>
+
+                    <div class="row">
+                        <div class="table-responsive ongoing_view">
+
+                            <table ng-if="quotes.length" id="table-pagination1" class="table table-striped">
+
+                                <thead>
+                                <tr>
+                                    <th  class="text-center">Fleet Owner Rating</th>
+                                    <th class="text-center">Truck Type</th>
+                                    <th class="text-center">Offered Cost</th>
+                                    <th class="truck_type text-center">Notes</th>
+                                    <th  class="text-center">Action</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr ng-repeat="quotes in quotes">
+                                    <td>
+                                        <div class="row_define  text-center">
+                                            <div class="star_ratingTA">
+                                                <rating1 ng-model="rate" max="max" aria-disabled="true" disabled aria-labelledby="default-rating"></rating1>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>     <div class="row_define text-center"><div >{{bid.truckTypeName}}</div></div></td>
+                                    <td>
+                                        <div class="row_define text-center">
+                                            <div class="final_cost">Rs {{quotes.offerCost}}</div>
+                                        </div></td>
+                                    <td>     <div class="row_define text-center">
+                                        {{quotes.note}}
+                                    </div>
+
+                                    </td>
+                                    <td>     <div class="row_define text-center">
+                                        <div class="accept"><a ng-click="acceptModal(quotes._id,quotes.bid,quotes.fleetOwner.fullName);">Accept</a></div><br>
+                                        <div  class="ignore"><a ng-click="ignoreQuote(quotes._id,quotes.bid)">Ignore</a></div>
+                                    </div> </td>
+
+                                </tr>
+
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!--ng-class="{'active': active }" ng-repeat="bids in bidsList" active="bidsList.active"-->
+
+            </div>
+            <!--<a ng-if="bidIndex!=0" class="left carousel-control" ng-click="leftBid(bidIndex)" href="#carousel-example-captions" data-slide="prev">
+                <span ng-click="leftBid(bidIndex)" style="color: grey;font-size:5em" class="icon-prev"></span>
+            </a>-->
+            <!--<a  ng-if="bidIndex!=bidsList.length-1" class="right carousel-control" ng-click="rightBid(bidIndex)" href="#carousel-example-captions" data-slide="next">
+                <span ng-click="rightBid(bidIndex)" style="color: grey;font-size:5em" class="icon-next"></span>
+            </a>-->
+            <div onclick="hide(this)" class="left bidLeft carousel-control item text-center ng-isolate-scope item text-center" ng-transclude="" ng-if="bidIndex!=0"  href="#carousel-example-captions" data-slide="prev">
+                <span ng-click="leftBid(bidIndex)" style="color: grey;font-size:5em" class="icon-prev ng-scope"></span>
+            </div>
+            <div onclick="hide(this)" class="right bidRight carousel-control item text-center ng-isolate-scope" ng-transclude="" ng-if="bidIndex!=bidsList.length-1"  href="#carousel-example-captions" data-slide="next">
+                <span ng-click="rightBid(bidIndex)" style="color: grey;font-size:5em" class="icon-next ng-scope"></span>
+            </div>
+        </div>
+
+</div>
+<div id="modifyModal" class="modal"  role="dialog">
+    <div class="modal-dialog" style="width:750px">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Enter OTP here</h3>
+                <h3 class="modal-title">Modify</h3>
                 <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()" style="margin-top:-50px;font-size: 2em">&times;</button>
             </div>
             <div class="modal-body">
-                <input id="otpnumber"   placeholder="Enter OTP"   type="text" ng-model="otpNumber">
-                <button class="next_otp" type="submit" ng-click="">Submit</button>
+                <div class="requestTruck" style="margin-top: 0px">
+                    <div ng-show="authMsg" class="alert-success success text-center">{{authMsg}}</div>
+                    <div ng-show="authErrorMsg" class="alert-danger danger text-center">{{authErrorMsg}}</div>
+                    <div class="row_second" ng-click="removeAuth();">
+                        <label>Pick up</label><br>
+                        <!--<input style="width: 44%" type="text" ng-model="bid.pickUpLocation"   onkeypress="return isText(event)" placeholder="Location">-->
+                        <div class="row_input" style="width: 44%;margin-right: 17px">
+                            <div dropdown="dropdown">
+                                <button dropdown-toggle="" style=" width: 100%;text-align: left;border:0px;color:#b1b1b1;background-color: #f1f1f1;border-radius: 0px;height:45px;" class="btn btn-default" aria-haspopup="true" aria-expanded="true">{{modify.pickUpLocation}}<b class="caret" style="float: right;margin-top: 10px"></b>
+                                </button>
+                                <ul role="menu" class="dropdown-menu half_width no-margin" style="width: 100%;background-color: #f1f1f1;">
+                                    <li ng-click="locate('Location')">--</li>
+                                    <li ng-repeat="data in locationArray" ng-click="locate(data)" >{{data}}</li>    <!--ng-click="addID(data._id,data.model)"-->
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row_input n-mrgn" style="width: 53%">
+                            <!--<input style="width: 20%" id="PickUpDate" type="text" ng-model="bid.pickUpDate" placeholder="Date">-->
+                            <input type="text" style="width: 37.5%;margin-right:12px;padding-left: 10px" data-ng-model="modify.pickUpDate" datepicker-popup='dd MMM , yyyy' ng-click="open1($event)" is-open="opened1"
+                                   min-date="mytime1"  datepicker-options="dateOptions" show-button-bar="false" ng-change="close1()" placeholder="Date" readonly/><span class="caret" style="margin-left: -27px;color:#b1b1b1;"></span>
+                            <select ng-model="modify.pickUpTime" style="width:56.5%;margin-left:20px;" ng-change="putime()" >
+                                <option value="0">Time</option>
+                                <option value="1 AM - 4 AM">1 AM - 4 AM</option>
+                                <option value="5 AM - 8 AM">5 AM - 8 AM</option>
+                                <option value='9 AM - 12 AM'>9 AM - 12 AM</option>
+                                <option value='1 PM - 4 PM'>1 PM - 4 PM</option>
+                                <option value="5 PM - 8 PM">5 PM - 8 PM</option>
+                                <option value="9 PM - 12 PM">9 PM - 12 PM</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row_ist" ng-click="removeAuth();">
+                        <label>Drop off</label><br>
+                        <input style="width: 44%" type="text" ng-model="modify.dropOffLocation" onkeypress="return isText(event)" placeholder="Location">
+                        <!--<input style="width: 20%" id="DropOffDate" type="text" ng-model="bid.dropOffDate" placeholder="Date">-->
+                        <input type="text" style="width: 20%;padding-left: 10px" data-ng-model="modify.dropOffDate" datepicker-popup='dd MMM , yyyy' ng-click="open2($event)" is-open="opened2"
+                               min-date="modify.pickUpDate" datepicker-options="dateOptions" show-button-bar="false" ng-change="close2()" placeholder="Date" readonly/><span class="caret" style="margin-left: -27px;color:#b1b1b1;"></span>
+                        <select ng-model="modify.dropOffTime" class="dropTime" style="width: 30%;margin-left:20px;" >
+                            <option value="0">Time</option>
+                            <option value="1 AM - 4 AM">1 AM - 4 AM</option>
+                            <option value="5 AM - 8 AM">5 AM - 8 AM</option>
+                            <option value='9 AM - 12 AM'>9 AM - 12 AM</option>
+                            <option value='1 PM - 4 PM'>1 PM - 4 PM</option>
+                            <option value="5 PM - 8 PM">5 PM - 8 PM</option>
+                            <option value="9 PM - 12 PM">9 PM - 12 PM</option>
+                        </select>
+
+                    </div>
+                    <div class="row_second" ng-click="removeAuth();">
+                        <label>cargo details</label><br>
+                        <div class="row_input">
+                            <input type="number" min="0" ng-model="modify.cargoWeight" style="padding-right: 50px" onkeypress="return isNumberKey(event)" placeholder="Weight (in Ton)" ><span ng-show="modify.cargoWeight" style="margin-left: -40px;color: #b1b1b1">Ton</span>
+                        </div>
+                        <div class="row_input n-mrgn">
+                            <div dropdown="dropdown" >
+                                <button dropdown-toggle="" style=" width: 100%;text-align: left;border:0px;color:#b1b1b1;background-color: #f1f1f1;border-radius: 0px;height:45px;" class="btn btn-default" aria-haspopup="true" aria-expanded="true">{{modify.cargoName}}<b class="caret" style="float: right;margin-top: 10px"></b>
+                                </button>
+                                <ul role="menu" class="dropdown-menu half_width no-margin" style="width: 100%;background-color: #f1f1f1;">
+                                    <li ng-click="typeCargo(0,'Type of Cargo')">--</li>
+                                    <li ng-repeat="data in cargoArray" ng-click="typeCargo(data._id,data.typeCargoName)" >{{data.typeCargoName}}</li>    <!--ng-click="addID(data._id,data.model)"-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    <div class="row_second" ng-click="removeAuth();">
+                        <div class="row_input">
+                            <label>Type of truck</label>
+                            <div dropdown="dropdown" >
+                                <button dropdown-toggle="" style=" width: 100%;text-align: left;border:0px;color:#b1b1b1;background-color: #f1f1f1;border-radius: 0px;height:45px;" class="btn btn-default" aria-haspopup="true" aria-expanded="true">{{modify.truckName}}<b class="caret" style="float: right;margin-top: 10px"></b>
+                                </button>
+                                <ul role="menu" class="dropdown-menu half_width no-margin" style="width: 100%;background-color: #f1f1f1;">
+                                    <li ng-click="truckType(0,'Choose Truck')">--</li>
+                                    <li ng-repeat="data in truckArray" ng-click="truckType(data._id,data.typeTruckName)" >{{data.typeTruckName}}</li>    <!--ng-click="addID(data._id,data.model)"-->
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row_input n-mrgn">
+                            <label>Number of Trucks</label><br>
+                            <input type="text" ng-model="modify.numberTrucks"  onkeypress="return isNumberKey(event)" placeholder="1">
+                        </div>
+                    </div>
+                    &nbsp;&nbsp;
+                    <div class="row_second" ng-click="removeAuth();">
+                        <label>Budget</label>
+                        <input type="number" min="0" ng-model="modify.budget" placeholder="Enter Amount" style="padding-left: 25px"><span ng-show="modify.budget" style="margin-left: -99%;color: #b1b1b1;vertical-align: middle">Rs</span>
+                    </div>
+                    <div class="row_second">
+                        <label>Notes</label>
+                        <textarea ng-model="modify.note" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px" maxlength="400" placeholder="Write here..."></textarea>
+                    </div>
+                    <button id="req_btn" ng-click="modifyBid(modify._id)" type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="acceptModal" class="modal " role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" >
+                <h3 class="fleet_title modal-title">{{fullName}}
+                <div class="star_ratingTA" style="max-height: 20px;text-align: left">
+                    <rating1 ng-model="rate" max="max" aria-disabled="true" aria-labelledby="default-rating"></rating1>
+                </div></h3>
+                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()" style="margin-top:-60px;font-size: 2em">&times;</button>
+            </div>
+            <div class="modal-body" style="padding-top: 20px">
+                <div class="row_ist">
+                    <label>Pick up</label><br>
+                    <input style="width: 39.5%" type="text" ng-model="bid.pickUp.location" placeholder="Location" readonly>
+                    <input type="text" style="width: 20%;margin-left: 20px" ng-model="bid.pudate" placeholder="Date" readonly>
+                    <input type="text" style="width: 30%;margin-left: 20px" ng-model="bid.pickUp.time" placeholder="Time" readonly>
+                </div>
+
+                <div class="row_ist" style="padding-top: 20px">
+                    <label>Drop off</label><br>
+                    <input style="width: 39.5%" type="text" ng-model="bid.dropOff.location" placeholder="Location" readonly>
+                    <!--<input style="width: 20%" id="DropOffDate" type="text" ng-model="bid.dropOffDate" placeholder="Date">-->
+                    <input type="text" style="width: 20%;margin-left: 20px" ng-model="bid.dodate" placeholder="Date" readonly>
+                    <input type="text" style="width: 30%;margin-left: 20px" ng-model="bid.dropOff.time" placeholder="Time" readonly>
+                </div>
+                <div class="row_second" style="padding-top: 20px">
+                    <label>Cargo Details</label>
+                    <div class="row_input"  >
+                        <input type="text" style="width: 40%" min="0" ng-model="bid.cargo.weight" placeholder="Weight(in Ton)" readonly>
+                        <input type="text" style="width: 54.5%;margin-left: 20px" ng-model="bid.cargoTypeName" placeholder="Time" readonly>
+                    </div>
+                </div>
+
+                <div class="row_second" style="padding-top: 20px">
+                    <div class="row_input">
+                        <label>Type of truck</label>
+                        <input type="text"  ng-model="bid.truckTypeName" placeholder="Time" readonly>
+                    </div>
+                    <div class="row_input n-mrgn" style="padding-top: 20px">
+                        <label>Number of Trucks</label><br>
+                        <input type="text" ng-model="bid.truck.truckNumber" placeholder="0" readonly>
+                    </div>
+                </div>
+
+                <div class="row_second" style="padding-top: 20px">
+                    <label>Budget</label>
+                    <input type="text" min="0" ng-model="bid.budget" placeholder="Enter Amount" readonly>
+                </div>
+                <div class="row_second" style="padding-top: 20px">
+                    <label>Notes</label><br>
+                    <textarea class="textArea" ng-model="bid.note" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px" maxlength="400" placeholder="Write here..."  readonly></textarea>
+                </div>
+
+                    <button class="next_otp" type="submit" ng-click="accept()">Submit</button>
             </div>
             <!--<div class="modal-footer">-->
             <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
@@ -199,16 +429,8 @@
 
     </div>
 </div>
-<!-- <td>
-                      <div class="row_define">
-                          <div class="dilivery_shdule">
-                              <p class="text-center" style="margin-bottom: -10px;">29th may-29th may</p>
-                              <p class="text-center"style="margin-bottom: -10px;"><br></i>(4 PM- 8 PM) to </i>(4 PM- 8 PM)</p>
-                          </div>
-                      </div>
-                  </td>
-
-
-                  <td>     <div class="row_define"><div class="truck_type">We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time and focus on your project.</div></div></td>
-
-                  <td>     <div class="row_define"><div class="cargo_detail">10 Ton</div></div></td>-->
+<script>
+function hide(id){
+    $(this).hide();
+}
+</script>

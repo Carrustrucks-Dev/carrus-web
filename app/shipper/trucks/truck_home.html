@@ -6,7 +6,8 @@
             <div class="tab-menu pull-right right"  >
                 <ul style="margin: 30px 0px 30px 0px; ">
                     <li>
-                        <a ng-click="add_truck_modal()" > Add Truck </a>
+
+                        <a ng-class="{'active': getCurrentPath().match('trucker')}" ng-click="add_truck_modal()" > Add Truck</a>
 
                         <!--<a  ng-class="{'active': getCurrentPath().match('pending_quotes')}" ui-sref="shipper.requests.pending_quotes" > Pending Quotes </a>-->
                         <!--<a ng-class="{'active': getCurrentPath().match('pending_assignments')}" ui-sref="shipper.requests.pending_assignments"> Pending Assignments </a>-->
@@ -57,7 +58,7 @@
                             {{driver.driverName}}
                         </option>
                     </select>
-                    <input  class="full_width"  placeholder="Contact Detail"     type="text" ng-model="trucker.address">
+                    <input  class="full_width"  placeholder="Address"     type="text" ng-model="trucker.address">
 
 
                     <!--<div class="half_width" style="position: relative;overflow: hidden;">-->
@@ -67,7 +68,7 @@
                     <div style="position: relative; width: 70%; float: left;">
                         <input class="half_width" style="width: 100%;" placeholder="Registration Certificate"     type="text">
                         <div class="fileUpload files">
-                            <input type="file" class="upload" name="rcDoc" onchange="angular.element(this).scope().uploadFile1(this.files,0)"
+                            <input type="file" class="upload" name="rcDoc" onchange="angular.element(this).scope().rc_doc(this.files)"
                                    accept="image/*"/>
                         </div>
                     </div>
@@ -77,7 +78,7 @@
                         <input  class="half_width " style="width: 100%;" placeholder="Fitness Certificate"    type="text" >
                         <div class="fileUpload files">
                             <input class="upload" type="file" name="fcDoc"
-                                   onchange="angular.element(this).scope().uploadFile1(this.files,1)" accept="image/*"/>
+                                   onchange="angular.element(this).scope().fc_doc(this.files)" accept="image/*"/>
                         </div>
                     </div>
                     <input  class="full_width"  placeholder="Validity"  style="width: 25%; margin-left: 5%;"   type="date" ng-model="trucker.fcValidity">
@@ -85,7 +86,7 @@
                     <div style="position: relative; float: left;width: 70%; ">
                         <input  class="half_width "  placeholder="National Permit" style="width: 100%;"   type="text" >
                         <div class="fileUpload files">
-                            <input type="file" class="upload"   name="npDoc" onchange="angular.element(this).scope().uploadFile1(this.files,2)" accept="image/*">
+                            <input type="file" class="upload"   name="npDoc" onchange="angular.element(this).scope().np_doc(this.files)" accept="image/*">
                         </div>
                     </div>
                     <input  class="full_width"  placeholder="Validity"   style="width: 25%; margin-left: 5%;"  type="date" ng-model="trucker.npValidity">
@@ -93,7 +94,7 @@
                     <div style="position: relative; float: left;width: 70%; ">
                         <input   class="half_width "  style="width: 100%;"  placeholder="Tax Token"    type="text" >
                         <div class="fileUpload files">
-                            <input type="file" class="upload" name="ttDoc" onchange="angular.element(this).scope().uploadFile1(this.files,3)"  accept="image/*">
+                            <input type="file" class="upload" name="ttDoc" onchange="angular.element(this).scope().tt_doc(this.files)"  accept="image/*">
                         </div>
                     </div>
                     <input  class="full_width"  placeholder="Validity"  style="width: 25%; margin-left: 5%;"   type="date" ng-model="trucker.ttValidity">
@@ -111,7 +112,7 @@
                             {{truck.typeTruckName}}
                         </option>
                     </select>
-                    <input  class="full_width"  placeholder="Year of Manufacture"     type="text" ng-model="trucker.manufactureDate">
+                    <input  class="full_width"  placeholder="Year of Manufacture"  maxlength="4" onkeypress='return isNumberKey(event)'    type="text" ng-model="trucker.manufactureDate">
                     <input  class="full_width"  placeholder="Truck Make (OEM)"     type="text" ng-model="trucker.oem">
                     <div>
                         <span> Insurance</span> </div>
@@ -125,7 +126,7 @@
 
 
                     <div class="btns_both">
-                        <button id="next_otp" class="buttons " type="submit" ng-click="addTruck();">Submit</button>
+                        <button id="next_otp" class="login_button " type="submit" ng-click="addTruck();">Submit</button>
                     </div>
                 </div>
             </div>

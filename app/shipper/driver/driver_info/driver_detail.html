@@ -1,0 +1,70 @@
+<div ng-controller="driver_detail" >
+<div style="font-size:30px; color:#323438;margin-top: 30px; float: left; width: 100%;">
+Contact Details
+</div>
+
+<div class="driver_detail_l3">
+    <div class="driver_detail_l1">Address</div>
+    <div class="driver_detail_l2">{{driver.address}}</div>
+
+</div>
+
+<div class="driver_detail_l3">
+    <div class="driver_detail_l1">Mobile Number</div>
+    <div class="driver_detail_l2">{{driver.mobile_number}}</div>
+
+</div>
+<div class="driver_detail_l3">
+    <div class="driver_detail_l1">Driving Licence
+        <div style="float: right" >
+            <a target="_blank" href="{{driver.drivingLicenseDoc}}"  name="pan" > <img src="img/icon_view.png" > </a>
+        </div>
+    </div>
+    <div class="driver_detail_l2">{{driver.drivingLicenseNo}}</div>
+
+</div>
+<div class="driver_detail_l3">
+    <div class="driver_detail_l1">Aadhar Card Number
+        <div style="float: right" >
+            <a target="_blank" href="{{driver.adharDoc}}"  name="pan" > <img src="img/icon_view.png" > </a>
+        </div></div>
+    <div class="driver_detail_l2">{{driver.adharNo}}
+
+    </div>
+
+
+</div>
+<div class="driver_detail_l3">
+    <div class="driver_detail_l1"> Voter ID Card Number
+        <div style="float: right" >
+            <a target="_blank" href="{{driver.VoterIdDoc}}"  name="pan" > <img src="img/icon_view.png" > </a>
+        </div></div>
+    <div class="driver_detail_l2">{{driver.VoterIdNo}}</div>
+
+</div>
+
+<div style="font-size:30px; color:#323438;margin-top: 30px;">
+    Schedule
+</div>
+
+<div class="container"  >
+    <div class="row" style="margin-top: 3%;" ng-show="list_length != 0">
+        <div class="table-responsive ongoing_view" >
+
+            <table id="table-pagination" class="table table-striped" >
+                <thead>
+
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Schedule</th>
+                    <th>Notes</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div></div>

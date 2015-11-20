@@ -1,0 +1,116 @@
+<style>
+    span.time_est:after{
+        left:70px;
+    }
+    span.time_estm{
+        margin-left:30px
+    }
+    .row_define{text-align: center}
+</style>
+
+<div class="shipment_banner">
+    <div class="container" style="width: 75%">
+        <form class="navbar-form banner-search" role="search" style="margin-top: 26px;max-width:300px "><!--margin-bottom: 26px;-->
+            <div class="input-group" >
+                <div class="input-group-btn" style="border-radius: 16px;height:38px;background-color: transparent">
+                    <!--<button style="border-top-left-radius:16px;border-bottom-left-radius:16px;border-right-color:transparent;border-right-width: 0px;background-color: transparent;pointer-events:none" class="btn btn-default" type="submit" ><i style="color: #fff" class="glyphicon glyphicon-search"></i></button>
+                    <input style="width:222px;float: right;border-top-right-radius:16px;border-bottom-right-radius:16px;border-left-color:transparent;border-left-width:0px;background-color: transparent;color: #fff" type="text" class="form-control" placeholder="Enter CRN" name="srch-term" id="srch-term" ng-model="crnNum">-->
+
+                        <span class="fa fa-search" style="margin-left: 20%;margin-top:7px;"></span>
+                        <input id="crn" style="top:-27px;padding-left:25%;float: right;border-radius:16px;background-color: transparent;color: #fff" type="text" class="form-control" placeholder="Enter CRN" name="srch-term" id="srch-term" ng-model="crnNum">
+                </div>
+            </div>
+        </form>
+        <div class="tab-menu pull-right" style="margin-top: 22px;margin-bottom: 22px;">
+            <ul>
+                <li style="height: 36px;min-width: 150px;text-align: center;">
+
+                    <a ng-click="searchCRN(crnNum)">Track</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="map"></div>
+<div class="container" style="width: 85%" ng-if="crn">
+    <div class="ongoing_view">
+<table id="table-pagination" class="table table-striped">
+
+    <thead>
+    <tr>
+        <th class="text-center" width="16%">Fleet Owner's Company</th>
+        <th class="text-center" width="26%">Schedule</th>
+        <th class="text-center" width="13%">Freight</th>
+        <th class="text-center" width="10%">Truck Type</th>
+        <th class="text-center" width="15%">Cargo Details</th>
+        <th class="text-center" width="8%">Status</th>
+        <th class="text-center" width="12%">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <div class="row_define">
+                <div class="company_vendor">{{crn.fleetOwner.fullName}}</div>
+                <div class="driver_number">{{crn.fleetOwner.phoneNumber}}</div>
+                <div class="star_ratingTA">
+                    <rating1 ng-model="rate" max="max" aria-disabled="true" aria-labelledby="default-rating"></rating1>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="row_define">
+                <div class="dilivery_shdule"><span class="time_est">{{crn.pickUp.city}}<br>
+                <i class="fa fa-calendar-o"></i><br>{{crn.pickUp.date|date2:'ddoo MMM'}}<br>({{crn.pickUp.time}})</span>
+                    <span class="time_estm">{{crn.dropOff.city}}<br><i class="fa fa-calendar-o"></i><br>{{crn.dropOff.date|date2:'ddoo MMM'}}<br>({{crn.dropOff.time}})</span>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="row_define">
+                <h6>Budget Rs {{crn.budget}}</h6><br><h6>Final Cost Rs {{crn.acceptPrice}}</h6>
+            </div>
+        </td>
+        <td>
+            <div class="row_define">
+                {{crn.truck.truckType.typeTruckName}}
+            </div>
+        </td>
+        <td>
+            <div class="row_define">
+                <div class="cargo_detail">{{crn.cargo.cargoType.typeCargoName}}&nbsp;{{crn.cargo.weight}} Ton</div>
+            </div>
+        </td>
+        <td>
+            <div class="row_define">
+                <div class="cargo_detail">{{crn.bookingStatus}}</div>
+            </div>
+        </td>
+        <td>
+            <div class="row_define">
+                <div class="view_details"><a  ng-click="sendData(crn)" ui-sref="customer.confirmShipment">View Details</a></div>
+            </div>
+        </td>
+
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+
+<style>
+    .tab-menu ul li a {color:#fff;
+        text-decoration: none}
+    #map{
+        height: 550px;
+        width:100%;
+    }
+    @-moz-document url-prefix() {
+        .input-group-btn input{
+            top:-25px !important;
+        }
+        .input-group-btn span{
+            margin-left:55px !important;
+        }
+    }
+</style>

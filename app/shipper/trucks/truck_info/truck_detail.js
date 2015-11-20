@@ -48,7 +48,14 @@ angular.module('carrus').controller('truck_detail', ['$scope', '$cookies', '$coo
                 insurance_policy:$rootScope.json.insurance_policy,
                 insurance_validity:$rootScope.json.insurance_validity,
                 manufacture_date:$rootScope.json.manufacture_date,
-                truck_id:$rootScope.json.truck_id
+                truck_id:$rootScope.json.truck_id,
+                truckerIds:$rootScope.json.trucker[0]._id,
+                truckerName:$rootScope.json.trucker[0].driverName,
+                truckerId:$rootScope.json.trucker[0].driverId,
+                truckerAddress:$rootScope.json.trucker[0].address,
+                truckerMobile:$rootScope.json.trucker[0].phoneNumber,
+                typeTruck:$rootScope.json.typeTruck[0].typeTruckName,
+                typeTruckIds:$rootScope.json.typeTruck[0]._id
             };
             //$scope.fleetowner.fullName = ;
     console.log($scope.trucker,'this is the new arrray');
@@ -77,10 +84,10 @@ angular.module('carrus').controller('truck_detail', ['$scope', '$cookies', '$coo
     $scope.EditTruck = function () {
 
 
-        //var truck_type = [$scope.trucker.typeTruckIds];
-        //truck_type = JSON.stringify(truck_type);
-        //var trucker_assigned = [$scope.trucker.truckerIds];
-        //trucker_assigned = JSON.stringify(trucker_assigned);
+        var truck_type = [$scope.trucker.typeTruckIds];
+        truck_type = JSON.stringify(truck_type);
+        var trucker_assigned = [$scope.trucker.truckerIds];
+        trucker_assigned = JSON.stringify(trucker_assigned);
         //console.log(truck_type);
         //console.log(trucker_assigned);
 
@@ -89,12 +96,12 @@ angular.module('carrus').controller('truck_detail', ['$scope', '$cookies', '$coo
         access_token=access_token.accesstoken;
         area=['up','punjab','rohtak'];
         area=JSON.stringify(area);
-        $scope.formData.append("truckNumber", $scope.trucker.truck_number);
+        //$scope.formData.append("truckNumber", $scope.trucker.truck_number);
         $scope.formData.append("truckName", $scope.trucker.truck_name);
-        //$scope.formData.append("truckerIds",trucker_assigned );
+        $scope.formData.append("truckerIds",trucker_assigned );
         $scope.formData.append("address", $scope.trucker.address);
         $scope.formData.append("model", $scope.trucker.model);
-        //$scope.formData.append("typeTruckIds",truck_type );
+        $scope.formData.append("typeTruckIds",truck_type );
         //$scope.formData.append("manufactureDate", $scope.trucker.manufactureDate);
         $scope.formData.append("oem",$scope.trucker.oem);
         $scope.formData.append("company", $scope.trucker.insurance_company);
@@ -104,17 +111,15 @@ angular.module('carrus').controller('truck_detail', ['$scope', '$cookies', '$coo
         $scope.formData.append("fcValidity", $scope.trucker.fc_validity);
         $scope.formData.append("npValidity", $scope.trucker.np_validity);
         $scope.formData.append("ttValidity", $scope.trucker.tt_validity);
-
+        //$scope.formData.append("typeTruckIds", $scope.trucker.tt_validity);
         console.log($scope.formData);
-
         $.ajax({
 
 
             type: "PUT",
-            url: CONSTANT.apiURL + 'api/v1/fleetOwner/truck/truckId',
+            url: CONSTANT.apiURL + 'api/v1/fleetOwner/truck/'+$scope.trucker.truck_id,
             headers:{'authorization':access_token
              },
-            path:{'truckId':$scope.trucker.truck_id},
             data: $scope.formData,
             async: false,
             processData: false,

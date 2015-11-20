@@ -1,5 +1,5 @@
 <div class="container" >
-    <div class="row" style="margin-top: 8%;">
+    <div class="row" style="margin-top: 8%;" ng-show="list_length != 0">
         <div class="table-responsive ongoing_view" >
 
             <table id="table-pagination" class="table table-striped" >
@@ -22,9 +22,9 @@
                         <div class="row_define">
                             <!--<div class="company_vendor">Tata Moters </div>-->
                             <!--<div class="driver_number">9780289100</div>-->
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
+                            <rating ng-model="data.shipper_rating" max="5" readonly="true"
+                                    state-on="'fa fa-star text-yellow'"
+                                    state-off="'fa fa-star-o'"></rating>
                         </div>
                     </td>
 
@@ -62,16 +62,18 @@
 
                     <td>
                         <div class="row_define"><div class="cargo_detail"> Budget Rs. {{data.budget}}</div>
-                        <div class="cargo_detail"> Final Cost Rs {{data.offered_cost}}</div> </div>
+                        <div class="cargo_detail"> Offered Cost Rs {{data.offered_cost}}</div> </div>
 
 
                     </td>
-                    <td>     <div class="row_define"><div class="cargo_detail"> {{data.truck_type}}</div></div></td>
+                    <td>
+                        <div  ng-show="data.tracking == 'YES'" style="text-align: center;  border-right: 2px solid #e3e3e3;"> <img src="img/button_location.png" ></div>
+                        <div class="row_define"><div class="cargo_detail" style="text-align: center"> {{data.truck_type}}</div></div></td>
                     <td>     <div class="row_define"><div class="truck_type"> {{data.pickup_location}} to <br> {{data.dropoff_location}} </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details">{{data.cargo_details}} <br> {{data.cargo_weight}} </div></div> </td>
+                    <td>     <div class="row_define"><div class="view_details">{{data.cargo_details}} <br> {{data.cargo_weight}} Ton </div></div> </td>
                     <td>     <div class="row_define">
                         <div class="view_details">
-                            <a href="#">Update</a>
+                            <a ng-click="update_quote(data);">Update</a>
                         </div>
 
                     </div>
@@ -82,5 +84,84 @@
             </table>
         </div>
     </div>
+    <div style="text-align: center; margin-top: 10%; " ng-show="list_length == 0"><img src="img/icon-no_pending_quote.png"><br>
+        <div class="no_request_text">No Pending Quotes</div>
+    </div>
+
+
+    <div id="quote" class="modal" role="dialog">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header"  style="background-color:#efefef;" >
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" > </h4>
+                    <div class="row_define">
+                        <div class="star_rating" style="">
+                            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                        </div>
+                    </div>
+
+                    <div class="row" >
+                        <div class="col-md-6" style="border-right: 1px solid #000; margin-left: 20px;margin-top: 10px;width: 45%;float: left;" > Pick Up <br> {{json.pickup_date}}, {{json.pickup_time}}</div>
+                        <div class="col-md-6" style="padding-left: 30px; margin:10px 0 ;" > Drop Off <br> {{json.dropoff_date}}, {{json.dropoff_time}}</div>
+
+                    </div>
+                    <div style="background-color: #339cf2; min-height: 76px; margin-top: 20px; " >
+                        <p style="font-size: 20px; color: #ffffff; margin-left:45px; padding:20px 0 0 25px; ">{{json.pickup_location}}- - - - <img src="img/icon_truck.png" > - - - - {{json.dropoff_location}} </p>
+                    </div>
+                </div>
+                <div class="modal-body ">
+<div class="modal1">
+    <div class="modal2">
+    <div style="float: left;  "><span>Weight</span>  </div>
+    <div style="float: right;"><span>{{json.cargo_weight}} Ton</span></div>
+
+        </div>
+    <div class="modal2">
+        <div style="float: left;  "><span>Type of Cargo</span>  </div>
+        <div style="float: right;"><span>{{json.cargo_details}}</span></div>
+
+    </div>
+    <div class="modal2">
+        <div style="float: left;  "><span>Type of Truck</span>  </div>
+        <div style="float: right;"><span>{{json.truck_type}}</span></div>
+
+    </div>
+    <div class="modal2">
+        <div style="float: left;  "><span>Budget</span>  </div>
+        <div style="float: right;"><span>{{json.budget}}</span></div>
+
+    </div>
+    <div class="modal2">
+    <div style="float: left;  "><span>Notes</span>  </div>
+    <div style="float: right;"><span>{{json.notes}}</span></div>
+
+    </div>
+
+</div>
+
+
+                    <div style="margin: 20px 0 20px 0 "> <p style="float: left ; padding: 20px 0 10px 0;"> Tracking Available</p>
+                        <div style="float: right;">
+                            <div style="float: left" ><label class="radio-inline" style="padding-top: 20px;"><input type="radio" class="outler" name="optradio" checked><span>Yes</span></label></div>
+                            <div style="float: left" ><label class="radio-inline" style="padding-top: 20px;"><input type="radio" name="optradio"><span>No</span></label></div>
+
+                        </div>
+                    </div>
+
+                    <input  class="full_width"  placeholder="Offered Cost"     type="number" ng-model="json.offered_cost">
+                    <input  class="full_width"  placeholder="Notes"   type="text" ng-model="json.quoteNote">
+
+
+                    <button class="login_button" type="submit" ng-click="submit_quote();" data-dismiss="modal" style="width: 80%; margin-left: 10%;">Submit</button>
+                    </div>
+                </div>
+                <!-- =========================Use odd even of angular to give color to background ===================-->
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 

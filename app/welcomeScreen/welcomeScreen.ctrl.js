@@ -1,8 +1,18 @@
+
+
 /**
  * Created by Manjeet  on 22/09/15.
  */
+angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$rootScope','$state','$http','$cookieStore','CONSTANT','$filter', function($scope,$rootScope,$state,$http,$cookieStore,CONSTANT,$filter){
 
-angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$http','$cookieStore','CONSTANT', function($scope,$state,$http,$cookieStore,CONSTANT){
+    /*------------------------------------------------------------------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------------------------------------------------------------*/
+    /*----------------------------------------------Shipper Related Functions- Tushar-----------------------------------------------*/
+    /*------------------------------------------------------------------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------------------------------------------------------------*/
+
     var try1 = [];
     var try2 = [];
     var options = {
@@ -14,28 +24,46 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
     $scope.userPassword='';
     $scope.forgotEmail='';
     $scope.authMsg='';
+    $scope.authErrorMsg='';
     $scope.otpNumber='';
-    $scope.signUp={
-        state:"0"
-    };
+
+    function initSignUp() {
+        $scope.signUp = {
+            state: "0",
+            userType: "SHIPPER",
+            zipcode: "",
+            userName: "",
+            fname: "",
+            lname: "",
+            companyname: "",
+            partnershipName: "",
+            confmpass: "",
+            pass: "",
+            address: "",
+            cityTown: "",
+            mobilenumber: "",
+            excise:0
+
+        };
+    }
+    initSignUp();
+    $scope.loading=false;
+    $scope.num = Math.floor(Math.random() * 900000) + 100000;
     $scope.signUp.partnershipName="Type of Company";
-
-    /*console.log(CONSTANT);
-    console.log(CONSTANT.apiURL);*/
-
-
-        //console.log("welcomeScreen");
-
-    /*------------------------------------------------------------------------------------------------------------------------------*/
-    /*------------------------------------------------------------------------------------------------------------------------------*/
-    /*------------------------------------------------------------------------------------------------------------------------------*/
-    /*----------------------------------------------Shipper Related Functions- Tushar-----------------------------------------------*/
-    /*------------------------------------------------------------------------------------------------------------------------------*/
-    /*------------------------------------------------------------------------------------------------------------------------------*/
-    /*------------------------------------------------------------------------------------------------------------------------------*/
+    $scope.show=function(id){
+        if(id=="Yes"){
+            $("#No").css("display","none");
+            $("#Yes").css("display","");
+        }
+        else if(id=="No"){
+            $("#Yes").css("display","none");
+            $("#No").css("display","");
+        }
+    };
         $scope.showLoginShipper = function()
         {   $scope.authMsg='';
             $('#loginModal').modal('show');
+            $("#Email").focus();
             $('body').on('wheel.modal mousewheel.modal', function () {
                 return false;
             });
@@ -49,19 +77,106 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
             });
         };
         $scope.SignUpShipper = function(){
+            $scope.num+=100;
+            $scope.signUp.panCardNumber= $scope.num;
+            $scope.signUp.tinNumber= $scope.num+6;
+            $scope.signUp.serviceTaxNumber= $scope.num+12;
+            $scope.signUp.exciseRegistrationNumber= $scope.num+18;
 
-                $('#SignUpShipper').modal(options);
-            $('body').on('wheel.modal mousewheel.modal', function () {
-                return false;
-            });
+            /*console.log($scope.signUp.panCardNumber);
+            console.log($scope.signUp.tinNumber);
+            console.log($scope.signUp.serviceTaxNumber);
+            console.log($scope.signUp.exciseRegistrationNumber);*/
+            $scope.partnershipList();
+            $('#SignUpShipper').modal(options);
+
         };
         $scope.checkOTPShipper = function(){
+            $scope.authErrorMsg="";
+            if($scope.signUp.userName!=''&&$scope.signUp.userType!=''&&$scope.signUp.fname!=''&&$scope.signUp.lname!=''&&$scope.signUp.companyname!=''&&$scope.signUp.partnershipName!=''&&$scope.signUp.confmpass!=''&&$scope.signUp.pass!=''
+                &&$scope.signUp.address!=''&&$scope.signUp.cityTown!=''&&$scope.signUp.state!='0'&&$scope.signUp.mobilenumber!=""&&typeof $scope.signUp.mobilenumber!="undefined"&&$scope.signUp.zipcode!=''&&typeof $scope.signUp.zipcode!="undefined"&&$scope.signUp.confmpass==$scope.signUp.pass) {
+                console.log($scope.signUp);
+
+                $scope.getOTP();
                 $('#otp_modalShipper').modal(options);
-            $('body').on('wheel.modal mousewheel.modal', function () {
-                return false;
-            });
+                /*$('body').on('wheel.modal mousewheel.modal', function () {
+                    return false;
+                });*/
+            }
+            else if ($scope.signUp.userName!=''&&$scope.signUp.userType!=''&&$scope.signUp.fname!=''&&$scope.signUp.lname!=''&&$scope.signUp.companyname!=''&&$scope.signUp.partnershipName!=''&&$scope.signUp.confmpass!=''&&$scope.signUp.pass!=''&&
+                $scope.signUp.address!=''&&$scope.signUp.cityTown!=''&&$scope.signUp.state!='0'&&$scope.signUp.mobilenumber!=""&&$scope.signUp.zipcode!=''&&$scope.signUp.confmpass!=$scope.signUp.pass)$scope.authErrorMsg="Password Mismatch";
+            else if(($scope.signUp.zipcode==""&&$scope.signUp.mobilenumber=="")&&($scope.signUp.userName!=''&&$scope.signUp.userType!=''&&$scope.signUp.fname!=''&&$scope.signUp.lname!=''&&$scope.signUp.companyname!=''&&$scope.signUp.partnershipName!=''&&$scope.signUp.confmpass!=''&&$scope.signUp.pass!=''&&
+                $scope.signUp.address!=''&&$scope.signUp.cityTown!=''&&$scope.signUp.state!='0'&&$scope.signUp.confmpass==$scope.signUp.pass)){
+                console.log($scope.signUp.mobilenumber);
+                console.log($scope.signUp.zipcode);
+                $("#Error").hide();
+                $scope.authErrorMsg="Enter your Zip Code and your Mobile number";
+                $scope.signUp.mobilenumber="";
+                $scope.signUp.zipcode="";
+
+            }
+            else if((typeof $scope.signUp.zipcode=="undefined"&&typeof $scope.signUp.mobilenumber=="undefined")&&($scope.signUp.userName!=''&&$scope.signUp.userType!=''&&$scope.signUp.fname!=''&&$scope.signUp.lname!=''&&$scope.signUp.companyname!=''&&$scope.signUp.partnershipName!=''&&$scope.signUp.confmpass!=''&&$scope.signUp.pass!=''&&
+                $scope.signUp.address!=''&&$scope.signUp.cityTown!=''&&$scope.signUp.state!='0'&&$scope.signUp.confmpass==$scope.signUp.pass)){
+                console.log($scope.signUp.mobilenumber);
+                console.log($scope.signUp.zipcode);
+                $("#Error").hide();
+                $scope.authErrorMsg="Enter your Zip Code and your Mobile number";
+                $scope.signUp.mobilenumber="";
+                $scope.signUp.zipcode="";
+
+            }
+
+            else if($scope.signUp.zipcode==""&&($scope.signUp.mobilenumber!=""&&$scope.signUp.userName!=''&&$scope.signUp.userType!=''&&$scope.signUp.fname!=''&&$scope.signUp.lname!=''&&$scope.signUp.companyname!=''&&$scope.signUp.partnershipName!=''&&$scope.signUp.confmpass!=''&&$scope.signUp.pass!=''&&
+                $scope.signUp.address!=''&&$scope.signUp.cityTown!=''&&$scope.signUp.state!='0'&&$scope.signUp.confmpass==$scope.signUp.pass)){
+
+                console.log($scope.signUp.mobilenumber);
+                console.log($scope.signUp.zipcode);
+                $("#Error").hide();
+                $scope.authErrorMsg="Enter your Zip Code";
+                $scope.signUp.zipcode="";
+
+            }
+            else if(typeof $scope.signUp.zipcode=="undefined"&&($scope.signUp.mobilenumber!=""&&$scope.signUp.userName!=''&&$scope.signUp.userType!=''&&$scope.signUp.fname!=''&&$scope.signUp.lname!=''&&$scope.signUp.companyname!=''&&$scope.signUp.partnershipName!=''&&$scope.signUp.confmpass!=''&&$scope.signUp.pass!=''&&
+                $scope.signUp.address!=''&&$scope.signUp.cityTown!=''&&$scope.signUp.state!='0'&&$scope.signUp.confmpass==$scope.signUp.pass)){
+
+                console.log($scope.signUp.mobilenumber);
+                console.log($scope.signUp.zipcode);
+                $("#Error").hide();
+                $scope.authErrorMsg="Enter your Zip Code";
+                $scope.signUp.zipcode="";
+
+            }
+
+            else if($scope.signUp.mobilenumber==""&&($scope.signUp.zipcode!=""&&$scope.signUp.userName!=''&&$scope.signUp.userType!=''&&$scope.signUp.fname!=''&&$scope.signUp.lname!=''&&$scope.signUp.companyname!=''&&$scope.signUp.partnershipName!=''&&$scope.signUp.confmpass!=''&&$scope.signUp.pass!=''&&
+                $scope.signUp.address!=''&&$scope.signUp.cityTown!=''&&$scope.signUp.state!='0'&&$scope.signUp.confmpass==$scope.signUp.pass)){
+                console.log($scope.signUp.mobilenumber);
+                console.log($scope.signUp.zipcode);
+                $scope.authErrorMsg="Enter your Mobile Number";
+                $scope.signUp.mobilenumber="";
+                $("#Error").hide();
+            }
+            else if(typeof $scope.signUp.mobilenumber=="undefined"&&($scope.signUp.zipcode!=""&&$scope.signUp.userName!=''&&$scope.signUp.userType!=''&&$scope.signUp.fname!=''&&$scope.signUp.lname!=''&&$scope.signUp.companyname!=''&&$scope.signUp.partnershipName!=''&&$scope.signUp.confmpass!=''&&$scope.signUp.pass!=''&&
+                $scope.signUp.address!=''&&$scope.signUp.cityTown!=''&&$scope.signUp.state!='0'&&$scope.signUp.confmpass==$scope.signUp.pass)){
+                console.log($scope.signUp.mobilenumber);
+                console.log($scope.signUp.zipcode);
+                $scope.authErrorMsg="Enter your Mobile Number";
+                $scope.signUp.mobilenumber="";
+                $("#Error").hide();
+            }
+
+            else
+            { console.log($scope.signUp.mobilenumber);
+                console.log($scope.signUp.zipcode);
+                $scope.authErrorMsg="Enter all the fields properly";
+                if(typeof $scope.signUp.mobilenumber!="undefined") $scope.signUp.mobilenumber="";
+                if(typeof $scope.signUp.zipcode!="undefined") $scope.signUp.zipcode="";
+                  }
+            $("#Error").hide();
          };
+
+
         $scope.closeModal=function(){
+
                     $('body').off('wheel.modal mousewheel.modal');
         };
 
@@ -90,26 +205,32 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
                     $scope.userPassword='';
                     if (status == 400)
                     {
-                        $scope.authMsg="Please enter a valid email id and password";
+                        $scope.authMsg="Please enter a valid email ID and password";
                         console.log($scope.authMsg);
                         /*alert("Bad Request");
                         $state.reload();*/}
                     if (status == 401)
-                    {   $scope.authMsg="Email is not registered";
+                    {   if(data.message="Invalid password.")
+                        $scope.authMsg="Invalid Password.";
+                        else if (data.message="Invalid password.")
+                        $scope.authMsg="Email is not registered";
                         console.log($scope.authMsg);
                        // alert("Email is not registered");
                         //$state.reload();
                         }
                     if (status == 404)
-                    {   /*alert("Admin not Found");
+                    { $scope.authMsg="Error occurred , try again";
+                     /*alert("Admin not Found");
                         $state.reload();*/}
                     if (status == 500)
-                    {   /*alert("Error occurred , try again");
+                    {  $scope.authMsg="Error occurred , try again";
+                     /*alert("Error occurred , try again");
                         $state.reload();
                         $scope.$apply();*/}
                     if(status==417){
-                       /* alert("Wrong password, try again");
-                        $state.reload();*/
+                        $scope.authMsg="Wrong Password , try again";
+                        /* alert("Wrong password, try again");
+                         $state.reload();*/
                     }
                    /* $('#loginModal').modal('hide');
                     $scope.closeModal();*/
@@ -130,6 +251,9 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
             })
                 .success(function (data, status) {
                     $scope.forgotEmail='';
+                    $scope.authMsg="";
+                    alert("New Password has been successfully sent to your registered Email ID");
+                    $("#forgot_passwordShipper").modal("hide");
                 })
                 .error(function (data, status) {
                     $scope.loading=false;
@@ -152,10 +276,11 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
         };
 
     $scope.getOTP=function(){
+
         $http.post('http://52.25.204.93:8080/api/v1/phoneVerification/generate', {
             "phoneNumber": $scope.signUp.mobilenumber,
             "email":$scope.signUp.userName,
-            "userType": "SHIPPER",
+            "userType": $scope.signUp.userType,
             "duringRegister": true
         }).success(function (data, status) {
 
@@ -165,9 +290,10 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
             if (status == 400)
             { if(data.message=="phoneNumber length must be 10 characters long")
                 alert("Phone Number length must be 10.");
-              else if (data.message=="Wrong parameter.")alert("Wrong parameter.");
+                else if (data.message=="Wrong parameter.")alert("Wrong parameter.");
                 else if(data.message=="email must be a valid email")alert("Email must be valid");
                 else if(data.message=="Invalid email.")alert("Invalid email.");
+                else if(data.message=="Phone number already exists.")alert("Phone number already exists.");
 
             }
             if (status == 404)
@@ -189,6 +315,7 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
             "userType": "SHIPPER",
             "duringRegister": true
         }).success(function (data, status) {
+                alert("Phone number verified successfully.");
                 $scope.signUP();
         }).error(function (data, status) {
             $scope.loading=false;
@@ -199,6 +326,7 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
             else if (data.message=="Wrong parameter.")alert("Wrong parameter.");
             else if(data.message=="email must be a valid email")alert("Email must be valid");
             else if(data.message=="Invalid email.")alert("Invalid email.");
+            else if(data.message=="Phone number verification Failed.")alert("OTP Verification Failed.");
 
             }
             if (status == 404)
@@ -271,7 +399,8 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
         $("#excisereg").blur();
         console.log($scope.signUp.excisereg);
     };
-    $http.get("http://52.25.204.93:8080/api/v1/partnership").success(function(data,status){
+    $scope.partnershipList=function(){
+        $http.get("http://52.25.204.93:8080/api/v1/partnership").success(function(data,status){
         var partnershipArray = [];   //initially empty
         // data = JSON.parse(data);
         var dat = data.data;
@@ -284,14 +413,23 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
             h.partnershipName = column.partnershipName;
             partnershipArray.push(h);
             $scope.partnershipArray = partnershipArray;
-           /* console.log($scope.partnershipArray)*/
+            /* console.log($scope.partnershipArray)*/
         });
-});
+    });
+    };
     $scope.partner=function(id,name){
       $scope.signUp.partnershipID=id;
       $scope.signUp.partnershipName=name;
         console.log($scope.signUp.partnershipID);
-  };
+        if(name=="LIMITED"){
+            $("#Excise").css("display","none");
+            $("#CIN").css("display","");
+        }
+        else{
+            $("#CIN").css("display","none");
+            $("#Excise").css("display","");
+        }
+    };
     $scope.signUP=function(){
         /*: ,
          "email": $scope.signUp.userName,
@@ -319,14 +457,18 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
             "exciseRegistrationDoc": $scope.signUp.excisereg,
             "deviceType": "WEB",
             "deviceName": "Mac",
-            "deviceToken": "12345"*/
+            "deviceToken": "12345"
+         "panCardNumber": "",
+         "tinNumber": "",
+         "serviceTaxNumber": "",
+         "exciseRegistrationNumber": "",*/
 
 
 
-
+        $('#otp_modalShipper').modal('hide');
         var formData = new FormData();
 
-        formData.append("userType", "SHIPPER");
+        formData.append("userType", $scope.signUp.userType);
         formData.append("email", $scope.signUp.userName);
         formData.append("firstName", $scope.signUp.fname);
         formData.append("lastName", $scope.signUp.lname);
@@ -345,6 +487,14 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
         formData.append("tin", $scope.signUp.tin);
         formData.append("serviceTax", $scope.signUp.taxreg);
         formData.append("exciseRegistrationDoc", $scope.signUp.excisereg);
+        formData.append("panCardNumber", $scope.signUp.panCardNumber.toString());
+        formData.append("tinNumber", $scope.signUp.tinNumber.toString());
+        formData.append("serviceTaxNumber", $scope.signUp.serviceTaxNumber.toString());
+        formData.append("exciseRegistrationNumber", $scope.signUp.exciseRegistrationNumber.toString());
+        /*formData.append("panCardNumber", "AB875238");
+        formData.append("tinNumber", "986234");
+        formData.append("serviceTaxNumber", "9836449568");
+        formData.append("exciseRegistrationNumber", "9824698r62");*/
         formData.append("deviceType","WEB");
         formData.append("deviceName", "Mac");
         formData.append("deviceToken", "12345");
@@ -354,7 +504,7 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
             /!*formData.append(, $scope.signUp.pan);*!/
         }*/
         var partnershipArray;
-        for(i=0;i<$scope.partnershipArray.length;i++){
+        for(var i=0;i<$scope.partnershipArray.length;i++){
             partnershipArray =$scope.partnershipArray[i]._id;
          formData.append("partnership", partnershipArray);
          /*formData.append(, $scope.signUp.pan);*/
@@ -363,9 +513,17 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
 
 
 
+        $scope.loading=true;
+        $http.post('http://52.25.204.93:8080/api/v1/shipper', formData,{headers: {'Content-Type': undefined}})
+            .success(function (data, status) {
+            initSignUp();
+            $scope.loading=false;
+            $scope.signUp.state="0";
+            $scope.signUp.userType="SHIPPER";
+            alert("Shipper Registered Successfully.");
 
-        $http.post('http://52.25.204.93:8080/api/v1/shipper', formData,{headers: {'Content-Type': undefined}}).success(function (data, status) {
-
+            $('#SignUpShipper').modal('hide');
+            $state.reload();
         }).error(function (data, status) {
             $scope.loading=false;
             $scope.forgotEmail='';
@@ -389,12 +547,47 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
 
         });
 
-    }
+    };
+    $scope.ValidateEmail =function(object){
 
+        if (/^([_a-zA-Z0-9-+]+)(\.[_a-zA-Z0-9-+]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,3})$/.test($scope.signUp.userName))
+        {
+            console.log("Perfect");
+            $("#Error").hide();
+            $("#Error").text("");
+
+            return (true)
+        }
+        console.log("You have entered an invalid email address!");
+        $("#Error").text("Enter a valid Email");
+        $("#Error").show();
+        $scope.signUp.userName="";
+
+        return (false)
+    };
+    $scope.mobileCheck=function (object) {
+        if (parseInt($scope.signUp.mobilenumber)<6999999999) {
+            $scope.signUp.mobilenumber="";
+            $("#Error").text("Enter a valid Mobile Number");
+            $("#Error").show();
+        }else {$("#Error").hide();
+            $("#Error").text("");
+        }
+    };
+    $scope.zipCheck=function (object) {
+        if (parseInt($scope.signUp.zipcode)<109999) {
+            $scope.signUp.zipcode="";
+            $("#Error").text("Enter a valid Zip Code");
+            $("#Error").show();
+        }else {$("#Error").hide();
+            $("#Error").text("");
+        }
+
+    };
     /*------------------------------------------------------------------------------------------------------------------------------*/
     /*------------------------------------------------------------------------------------------------------------------------------*/
     /*------------------------------------------------------------------------------------------------------------------------------*/
-    /*----------------------------------------------Fleet Owner Functions- Anuraj-----------------------------------------------------------*/
+    /*----------------------------------------------Fleet Owner Functions- Anuraj---------------------------------------------------*/
     /*------------------------------------------------------------------------------------------------------------------------------*/
     /*------------------------------------------------------------------------------------------------------------------------------*/
     /*------------------------------------------------------------------------------------------------------------------------------*/
@@ -449,7 +642,7 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
         };
 
 
-        $scope.SignUpFleetOwner = function(){
+    $scope.SignUpFleetOwner = function(){
         var options = {
             show     : 'true',
             backdrop : 'static'
@@ -546,15 +739,54 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
                         alert('Your account has been blocked, please contact the administrator')
                     }
                     else{
+                        $('#fleet_owner_login_modal').modal('hide');
                         $state.go('shipper.requests.pending_requests');
 
+
                     }
+                    console.log('I reached here')
+
                 }
             }).error(function(response){
                 console.log(response);
-                console.log("response");
+                response.responseText=JSON.parse(response.responseText);
+                if(response.responseText.statusCode== 401 && response.responseText.message == 'Invalid password.'  )
+                {
+                    console.log(response.responseText);
+
+                    alert('Your login credentials are incorrect , please try again !! ')
+                    console.log("response");
+                }
+                else if(response.responseText.statusCode== 401 && response.responseText.message == 'Email is not Registered.'  )
+                {
+                    console.log(response.responseText);
+
+                    alert('Your Email ID is not registered with us !! ')
+                    console.log("response");
+                }
             })
     };
+    $rootScope.cargo_array=[];
+    $scope.playList={};
+    $scope.getcargotype= function(){
+        $.get(CONSTANT.apiURL + 'api/v1/typeCargo',
+            {
+            }).then(
+            function (data) {
+                console.log(data);
+                $scope.typecargo = data.data;
+                console.log($scope.typecargo.length);
+                for (var i = 0; i < $scope.typecargo.length; i++) {
+                    $rootScope.cargo_array[i] = $scope.typecargo[i];
+                }
+                console.log($rootScope.cargo_array);
+            })
+    }
+    $scope.selected_cargo = function () {
+        console.log($rootScope.cargo_array);
+        $scope.playList = $filter('filter')($rootScope.cargo_array._id, {checked: true});
+        console.log($scope.playList);
+    }
 
 
     //==================== function for forgot password of fleet owner ====================
@@ -581,12 +813,12 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
                     if(typeof(response.responseText)=="string")
                         var res = JSON.parse(response.responseText)
                     alert("Your Email is not registered with us, please sign-up");
-                    var options = {
-                        show     : 'true',
-                        backdrop : 'static'
-                    }
-                    $('#sign_up_step1').modal(options);
-                    console.log("error");
+                    //var options = {
+                    //    show     : 'true',
+                    //    backdrop : 'static'
+                    //}
+                    //$('#sign_up_step1').modal(options);
+                    //console.log("error");
                 }
 
 
@@ -596,8 +828,11 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
 
 
     //=========================== function to generate the OTP ==============================
+    $scope.fleetowner={};
+    $scope.fleetowner.userType= 'FLEET_OWNER';
     $scope.generateOTP = function () {
         console.log($scope.fleetowner);
+        console.log($scope.indian_states);
         if ( $scope.fleetowner.name == "")
         {
             alert('Please fill the Name');
@@ -631,7 +866,7 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
             $cookieStore.put('phoneNumber', $scope.fleetowner.phoneNumber);
             $cookieStore.put('password', $scope.fleetowner.password);
             $cookieStore.put('fullName', $scope.fleetowner.name);
-
+            $cookieStore.put('userType', $scope.fleetowner.userType);
 
             $http.post(CONSTANT.apiURL + 'api/v1/phoneVerification/generate',
                 {
@@ -655,6 +890,16 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
                     else if(data.message=="Invalid email.")alert("Invalid email.");
                     else if(data.message=="phoneNumber must be a string")alert("phoneNumber must be a string");
                     else if(data.message=="email is not allowed to be empty")alert("Please fill the Email");
+                    else if(data.message=="Invalid phoneNumber")alert("Please enter a valid phone number");
+                    else if(data.message=="phoneNumber is not allowed to be empty")alert("Please enter a valid phone number");
+
+                    }
+                    if(data.message=="Phone number already exists." && data.statusCode== 409){
+                        alert("You have already registered with this Number");
+                        $state.go('welcomeScreen');}
+                    if(data.message=="Email already exists." && data.statusCode== 409){
+                        alert("You have already registered with this Email");
+                        $state.go('welcomeScreen');
 
                     }
                     if (status == 404)
@@ -666,14 +911,14 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
                     }
 
                 })
-            .success(function(data,status){
+                .success(function(data,status){
 
-                var options = {
-                    show: 'true',
-                    backdrop: 'static'
-                }
-                $('#otp_modal').modal(options);
-            })
+                    var options = {
+                        show: 'true',
+                        backdrop: 'static'
+                    }
+                    $('#otp_modal').modal(options);
+                })
 
 
         }
@@ -685,6 +930,9 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
                 backdrop: 'static'
             }
             $('#sign_up_step1').modal(options);
+            $scope.fleetowner.userType= 'FLEET_OWNER';
+            $scope.fleetowner.consignmentNote= 1;
+
 
 
         }
@@ -693,17 +941,16 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
 
         var email = $cookieStore.get('email');
         var phoneNumber = $cookieStore.get('phoneNumber')
-        $.post(CONSTANT.apiURL + 'api/v1/phoneVerification/verify',
+        $http.post(CONSTANT.apiURL + 'api/v1/phoneVerification/verify',
             {
 
-                phoneNumber: phoneNumber,
+                "phoneNumber":phoneNumber,
                 userType: 'FLEET_OWNER',
-                OTP: $scope.fleetowner.OTP,
-                duringRegister: true
+                "OTP": $scope.fleetowner.OTP,
+                "duringRegister": true
 
 
-            }).then(
-            function (data) {
+            }).success(function (data,status) {
                 //data = JSON.parse(data);
                 console.log(data);
                 //return false;
@@ -716,11 +963,139 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
 
                 }
 
-            });
+            })
+            .error(function(data,status){
+                if(data.message=="Phone number verification Failed." && data.statusCode== 400){
+                    alert("Your OTP is incorrect, please enter correct OTP");
+                    $('#otp_modal').modal('hide');
+                    $('#otp_modal').modal('show');
+                    //$state.go('welcomeScreen');
+                }
+                if(data.message=="OTP verification Failed." && data.statusCode== 400){
+                    alert("Your OTP is incorrect, please enter correct OTP");
+                    $('#otp_modal').modal('hide');
+                    $('#otp_modal').modal('show');
+                    //$state.go('welcomeScreen');
+                }
+                if(data.message=="OTP length must be 6 characters long"){
+                    alert("Your OTP is incorrect, please enter correct OTP");
+
+                    $state.go('welcomeScreen');}
+
+            })
 
     }
+    $scope.indian_states=[
+        {name:'Andhra Pradesh',value:1 },
+        {name:'Arunachal Pradesh',value:2 },
+        {name:'Assam',value:3 },
+        {name:'Bihar',value:4 },
+        {name:'Chhattisgarh',value:5 },
+        {name:'Chandigarh',value:6 },
+        {name:'Goa',value:7 },
+        {name:'Gujarat',value:8 },
+        {name:'Haryana',value: 9},
+        {name:'Himachal Pradesh',value: 10},
+        {name:'Jammu & Kashmir',value:11 },
+        {name:'Jharkhand',value: 12},
+        {name:'Karnataka',value: 13},
+        {name:'Kerala',value: 14},
+        {name:'Madhya Pradesh',value:15 },
+        {name:'Maharashtra',value:16 },
+        {name:'Manipur',value:17 },
+        {name:'Meghalaya',value:18 },
+        {name:'Mizoram',value:19 },
+        {name:'Nagaland',value:20 },
+        {name:'Odisha',value:21 },
+        {name:'Punjab',value:22 },
+        {name:'Rajasthan',value:23 },
+        {name:'Sikkim',value: 24},
+        {name:'Tamil Nadu',value:25 },
+        {name:'Tripura',value: 26},
+        {name:'Telangana',value:27 },
+        {name:'Uttarakhand',value:28 },
+        {name:'Uttar Pradesh',value:29 },
+        {name:'West Bengal',value:30 }
+    ];
+
+    $rootScope.selected_state = [];
+
+
+
+    $scope.selectedOrNot = function (id, isChecked, index,name) {
+        console.log("index:" + index + " " + isChecked);
+
+        if (isChecked) {
+            $rootScope.selected_state.push(name);
+            //$rootScope.selected_state=$rootScope.selected_state.toString();
+            array2string($rootScope.selected_state);
+
+            //$scope.tryy.push(name);
+        } else {
+            var _index = $rootScope.selected_state.indexOf(name);
+            $rootScope.selected_state.splice(_index, 1);
+            array2string($rootScope.selected_state);
+        }
+       // $rootScope.selected_state =     JSON.parse($rootScope.selected_state);
+        console.log(  $rootScope.selected_state);
+
+
+    };
+    var array2string= function(data) {
+        $rootScope.selected_state1 = [];
+        console.log(data);
+        for(i=0;i<data.length;i++) {
+            $rootScope.selected_state1[i] = data[i];
+        }
+        console.log($rootScope.selected_state1);
+        convert2string( $rootScope.selected_state1);
+    }
+     var convert2string= function (data)
+     {
+         data= data.toString();
+         //console.log(data,'calleddfgdfg');
+     }
 
     //    ========================= function to save the data in step 2 ==================
+    $rootScope.selected_cargo = [];
+    $rootScope.selected_cargo_name = [];
+
+
+
+    $scope.checkedOrNot = function (id, isChecked, index,name) {
+        console.log("index:" + index + " " + isChecked);
+
+        if (isChecked) {
+            $rootScope.selected_cargo.push(id);
+            $rootScope.selected_cargo_name.push(name);
+            array2string1($rootScope.selected_cargo_name);
+
+        } else {
+            var _index = $rootScope.selected_cargo.indexOf(id);
+            $rootScope.selected_cargo.splice(_index, 1);
+            var _index1 = $rootScope.selected_cargo.indexOf(name);
+            $rootScope.selected_cargo_name.splice(_index1, 1);
+            array2string1($rootScope.selected_cargo_name);
+        }
+        console.log(  $rootScope.selected_cargo);
+        console.log(  $rootScope.selected_cargo_name);
+    };
+    var array2string1= function(data) {
+        $rootScope.selected_cargo_name1 = [];
+        console.log(data);
+        for(i=0;i<data.length;i++) {
+            $rootScope.selected_cargo_name1[i] = data[i];
+        }
+
+        convert2strings( $rootScope.selected_cargo_name1);
+    }
+    var convert2strings= function (data)
+    {
+        data= data.toString();
+        //console.log(data,'calleddfgdfg');
+    }
+
+
     $scope.step2data = function () {
 
         console.log('step2data function is called');
@@ -732,6 +1107,8 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
         $cookieStore.put('state', $scope.fleetowner.state);
         $cookieStore.put('pinCode', $scope.fleetowner.pinCode);
         console.log(try1);
+        console.log($scope.indian_states);
+        console.log($rootScope.selected_cargo);
         $scope.SignUpFleetOwnerStep3();
 
 
@@ -740,15 +1117,16 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
     //    =========================== register function of step 3 ============================  //
     $scope.formData = new FormData();
     $scope.uploadFile1 = function (files,type) {
-        if(type ==1)
+        if(type ==0)
         {
             $scope.formData.append("panCard", files[0]);
         }
-        if(type ==0) {$scope.formData.append("tin", files[0]);}
+        if(type ==1) {$scope.formData.append("tin", files[0]);}
         if(type ==2){$scope.formData.append("serviceTax", files[0]);}
         if(type ==3){ $scope.formData.append("tradeLicence", files[0]);}
         console.log('file-uploaded',files[0])
     }
+
     $scope.register = function () {
         console.log($scope.fleetowner);
         console.log('register function is called');
@@ -756,14 +1134,19 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
         var area= {};
         area=['up','punjab','rohtak'];
         area=JSON.stringify(area);
+        //$rootScope.selected_cargo=[$rootScope.selected_cargo];
+        console.log($rootScope.selected_cargo);
+        $rootScope.selected_cargo=JSON.stringify($rootScope.selected_cargo);
+        $rootScope.selected_state=JSON.stringify($rootScope.selected_state);
+        console.log($rootScope.selected_cargo);
         $scope.formData.append("email", $cookieStore.get('email'));
         $scope.formData.append("phoneNumber", $cookieStore.get('phoneNumber'));
         $scope.formData.append("password", $cookieStore.get('password'));
         $scope.formData.append("fullName", $cookieStore.get('fullName'));
         $scope.formData.append("country", 'india');
         $scope.formData.append("companyName", $cookieStore.get('companyName'));
-        $scope.formData.append("areaOfOperation", area);
-        $scope.formData.append("typeOfCargo", $cookieStore.get('typeOfCargo'));
+        $scope.formData.append("areaOfOperation", $rootScope.selected_state);
+        $scope.formData.append("typeOfCargo", $rootScope.selected_cargo);
         $scope.formData.append("numberOfTrucks", $cookieStore.get('numberOfTrucks'));
         $scope.formData.append("address", $cookieStore.get('address'));
         $scope.formData.append("city", $cookieStore.get('city'));
@@ -773,6 +1156,11 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
         $scope.formData.append("accountNumber", $scope.fleetowner.accountNumber);
         $scope.formData.append("rtgsCode", $scope.fleetowner.rtgsCode);
         $scope.formData.append("micrCode", $scope.fleetowner.micrCode);
+        $scope.formData.append("panCardNumber", $scope.fleetowner.panCardNumber);
+        $scope.formData.append("tinNumber", $scope.fleetowner.tinNumber);
+        $scope.formData.append("serviceTaxNumber", $scope.fleetowner.serviceTaxNumber);
+        $scope.formData.append("tradeLicenceNumber", $scope.fleetowner.tradeLicenceNumber);
+        $scope.formData.append("consignmentNote", 1);
         $scope.formData.append("deviceType", 'WEB');
         $scope.formData.append("userType", 'FLEET_OWNER');
         console.log($scope.formData);
@@ -799,6 +1187,12 @@ angular.module('carrus').controller('welcomeScreenCtrl',['$scope','$state','$htt
             }
 
         });
+    }
+
+    $scope.reload= function()
+    {
+         $('#sign_up_step4').modal('hide');
+        $state.reload();
     }
 
 

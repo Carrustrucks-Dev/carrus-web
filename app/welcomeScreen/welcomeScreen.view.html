@@ -1,5 +1,7 @@
+
+
 <!-- ====================================  Login modal ================================================== -->
-<div id="loginModal" class="modal" role="dialog">
+<div id="loginModal" class="modal" role="dialog" xmlns="http://www.w3.org/1999/html">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -11,7 +13,7 @@
             </div>
             <div class="modal-body">
                 <div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
-                <input class="userName"   placeholder="Email"   type="email" ng-model="userName">
+                <input class="userName"  id="Email" placeholder="Email"   type="email" ng-model="userName">
                 <input class="userPassword" placeholder="Password"  type="password" ng-model="userPassword">
                 <button class="login_button" type="submit" ng-click="loginFn()">Login</button>
                 <a class="forgot_password" style="text-align: center; margin-top: 15px; display: block;" href="" ng-click="forgotPasswordShipper();"> Forgot password ?</a>
@@ -60,8 +62,8 @@
 
 <!-- ==================================== forgot password model ================================================== -->
 
-<div id="SignUpShipper" class="modal" role="dialog">
-    <div class="modal-dialog">
+<div id="SignUpShipper" class="modal" role="dialog" ng-class="{'whirl standard' : loading }">
+    <div class="modal-dialog" style="margin-top: 100px;">
 
         <!-- Modal content-->
         <div class="modal-content">
@@ -70,14 +72,18 @@
                 <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()" style="margin-top:-50px;font-size: 2em">&times;</button>
 
             </div>
-            <div class="modal-body">
-               <div class="radio_section">
-               <div class="half_width"><label class="radio-inline"><input type="radio" class="outler" name="optradio" checked><span>Shipper</span></label></div>
-                <div class="half_width no-margin"><label class="radio-inline"><input type="radio" name="optradio"><span>Broker</span></label></div></div>
-                <input   class="half_width "  placeholder="First Name"   type="text" ng-model="signUp.fname">
-                <input class="half_width no-margin"  placeholder="Last Name"    type="text" ng-model="signUp.lname">
-                <input  class="full_width"  placeholder="Email ID"     type="email" ng-model="signUp.userName">
-                <input  class="half_width"  placeholder="Company Name"   type="text" ng-model="signUp.companyname">
+            <div class="modal-body" >
+                <div ng-show="authMsg" class="alert-success success text-center">{{authMsg}}</div>
+                <div id="Error1" ng-show="authErrorMsg" class="alert-danger danger text-center">{{authErrorMsg}}</div>
+                <div id="Error" style="display:none;" class="alert-danger danger text-center"></div>
+
+                <div class="radio_section">
+               <div class="half_width"><label class="radio-inline"><input type="radio" class="outler" name="optradio" checked required ng-model="signUp.userType" value="SHIPPER"><span>Shipper</span></label></div>
+                <div class="half_width no-margin"><label class="radio-inline"><input type="radio" name="optradio" ng-model="signUp.userType" value="BROKER"><span>Broker</span></label></div></div>
+                <input   class="half_width " onkeypress='return isText(event)' maxlength="15" required placeholder="First Name"   type="text" ng-model="signUp.fname">
+                <input class="half_width no-margin" onkeypress='return isText(event)' maxlength="15" required placeholder="Last Name"    type="text" ng-model="signUp.lname">
+                <input  class="full_width" name="Email"  placeholder="Email ID" type="email" ng-blur="ValidateEmail(this)"  ng-model="signUp.userName" >
+                <input  class="half_width"  placeholder="Company Name" required  type="text" ng-model="signUp.companyname">
                 <!--<select class="half_width no-margin" id="sel1">
                     <option>Type of Company</option>
                     <option>Partnership</option>
@@ -93,36 +99,65 @@
 
                     </ul>
                 </div>
+                </div>
+                <div class="excise" id="Excise">
+                    <div class="full_width" >
+                        <label class="header">Excise Registered</label>
+                        <div class="radio_section pull-right" >
+
+                                <label class="radio-inline"><input ng-model="signUp.excise" ng-click="show('Yes')" type="radio" class="outler" name="payment" value=1 checked><span style="color: #b1b1b1">Yes</span></label>
+                                <label class="radio-inline"><input ng-model="signUp.excise" ng-click="show('No')" type="radio" name="payment" value=0><span style="color: #b1b1b1">No</span></label>
+                            </div>
+                    </div>
+                    <label id="No" style="text-align: center;width: 100%;color:#b1b1b1;">Service tax will be charged extra on freight amount</label>
+
+                    <div class="exciseData" id="Yes" style="display: none">
+                    <input class="tata"  name="Email"  placeholder="Excise Registration" type="text" ng-model="signUp.exc" >
+
+                    <div class="full_width" style="position: relative;">
+                        <input class="uploader" placeholder="Copy of Certificate"  type="text" ng-model="signUp.tin_name" readonly>
+                        <span class="fileUpload files" style="top:25px;right:38px">
+                            <input type="file" class="upload" name="tin" onchange="angular.element(this).scope().file_tin(this.files)"
+                                   data-button-text="Single" uploader="uploader" accept="image/*"/>
+                        </span>
+                    </div>
+
+                    <div class="full_width" style="position: relative;overflow: hidden;">
+                        <input  class="uploader" style="width: 52%" placeholder="Declaration"   type="text" ng-model="signUp.pan_name" readonly>
+                        <span class="fileUpload files" style="top:25px;right:33%">
+                            <input type="file" class="upload" name="pan" onchange="angular.element(this).scope().file_pan(this.files)"
+                                   data-button-text="Single" uploader="uploader"  accept="image/*"/>
+                        </span>
+                        <input class="uploader" style="width: 20%;float: right" name="validity" onkeypress="isNumberKey(event)" placeholder="Validity" type="number"  >
+                    </div>
+                    </div>
+                 </div>
+            <div class="excise" id="CIN" style="display: none">
+                <input class="tata"  name="CIN"  placeholder="CIN" type="text" ng-model="signUp.exc" >
+                <div class="full_width" style="position: relative;padding-top: 0px">
+                    <input class="uploader" placeholder="Copy of Certificate"  type="text" ng-model="signUp.tin_name" readonly>
+                    <span class="fileUpload files" style="top:15px;right:35px">
+                        <input type="file" class="upload" name="tin" onchange="angular.element(this).scope().file_tin(this.files)"
+                               data-button-text="Single" uploader="uploader" accept="image/*"/>
+                    </span>
+                </div>
+
+            </div>
+            <div class="modal-body" >
                 <div class="half_width" style="position: relative;overflow: hidden;">
                     <input class="half_width" placeholder="TIN"  id="tin"  style="width: 100%;" type="text" ng-model="signUp.tin_name" readonly>
                     <div class="fileUpload files">
                         <input type="file" class="upload" name="tin" onchange="angular.element(this).scope().file_tin(this.files)"
                                data-button-text="Single" uploader="uploader" accept="image/*"/>
                     </div>
-                    <!--
-                    <input filestyle="" type="file" name="service_image" accept="image/*" image="image"
-                               onchange="angular.element(this).scope().file_to_upload(this.files)"
-                               data-button-text="Single" data-class-button="btn btn-default"
-                               data-classinput="form-control inline" nv-file-select="" uploader="uploader"
-                               class="form-control"/>
 
-
-                      <input filestyle="" type="file" name="other_images" accept="image/*" image="image"
-                               onchange="angular.element(this).scope().files_to_upload(this.files)"
-                               data-button-text="Multiple" data-class-button="btn btn-default"
-                               data-classinput="form-control inline" nv-file-select="" uploader="uploader" multiple
-                               class="form-control" />
-
-
-
-                    -->
                 </div>
                 <div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">
                     <input  class="half_width no-margin" style="width: 100%;" placeholder="PAN"  id="pan"  type="text" ng-model="signUp.pan_name" readonly>
                     <div class="fileUpload files">
-                    <input type="file" class="upload" name="pan" onchange="angular.element(this).scope().file_pan(this.files)"
-                           data-button-text="Single" uploader="uploader"  accept="image/*"/>
-                </div>
+                        <input type="file" class="upload" name="pan" onchange="angular.element(this).scope().file_pan(this.files)"
+                               data-button-text="Single" uploader="uploader"  accept="image/*"/>
+                    </div>
                 </div>
                 <div class="half_width" style="position: relative;overflow: hidden;">
                     <input  class="half_width "  placeholder="Service Tax Registration" style="width: 100%;"  id="tax" type="text" ng-model="signUp.taxreg_name" readonly>
@@ -138,11 +173,12 @@
                                data-button-text="Single" uploader="uploader" accept="image/*">
                 </div>
                 </div>
-                <input  class="half_width "  placeholder="Password"    type="password" ng-model="signUp.pass">
-                <input  class="half_width no-margin"  placeholder="Confirm Password"    type="password" ng-model="signUp.confmpass">
-                <input  class="full_width"  placeholder="Mobile Number"     type="text" ng-model="signUp.mobilenumber">
-                <input  class="half_width"  placeholder="Address"    type="text" ng-model="signUp.address">
-                <input  class="half_width no-margin"  placeholder="City/Town"    type="text" ng-model="signUp.cityTown">
+
+                <input  class="half_width "  placeholder="Password"    type="password" onkeypress="return checkpass(event)" ng-model="signUp.pass">
+                <input  class="half_width no-margin"  placeholder="Confirm Password"    type="password" onkeypress="return checkpass(event)" ng-model="signUp.confmpass"><!---->
+                <input  class="full_width"   minlength="0" required  placeholder="Mobile Number"  ng-blur="mobileCheck(this)" maxlength="10" onkeypress='return isNumberKey(event)'   type="text" ng-model="signUp.mobilenumber">
+                <input  class="half_width"  placeholder="Address"    type="text" ng-model="signUp.address" onkeypress='return Address(event)' >
+                <input  class="half_width no-margin"  placeholder="City/Town"    type="text" ng-model="signUp.cityTown" onkeypress='return isText(event)'>
                 <!--<input  class="half_width"  placeholder="State"    type="text" ng-model="signUp.state">-->
                 <select ng-model="signUp.state" class="half_width" style="height: 45px;padding: 0 50px 0 15px;">
                     <option value="0">State</option>
@@ -181,11 +217,12 @@
                     <option value="Uttarakhand">Uttarakhand</option>
                     <option value="West Bengal">West Bengal</option>
                 </select>
-                <input  class="half_width no-margin"  placeholder="Zip Code"    type="text" ng-model="signUp.zipcode">
+                <input  class="half_width no-margin" id="zip" placeholder="Zip Code"    type="text" maxlength="6" onkeypress='return isNumberKey(event)' ng-blur="zipCheck(this)" ng-model="signUp.zipcode">
 
-                <button class="signUpSubmit" type="submit" ng-click="getOTP();checkOTPShipper();">Submit</button>
-
+                <button class="signUpSubmit" type="submit" ng-click="checkOTPShipper();">Submit</button>
             </div>
+
+
             <!--<div class="modal-footer">-->
             <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
             <!--</div>-->
@@ -199,8 +236,8 @@
 
 
 <!-- ====================================  OTP  modal ================================================== -->
-<div id="otp_modalShipper" class="modal" role="dialog">
-    <div class="modal-dialog">
+<div id="otp_modalShipper" class="modal" role="dialog" >
+    <div class="modal-dialog" style="margin-top: 300px;">
 
         <!-- Modal content-->
         <div class="modal-content">
@@ -237,39 +274,6 @@
 <!--=============================================================================================================-->
 
 <!-- ====================================  Login modal shipper================================================== -->
-<div id="myModal" class="modal" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Sign In</h4>
-            </div>
-            <div class="modal-body">
-                <input class="userName"   placeholder="email"   type="text" ng-model="userName">
-                <input class="userPassword" placeholder="password"  type="password" ng-model="userPassword">
-                <button class="login_button" type="submit" ng-click="">Login</button>
-                <a class="forgot_password" href="" ng-click="forgotPassword();"> Forgot password ?</a>
-            </div>
-            <!--<div class="modal-footer">-->
-            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-            <!--</div>-->
-        </div>
-
-    </div>
-</div>
-
-<!-- ==================================== End Login modal ================================================== -->
-
-
-
-
-
-
-
-<!-- ==================================== forgot password model ================================================== -->
-
 <div id="forgot_passowrd" class="modal" role="dialog">
     <div class="modal-dialog">
 
@@ -293,10 +297,16 @@
     </div>
 </div>
 
+<!-- ==================================== End Login modal ================================================== -->
 
-<!-- ==================================== end of forgot password model ================================================== -->
 
-<!--=================================== Login modal fleet owner======================-->
+
+
+
+
+
+<!-- ==================================== forgot password model ================================================== -->
+
 <div ng-app="carrus">
     <div id="fleet_owner_login_modal" class="modal" role="dialog"  >
         <div class="modal-dialog">
@@ -318,10 +328,11 @@
 
     </div>
 </div>
-<!-- ==================================== End Login fleet owner modal ====================================== -->
 
 
-<!-- ==================================== forgot password model ============================================= -->
+<!-- ==================================== end of forgot password model ================================================== -->
+
+<!--=================================== Login modal fleet owner======================-->
 <div ng-app="carrus">
     <div id="fleet_owner_forgot_password_modal" class="modal" role="dialog" >
         <div class="modal-dialog" >
@@ -343,8 +354,10 @@
 
     </div>
 </div>
-<!-- ==================================== shipper sign up modal ================================================== -->
+<!-- ==================================== End Login fleet owner modal ====================================== -->
 
+
+<!-- ==================================== forgot password model ============================================= -->
 <div id="SignUp" class="modal" role="dialog">
     <div class="modal-dialog">
 
@@ -408,6 +421,30 @@
 
     </div>
 </div>
+<!-- ==================================== shipper sign up modal ================================================== -->
+
+<div id="myModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign In</h4>
+            </div>
+            <div class="modal-body">
+                <input class="userName"   placeholder="email"   type="text" ng-model="userName">
+                <input class="userPassword" placeholder="password"  type="password" ng-model="userPassword">
+                <button class="login_button" type="submit" ng-click="">Login</button>
+                <a class="forgot_password" href="" ng-click="forgotPassword();"> Forgot password ?</a>
+            </div>
+            <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>
 
 
 <!-- ==================================== end of shipper signup model ================================================== -->
@@ -430,27 +467,39 @@
                 </div>
                 <div class="modal-body" ng-controller="welcomeScreenCtrl">
                     <form>
+                        <div ng-show="authMsg" class="alert-success success text-center">{{authMsg}}</div>
+                        <div ng-show="authErrorMsg" class="alert-danger danger text-center">{{authErrorMsg}}</div>
                         <div class="radio_section">
-                            <div class="half_width"><label class="radio-inline"><input type="radio" class="outler" name="optradio" checked><span class="radio_label" style="">Shipper</span></label></div>
-                            <div class="half_width no-margin"><label class="radio-inline"><input type="radio" name="optradio"><span class="radio_label" style="">Broker</span ></label></div>
-                        </div>
-                        <input name="name"  class="full_width "  placeholder="Full Name"   type="text" ng-model="fleetowner.name"  ng-init="fleetowner.name=''">
-                        <input name="email"  class="full_width"  placeholder="Email"     type="email" ng-model="fleetowner.email"  ng-init="fleetowner.email=''">
-                        <input  name="password" class="full_width"  placeholder="Password"   type="password" ng-model="fleetowner.password"  ng-init="fleetowner.password=''">
-                        <input name="repassword" class="full_width"  placeholder="Confirm Password"   type="password" ng-model="fleetowner.repassword" ng-init="fleetowner.repassword=''" >
-                        <input name="phoneNumber" class="full_width"  placeholder="Mobile Number"   type="text" ng-model="fleetowner.phoneNumber" ng-init="fleetowner.phoneNumber=''" >
+                            <!--<div class="half_width"><label class="radio-inline"><input type="radio" class="outler" value='FLEET_OWNER' checked ng-model="$scope.fleetowner.userType" name="optradio" ><span class="radio_label" style="">Fleet Owner</span></label></div>-->
+                            <!--<div class="half_width no-margin"><label class="radio-inline"><input type="radio" value='BROKER' ng-model="$scope.fleetowner.userType" name="optradio"><span class="radio_label" style="">Broker</span ></label></div>-->
+
+                            <div class="half_width"><label class="radio-inline"><input type="radio" class="outler" name="optradio" checked required ng-model="fleetowner.userType" value="FLEET_OWNER"><span>Fleet Owner</span></label></div>
+                            <div class="half_width no-margin"><label class="radio-inline"><input type="radio" name="optradio" ng-model="fleetowner.userType" value="BROKER"><span>Broker</span></label></div></div>
+
+
+                        <input name="name" id="name" class="full_width "  placeholder="Full Name*"   type="text" ng-model="fleetowner.name" onkeypress='return isText(event)'  maxlength="30" ng-init="fleetowner.name=''">
+                        <input name="email"  class="full_width"  placeholder="Email*"     type="email" ng-model="fleetowner.email" onblur="ValidateEmail1(this)" ng-init="fleetowner.email=''">
+                        <input  name="password" class="full_width"  placeholder="Password*"   type="password" ng-model="fleetowner.password" onkeypress="return checkpass(event)" ng-init="fleetowner.password=''">
+                        <input name="repassword" class="full_width"  placeholder="Confirm Password*"   type="password" onkeypress="return checkpass(event)" ng-model="fleetowner.repassword" ng-init="fleetowner.repassword=''" >
+
+                        <input  class="full_width" id="mob"  minlength="10" required  placeholder="Mobile Number"  maxlength="10" onkeypress='return isNumberKey(event)'   type="text" ng-model="fleetowner.phoneNumber">
+
+
+
                     </form>
-                    <button class="login_button" type="submit" ng-click="generateOTP();">Next</button>
+                    <button class="login_button" type="submit" ng-click="generateOTP();getcargotype();">Next</button>
                 </div>
 
 
             </div>
+
         </div>
     </div>
 </div>
 
 
-<div class="modal t-overflow" role="dialog" id="sign_up_step2"  ng-init="steps={percent:50, step1:false, step2:true, step3:false}" ng-app="carrus">
+
+<div class="modal t-overflow" role="dialog" id="sign_up_step2" style="overflow:scroll" ng-app="carrus">
     <div class="modal-dialog" active="steps.step2">
 
         <div class="modal-content" >
@@ -470,44 +519,86 @@
 
                 <div class="modal-body" ng-controller="welcomeScreenCtrl">
 
-                    <input   class="full_width "  placeholder="Company Name"   type="text" ng-model="fleetowner.companyName">
-                    <!--<input class="half_width no-margin"  placeholder="Last Name"    type="text" ng-model="lname">-->
-                    <input  class="full_width"  placeholder="Area of Operations -States"     type="text" ng-model="fleetowner.areaOfOperation">
-                    <input  class="full_width"  placeholder="Number of Trucks Owned"   type="number" ng-model="fleetowner.numberOfTrucks">
-                    <input  class="half_width"  placeholder="Address"   type="text" ng-model="fleetowner.address">
-                    <input  class="half_width no-margin"  placeholder="City Town"   type="text" ng-model="fleetowner.city">
-                    <input  class="half_width"  placeholder="State"   type="text" ng-model="fleetowner.state">
-                    <input  class="half_width no-margin"  placeholder="Zip Code"   type="number" ng-model="fleetowner.pinCode">
+                    <input   class="full_width "  placeholder="Company Name*"   type="text" ng-model="fleetowner.companyName">
+                    <input type="text"class="full_width" style="float: left; position: relative"  placeholder="Area of Operation*" ng-model="selected_state1" />
+                    <div style="float:right; position: absolute; right: 40px; margin-top: 10px;"><img src="img/down_arrow_icon.png"  ng-click="collapsed1=!collapsed1" ></div>
+                    <div  class="full_width" style="float: left; background-color: #EEEEEE; width:100%; " >
+                        <div  ng-show="collapsed1">
+                            <div  class="half_width" ng-repeat="state in indian_states" placeholder="State" >
+                                <input class="checkbox1" name="{{state.name}}"  ng-model="state.checked" ng-change="selectedOrNot(state.value, state.checked,$index,state.name)"
+                                       type="checkbox" /><p  class="checkbox_p">{{state.name}}</p> <br>
+
+                            </div>
+                        </div>
+                    </div>
+                    <input  class="full_width"  placeholder="Number of Trucks Owned*"  onblur="lengthCheck(this)" minlength="0" maxlength="5" onkeypress='return isNumberKey(event)' type="text" ng-model="fleetowner.numberOfTrucks">
+                    <input  class="half_width"  placeholder="Address*" onkeypress='return isText(event)'   type="text" ng-model="fleetowner.address">
+                    <input  class="half_width no-margin"  placeholder="City Town*" onkeypress='return isText(event)'   type="text" ng-model="fleetowner.city">
+                    <select ng-model="fleetowner.state" class="half_width" style="height: 45px;padding: 0 50px 0 15px;">
+                        <option value="" selected disabled>Select State*</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="New Delhi">New Delhi</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Pondicherry">Pondicherry</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="West Bengal">West Bengal</option>
+                    </select>
+                    <input  class="half_width no-margin"  placeholder="Zip Code*"  onblur="lengthCheck(this)" minlength="6" maxlength="6" onkeypress='return isNumberKey(event)' type="text" ng-model="fleetowner.pinCode">
 
 
-                    <div style="margin: 20px 0 20px 0 "> <p style="float: left"> Warehouse Across India</p>
+                    <div style="margin: 20px 0 20px 0 "> <p style="float: left"> Warehouse Across India*</p>
                         <div style="float: right;">
-                            <div style="float: left" ><label class="radio-inline"><input type="radio" class="outler" name="optradio" checked><span>Yes</span></label></div>
-                            <div style="float: left" ><label class="radio-inline"><input type="radio" name="optradio"><span>No</span></label></div>
+                            <div style="float: left" ><label class="radio-inline"><input type="radio" class="outler" name="optradio" checked value="Yes"><span>Yes</span></label></div>
+                            <div style="float: left" ><label class="radio-inline"><input type="radio" name="optradio" value="No"><span>No</span></label></div>
 
                         </div>
                     </div>
 
 
+                    <div>
+                        <input type="text" ng-click="collapsed=!collapsed" class="full_width" style="float: left; position: relative" placeholder="Type of Cargo Handled*" readonly="" ng-model="selected_cargo_name1">
 
-                    <input type="text" ng-model="collapsed" ng-click="collapsed=!collapsed" class="full_width"  placeholder="Type of Cargo Handled" readonly="" />
-                    <div  class="full_width" style="float: left; background-color: #EEEEEE; width:100%; " >
-                        <div  ng-show="collapsed">
-                            <input class="checkbox1" type="checkbox" /><p class="checkbox_p" >Agricultural Products</p> <br>
-                            <input class="checkbox1" type="checkbox" /><p  class="checkbox_p">Cement</p> <br>
-                            <input class="checkbox1"type="checkbox" /><p  class="checkbox_p">Chemicals</p> <br>
-                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" >Coal</p> <br>
-                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" >Container</p> <br>
-                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p">Electronics/Consumer Durables</p> <br>
-                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p">Fertilizers</p><br>
-                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p">Fruits and Vegetables</p><br>
-                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" style="">Furniture and Wood Products</p> <br>
-                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" style="">Industrial Equipments</p> <br>
-                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" style="" >Liquids</p> <br>
-                            <input class="checkbox1" type="checkbox" /><p class="checkbox_p" >Packaged Food</p> <br>
-                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" >Scrap</p> <br>
-                            <input class="checkbox1"  type="checkbox" /><p class="checkbox_p" >Iron and Steel </p>
+
+
+                        <div  class="full_width" style="float: left; background-color: #EEEEEE; width:100%; " >
+                            <div  ng-show="collapsed">
+
+                                <div class="full_width" ng-repeat="cargo in cargo_array">
+                                    <!--<input type="checkbox" name="{{cargo.typeCargoName}}" id="{{cargo._id}}" ng-model="cargo.checked" ng-change="selected_cargo()">-->
+                                    <!--<option ></option>-->
+                                    <input class="checkbox1" name="{{cargo.typeCargoName}}" value="{{cargo._id}}" ng-model="cargo.checked" ng-change="checkedOrNot(cargo._id, cargo.checked, $index,cargo.typeCargoName)"
+                                           type="checkbox" /><p  class="checkbox_p">{{cargo.typeCargoName}}</p> <br>
+                                </div>
+
+                            </div>
                         </div>
+                        <!--</select>-->
 
                     </div>
 
@@ -530,7 +621,7 @@
 
 
 
-<div class="modal t-overflow " role="dialog" id="sign_up_step3"  ng-init="steps={percent:90, step1:false, step2:false, step3:true}">
+<div class="modal t-overflow " role="dialog" id="sign_up_step3" style="overflow:scroll" >
     <div class="modal-dialog" active="steps.step3" ng-app="carrus" >
 
         <div class="modal-content" >
@@ -549,52 +640,67 @@
 
 
                 <div class="modal-body" ng-controller="welcomeScreenCtrl">
+                    <div style="margin: 20px 0 20px 0 "> <p style="float: left"> Consignment Note*</p>
+                        <div style="float: right;" class="radio_section">
+                            <div style="float: left" ><label class="radio-inline"><input type="radio" value='1' checked ng-model="fleetowner.consignmentNote" class="outler" name="optradio" ><span>By Carrus</span></label></div>
+                            <div style="float: left" ><label class="radio-inline"><input type="radio" value='0' ng-model="fleetowner.consignmentNote" name="optradio"><span>By Me</span></label></div>
+
+
+                            <!--<div style="float: left" ><label class="radio-inline"><input type="radio" class="outler" name="optradio" checked required ng-model="$scope.fleetowner.consignmentNote" value="1"><span>By Carrus</span></label></div>-->
+                            <!--<div style="float: left" ><label class="radio-inline"><input type="radio" name="optradio" ng-model="$scope.fleetowner.consignmentNote" value="0"><span>By Me</span></label></div></div>-->
+
+                    </div>
 
                     <!--<div class="half_width" style="position: relative;overflow: hidden;">-->
-                    <div style="position: relative">
-                        <input class="half_width" placeholder="TIN"    style="width: 100%;" type="text" ng-model="tin">
+                    <div style="position: relative; float: left; width: 100%; ">
+                        <input class="half_width" placeholder="PAN Card Number*"    style="width: 100%;" onkeypress='return isNumberTextKey(event)' type="text" ng-model="fleetowner.panCardNumber">
                         <div class="fileUpload files">
-                            <input type="file" class="upload" name="tin" onchange="angular.element(this).scope().uploadFile1(this.files,0)"
+                            <input type="file" class="upload"  onchange="angular.element(this).scope().uploadFile1(this.files,0)"
                                    accept="image/*"/>
                         </div>
                     </div>
                     <div style="position: relative; float: left; width: 100%; ">
                         <!--<div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">-->
-                        <input  class="half_width " style="width: 100%;" placeholder="PAN"    type="text" >
+                        <input  class="half_width " style="width: 100%;" placeholder="TIN*"  type="text" onkeypress='return isNumberTextKey(event)' ng-model="fleetowner.tinNumber" >
                         <div class="fileUpload files">
-                            <input class="upload" type="file" name="panCard"
+                            <input class="upload" type="file"
                                    onchange="angular.element(this).scope().uploadFile1(this.files,1)" accept="image/*"/>
                         </div>
                     </div>
                     <!--<div class="half_width" style="position: relative;overflow: hidden;">-->
                     <div style="position: relative; float: left;
                      width: 100%; ">
-                        <input  class="half_width "  placeholder="Service tax registration" style="width: 100%;"   type="text" ng-model="taxreg">
+                        <input  class="half_width "  placeholder="Service tax registration*" style="width: 100%;" onkeypress='return isNumberTextKey(event)'  type="text" ng-model="fleetowner.serviceTaxNumber">
                         <div class="fileUpload files">
-                            <input type="file" class="upload"   name="ServiceTaxRegistration" onchange="angular.element(this).scope().uploadFile1(this.files,2)" accept="image/*">
+                            <input type="file" class="upload"   name="ServiceTaxRegistration*" onchange="angular.element(this).scope().uploadFile1(this.files,2)" accept="image/*">
                         </div>
                     </div>
                     <!--<div class="half_width" style="margin-right: 0;position: relative;overflow: hidden;">-->
                     <div style="position: relative; float: left;
                      width: 100%; ">
-                        <input   class="half_width "  style="width: 100%;"  placeholder="Excise registration"    type="text" ng-model="excisereg">
+                        <input   class="half_width "  style="width: 100%;"  placeholder="Excise registration*" onkeypress='return isNumberTextKey(event)'   type="text" ng-model="fleetowner.tradeLicenceNumber">
                         <div class="fileUpload files">
                             <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile1(this.files,3)" name="ExciseRegistration" accept="image/*">
                         </div>
                     </div>
+
+
+
                     <div>
-                        <span> Bank Details</span> </div>
-                    <input  class="half_width "  placeholder="Bank Name"   type="text" ng-model="fleetowner.bankName">
-                    <input  class="half_width no-margin"  placeholder="Account No."   type="number" ng-model="fleetowner.accountNumber">
-                    <input  class="half_width "  placeholder="RTGS Code"   type="text" ng-model="fleetowner.rtgsCode">
+                        <span style="float: left;width: 100%; margin-bottom: 15px;"> Bank Details</span> </div>
+                    <input  class="half_width "  placeholder="Bank Name*"   type="text" ng-model="fleetowner.bankName">
+                    <input  class="half_width no-margin"  placeholder="Account No.*"  onkeypress='return isNumberKey(event)' maxlength="20" type="text" ng-model="fleetowner.accountNumber">
+                    <!--<input  class="half_width "  placeholder="RTGS Code*"   type="text" ng-model="fleetowner.rtgsCode">-->
+                        <input  class="half_width" id="mob"  required  placeholder="RTGS Code*"   maxlength="15" onkeypress='return isNumberTextKey(event)'   type="text" ng-model="fleetowner.rtgsCode">
+                        <input  class="half_width no-margin" id="mob"   required  placeholder="MICR Code*"   maxlength="15" onkeypress='return isNumberTextKey(event)'   type="text" ng-model="fleetowner.micrCode">
 
-                    <input  class="half_width no-margin"  placeholder="MICR Code"   type="text" ng-model="fleetowner.micrCode">
+                    <!--<input  class="half_width no-margin"  placeholder="MICR Code*"   type="text" >-->
 
-                    <div style="position: relative; left: 176px;">
-                        <a href="#" ><span> Add Bank Account</span> </a> </div>
+                    <!--<div style="position: relative; left: 176px;">-->
+                    <!--<a href="#" ><span> Add Bank Account</span> </a> </div>-->
                     <!--<div style="position:relative;">-->
                     <div style="    float: left; width: 100%; margin-top: 20px;">
-                        <input style="width: 10%; height: 20px; float: left;" type="checkbox" name="tnc" value="Yes">
+                        <input style="width: 10%; height: 20px; float: left;" type="checkbox" name="tnc" value="Yes" checked>
                         <p style="float: left; width: 70%; text-align: center">  I agree with Terms of Use and Privacy</p> </div>
 
 
@@ -634,7 +740,7 @@
                     <img src="img/submit_request_icon.png">
                     <!--</div>-->
                     <div style="text-align: center">   <h3 style="color: #9b9b9b; ">Thanks for submitting your request <br> Your profile is under review </h3> </div>
-                    <button class="next_otp" type="submit" ng-click="" data-dismiss="modal" >Proceed</button>
+                    <button class="next_otp" type="submit" ng-click="reload();" data-dismiss="modal" >Proceed</button>
                 </div>
                 <!--<div class="modal-footer">-->
                 <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
@@ -657,7 +763,7 @@
                 <h4 class="modal-title">Enter OTP here</h4>
             </div>
             <div class="modal-body" ng-controller="welcomeScreenCtrl">
-                <input id="otpnumber1"   placeholder="Enter your OTP"   type="text" ng-model="fleetowner.OTP">
+                <input id="otpnumber1"   placeholder="Enter your OTP"  maxlength="6" minlength="6" onkeypress='return isNumberKey(event)'  type="text" ng-model="fleetowner.OTP">
                 <button class="next_otp" type="submit" ng-click="verifyOTP();" data-dismiss="modal" >Next</button>
             </div>
             <!--<div class="modal-footer">-->
@@ -707,7 +813,7 @@
                 <li class="dropdown">
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SIGN IN <span class="caret"></span></a>
-                     <ul class="dropdown-menu">
+                    <ul class="dropdown-menu">
                         <li><a href="" ng-click="showLoginShipper();">Sign in as shipper</a></li>
                         <li><a href="" ng-click="showLogin1();">Sign in as fleet owner</a></li>
                     </ul>
@@ -1115,8 +1221,20 @@ Kolkata 700001</span>
 </div>
 
 
-<!-- /.container -->
-<!-- script references -->
-<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
-<!--<script src="js/bootstrap.min.js"></script>-->
+<!--
+                   <input filestyle="" type="file" name="service_image" accept="image/*" image="image"
+                              onchange="angular.element(this).scope().file_to_upload(this.files)"
+                              data-button-text="Single" data-class-button="btn btn-default"
+                              data-classinput="form-control inline" nv-file-select="" uploader="uploader"
+                              class="form-control"/>
+
+
+                     <input filestyle="" type="file" name="other_images" accept="image/*" image="image"
+                              onchange="angular.element(this).scope().files_to_upload(this.files)"
+                              data-button-text="Multiple" data-class-button="btn btn-default"
+                              data-classinput="form-control inline" nv-file-select="" uploader="uploader" multiple
+                              class="form-control" />
+
+
+
+                   -->

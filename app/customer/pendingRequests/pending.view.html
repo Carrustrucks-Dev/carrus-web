@@ -3,9 +3,11 @@
 
         <form class="navbar-form banner-search" role="search" style="margin-top: 30px;margin-bottom: 30px;">
             <div class="input-group" >
-                <div class="input-group-btn" style="border-radius: 16px;background-color: transparent">
-                    <button style="border-top-left-radius:16px;border-bottom-left-radius:16px;border-right-color:transparent;border-right-width: 0px;background-color: transparent" class="btn btn-default" type="submit" ><i style="color: #fff" class="glyphicon glyphicon-search"></i></button>
+                <div class="input-group-btn" style="border-radius: 16px;background-color: transparent;max-height:34px">
+                    <!--<button style="border-top-left-radius:16px;border-bottom-left-radius:16px;border-right-color:transparent;border-right-width: 0px;background-color: transparent" class="btn btn-default" type="submit" ><i style="color: #fff" class="glyphicon glyphicon-search"></i></button>
                     <input style="float: right;border-top-right-radius:16px;border-bottom-right-radius:16px;border-left-color:transparent;border-left-width:0px;background-color: transparent;color: #fff" type="text" class="form-control" placeholder="Search Shipment" name="srch-term" id="srch-term" >
+--><span class="fa fa-search" style="margin-right: -150px;margin-top:7px;"></span>
+                    <input style="padding-left:50px;float: right;border-radius:16px;background-color: transparent;color: #fff" type="text" class="form-control" placeholder="Search Shipment" name="srch-term" id="srch-term" >
 
                 </div>
             </div>
@@ -31,7 +33,31 @@
     </div>
 </div>
 <style>
-    .tab-menu ul li a {color:#337ab7;
+    .tab-menu ul li a {color:#fff;
         text-decoration: none}
+    .tab-menu ul li  .active {
+        background-color:white;
+        border-radius: 31px;
+        padding: 11px 30px;
+        color:  #337ab7;
+
+    }
+    @media (min-width: 1500px) {
+        .container {
+            width: 1350px
+        }}
+    @-moz-document url-prefix() {
+        .input-group-btn input{
+            top:-25px;
+        }
+    }
+    /*@media (min-width: 1200px) {
+        .container {
+            width: 1000px
+        }}
+@media (min-width: 790px) {
+        .container {
+            width: 650px
+        }}*/
 </style>
 

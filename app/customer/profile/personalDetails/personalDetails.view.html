@@ -30,25 +30,68 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="graph-container">
-                <div class="head-container"><span class="graphHead">Company Name</span></div>
+                <div class="head-container"><label class="graphHead">Company Name</label></div>
                 <div class="input-group" style="width: 100%" >
                     <input type="text" class="profileShipper"  placeholder="Company Name" ng-model="personalDetails.companyName"></div>
             </div>
         </div>
         <div class="col-lg-6">
             <div class="graph-container">
-                <div class="head-container"><span class="graphHead">Type of Company</span></div>
+                <div class="head-container"><label class="graphHead">Type of Company</label></div>
                 <div class="input-group" style="width: 100%" >
-                    <input type="text" class="profileShipper"  placeholder="Type of Company" ng-model="personalDetails.partnership[0].partnershipName"></div>
+                    <input type="text" class="profileShipper"  placeholder="Type of Company" ng-model="personalDetails.partnership[0].partnershipName">
+                   </div>
+                <div class="input-group" style="width: 100%" >
+                    <input class="profileShipper" style="height: 45px" placeholder="To be discussed what to do with this"  type="text" ng-model="signUp.tin_name" readonly>
+                     <span class="fileUpload files" style="top:14px;right:15px">
+                            <input type="file" class="upload" name="tin" onchange="angular.element(this).scope().file_tin(this.files)"
+                                   data-button-text="Single" uploader="uploader" accept="image/*"/>
+                        </span>
+                </div>
             </div>
         </div>
     </div>
     <div class="row">
+        <div class="col-lg-6" style="top:-70px">
+            <div class="graph-container">
+                <div class="head-container"><label class="graphHead">Name</label></div>
+                <div class="input-group" style="width: 100%" >
+                    <input type="text" class="profileShipper"  placeholder="Name" ng-model="personalDetails.Name"></div>
+            </div>
+        </div>
         <div class="col-lg-6">
             <div class="graph-container">
-                <div class="head-container"><span class="graphHead">Name</span></div>
+                <div class="head-container"><label class="graphHead">Phone Number</label></div>
                 <div class="input-group" style="width: 100%" >
-                    <input type="text" class="profileShipper"  placeholder="Name" ng-model="personalDetails.firstName"></div>
+                    <input type="text" class="profileShipper"  placeholder="Phone Number" ng-model="personalDetails.phoneNumber"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6" style="top:-70px">
+            <div class="graph-container">
+                <div class="head-container"><label class="graphHead">Email</label></div>
+                <div class="input-group" style="width: 100%" >
+                    <input type="text" class="profileShipper"  placeholder="Email" ng-model="personalDetails.email"></div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="graph-container">
+                <div class="head-container"><label class="graphHead">Address</label></div>
+                <div class="input-group" style="width: 100%" >
+                    <input type="text" class="profileShipper"  placeholder="Address" ng-model="personalDetails.addressDetails.address"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="row">
+
+        <div class="col-lg-6">
+            <div class="graph-container">
+                <div class="head-container"><span class="graphHead">Copy of Certificate</span></div>
+                <div class="input-group" style="width: 100%" >
+                    <input type="text" class="profileShipper"  placeholder="Copy of Certificate"></div>
+
             </div>
         </div>
         <div class="col-lg-6">
@@ -58,40 +101,8 @@
                     <input type="text" class="profileShipper"  placeholder="CIN"></div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="graph-container">
-                <div class="head-container"><span class="graphHead">Email</span></div>
-                <div class="input-group" style="width: 100%" >
-                    <input type="text" class="profileShipper"  placeholder="Email" ng-model="personalDetails.email"></div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="graph-container">
-                <div class="head-container"><span class="graphHead">Copy of Certificate</span></div>
-                <div class="input-group" style="width: 100%" >
-                    <input type="text" class="profileShipper"  placeholder="Copy of Certificate"></div>
 
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="graph-container">
-                <div class="head-container"><span class="graphHead">Address</span></div>
-                <div class="input-group" style="width: 100%" >
-                    <input type="text" class="profileShipper"  placeholder="Address" ng-model="personalDetails.addressDetails.address"></div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="graph-container">
-                <div class="head-container"><span class="graphHead">Phone Number</span></div>
-                <div class="input-group" style="width: 100%" >
-                    <input type="text" class="profileShipper"  placeholder="Phone Number" ng-model="personalDetails.phoneNumber"></div>
-            </div>
-        </div>
-    </div>
+    </div>-->
     <div class="full-width text-center">
         <button class="modify" ng-click="changePass()">Change Password</button>
     </div>

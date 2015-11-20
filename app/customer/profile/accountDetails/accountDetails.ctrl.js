@@ -18,6 +18,8 @@ angular.module('carrus').controller('accountProfileCtrl',['$scope','$http','$coo
             $scope.edit="Edit";
             $("#symbol").removeClass("fa-check-square-o");
             $("#symbol").addClass("fa-pencil");
+            $scope.saveAccountData();
+            $scope.saveProfile();
 
         }
     };

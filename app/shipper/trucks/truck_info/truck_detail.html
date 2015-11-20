@@ -31,6 +31,8 @@
                         <input type="text"  class="fleet_home  "  placeholder="Company Name" ng-model="trucker.model" readonly="" ></div>
                     <div class="input-group" style="width: 100%"> <label class="try2" > Truck OEM</label>
                         <input type="text"  class="fleet_home"  placeholder="Number of Trucks" ng-model="trucker.oem" readonly="" ></div>
+                    <div class="input-group" style="width: 100%"><label class="try2" > Type of Truck</label>
+                        <input type="text"  class="fleet_home"   ng-model="trucker.typeTruck" readonly=""> </div>
                     <div class="input-group" style="width: 100%"><label class="try2" > Manufacture Date</label>
                         <input type="text"  class="fleet_home"  placeholder="Manufacture Date" ng-model="trucker.manufacture_date" readonly=""> </div>
                 </div>
@@ -87,10 +89,17 @@
 
             <div class="col-lg-6">
                 <div class="graph-container">
-                    <div class="head-container"><span class="graphHead">Opeartion Areas</span></div>
+                    <div class="head-container"><span class="graphHead">Assigned Trucker Details</span></div>
 
-                    <div class="input-group" style="width: 100%"><label class="try2" > States of Operation</label><div  class="fleet_home"  placeholder="Mobile Number">{{data.areaOfOperation}}</div></div>
+                    <div class="input-group" style="width: 100%"><label class="try2" > Driver Name</label>
+                        <div  class="fleet_home"  placeholder="Mobile Number">{{trucker.truckerName}}</div></div>
                     <!--<canvas id="barStaff" data="staffBooking" labels="labelBookings" legend="true" class="chart chart-bar" series="seriesStaff" colours ="coloursBook"></canvas>-->
+                    <div class="input-group" style="width: 100%"><label class="try2" > Driver ID</label>
+                        <div  class="fleet_home"  placeholder="Mobile Number">{{trucker.truckerId}}</div></div>
+                    <div class="input-group" style="width: 100%"><label class="try2" > Address</label>
+                        <div  class="fleet_home"  placeholder="Mobile Number">{{trucker.truckerAddress}}</div></div>
+                    <div class="input-group" style="width: 100%"><label class="try2" > Phone Number</label>
+                        <div  class="fleet_home"  placeholder="Mobile Number">{{trucker.truckerMobile}}</div></div>
                 </div>
 
             </div>
@@ -111,14 +120,14 @@
                 </div>
 
             </div>
-            <div class="col-lg-6">
-                <div class="graph-container">
-                    <div class="head-container"><span class="graphHead">Cargo Detail</span></div>
-                    <div class="input-group" style="width: 100%"><label class="try2" > Type of Cargo Handled</label><input  class="fleet_home"  placeholder="Mobile Number"     type="number"></div>
-                    <!--<canvas id="barStaff" data="staffBooking" labels="labelBookings" legend="true" class="chart chart-bar" series="seriesStaff" colours ="coloursBook"></canvas>-->
-                </div>
+            <!--<div class="col-lg-6">-->
+                <!--<div class="graph-container">-->
+                    <!--<div class="head-container"><span class="graphHead">Cargo Detail</span></div>-->
+                    <!--<div class="input-group" style="width: 100%"><label class="try2" > Type of Cargo Handled</label><input  class="fleet_home"  placeholder="Mobile Number"     type="number"></div>-->
+                    <!--&lt;!&ndash;<canvas id="barStaff" data="staffBooking" labels="labelBookings" legend="true" class="chart chart-bar" series="seriesStaff" colours ="coloursBook"></canvas>&ndash;&gt;-->
+                <!--</div>-->
 
-            </div>
+            <!--</div>-->
         </div>
 
 

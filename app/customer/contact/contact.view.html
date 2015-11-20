@@ -15,24 +15,24 @@
 
                         <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
                             <div style="margin-top:10px;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <form value="" id="contact-us" method="">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="text" style="color: #b1b1b1;font-size: 20px;" placeholder="Name" value="" class="form-control">
+
+                                <form  id="contact-us" >
+                                    <div ng-show="authMsg" class="alert-success success text-center col-lg-12 col-md-12 col-sm-12 col-xs-12">{{authMsg}}</div>
+                                    <div ng-show="authErrorMssg" class="alert-danger danger text-center col-lg-12 col-md-12 col-sm-12 col-xs-12">{{authErrorMssg}}</div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="removeAuth()">
+                                        <input type="text" style="color: #b1b1b1;font-size: 20px;" placeholder="Name" class="form-control" ng-model="ds.fullName" onkeypress="return isText(event)" >
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <input style="color: #b1b1b1;font-size: 20px;" type="text" placeholder="Email" value="" class="form-control">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="removeAuth()">
+                                        <input style="color: #b1b1b1;font-size: 20px;" type="text" placeholder="Email" class="form-control" ng-model="ds.email" ng-blur="ValidateEmail(this)">
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="text" style="color: #b1b1b1;font-size: 20px;" placeholder="Phone Number" value="" class="form-control">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="removeAuth()">
+                                        <input type="text" style="color: #b1b1b1;font-size: 20px;" placeholder="Phone Number" class="form-control" ng-model="ds.phoneNumber" onkeypress="isNumberKey(event)" ng-blur="lengthCheck(ds.phoneNumber)" minlength="0" maxlength="10">
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <textarea placeholder="Comments" style="color: #b1b1b1;font-size: 20px;" class="form-control"></textarea>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="removeAuth()">
+                                        <textarea placeholder="Comments" style="color: #b1b1b1;font-size: 20px;" class="form-control" ng-model="ds.comment"></textarea>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <button style="width: 100%;padding:15px 12px;font-size: 20px;border-radius:0px;"
-                                                type="submit"
-                                                class="btn btn-primary btn-p">Submit
-                                        </button>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                                        <button style="width: 100%;padding:15px 12px;font-size: 20px;border-radius:0px;" type="button" class="btn btn-primary btn-p" ng-click="Contact() ">Submit</button>
                                     </div>
                                 </form>
                             </div>

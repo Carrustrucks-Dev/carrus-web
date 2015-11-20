@@ -4,7 +4,7 @@
 /**
  * Created by clicklabs08 on 10/13/15.
  */
-angular.module('carrus').controller('driver', ['$scope','$cookies','$cookieStore','CONSTANT', function($scope,$cookies,$cookieStore, CONSTANT) {
+angular.module('carrus').controller('driver', ['$scope','$cookies','$cookieStore','CONSTANT','$rootScope','$state', function($scope,$cookies,$cookieStore, CONSTANT,$rootScope,$state) {
 
     console.log("driver called ");
 
@@ -37,18 +37,43 @@ angular.module('carrus').controller('driver', ['$scope','$cookies','$cookieStore
                         mobile_number: "",
                         rating: "",
                         //gender: "",
-                        status: ""
+                        aviability: "",
+                        profilePicture:""
                     };
 
                     d.driver_name=column.driverName;
                     d.driver_id=column.driverId;
                     d.mobile_number= column.phoneNumber;
                     d.rating=column.rating;
-                    d.profile_pic= column.profilePicture;
+                    d.aviability=column.aviability;
+                    d.adharDoc=column.adharCard.adharDoc;
+                    d.adharNo=column.adharCard.adharNo;
+                    d.drivingLicenseDoc=column.drivingLicense.drivingLicenseDoc;
+                    d.drivingLicenseNo=column.drivingLicense.drivingLicenseNo;
+                    d.validity=column.drivingLicense.validity;
+                    d.VoterIdDoc=column.VoterId.VoterIdDoc;
+                    d.VoterIdNo=column.VoterId.VoterIdNo;
+                    d._id=column._id;
+                    d.stateDl=column.stateDl;
+                    d.address=column.address;
+                    if( column.profilePicture != null) {
+
+                        d.profile_pic = column.profilePicture.original;
+
+                        }
+                    else
+                        {
+                            d.profile_pic = 'img/icon_placeholder.png';
+
+                        }
+
                     dataArray.push(d);
                     $scope.list=dataArray;
+                    $scope.list_length = $scope.list.length;
                 });
+
             }
+
 
 
         });
@@ -56,6 +81,13 @@ angular.module('carrus').controller('driver', ['$scope','$cookies','$cookieStore
 
     getDriverList();
 
+    $scope.view_driver_detail=function(json)
+    {
+        $rootScope.json1=json;
+        console.log($rootScope.json1);
+        console.log('yodapda');
 
+        $state.go('shipper.driver_info.driver_detail');
+    }
 
 }]);

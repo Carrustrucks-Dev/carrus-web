@@ -1,19 +1,28 @@
+<style>
+    span.time_est:after{
+        left:70px;
+    }
+    span.time_estm{
+        margin-left:30px
+    }
+
+</style>
 <div class="container">
     <div class="row">
-        <div class="ongoing_view">
+        <div ng-if="ConfirmedList.length" class="ongoing_view">
 
             <table id="table-pagination" class="table table-striped">
 
                 <thead>
                 <tr class="text-center">
-                    <th class="text-center">Shiper Name</th>
-                    <th class="text-center">CRN</th>
-                    <th class="text-center">Driver</th>
-                    <th class="text-center">Schedule</th>
-                    <th class="text-center">Final Cost</th>
-                    <th class="text-center">Cargo Detail</th>
-                    <th class="text-center">Truck Type</th>
-                    <th class="text-center">Action</th>
+                    <th class="text-center" width="11%">Shipper Name</th>
+                    <th class="text-center" width="7%">CRN</th>
+                    <th class="text-center" width="7%">Driver</th>
+                    <th class="text-center" width="25%">Schedule</th>
+                    <th class="text-center" width="9%">Final Cost</th>
+                    <th class="text-center" width="15%">Cargo Detail</th>
+                    <th class="text-center" width="12%">Truck Type</th>
+                    <th class="text-center" width="13%">Action</th>
                 </tr>
                 </thead>
 
@@ -21,10 +30,10 @@
                 <tr ng-repeat="data in ConfirmedList">
                     <td>
                         <div class="row_define">
-                            <div class="company_vendor">{{data.pickUp.companyName}}</div>
-                            <div class="driver_number">{{data.pickUp.contactNumber}}</div>
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            <div class="company_vendor">{{data.fleetOwner.fullName}}</div>
+                            <div class="driver_number">{{data.fleetOwner.phoneNumber}}</div>
+                            <div class="star_ratingTA">
+                                <rating1 ng-model="rate" max="max" aria-disabled="true" aria-labelledby="default-rating"></rating1>
                             </div>
                         </div>
                     </td>
@@ -53,65 +62,40 @@
                     </td>
                     <td>
                         <div class="row_define">
-                            <div class="final_cost">Rs 10,000</div>
+                            <div class="final_cost">Rs {{data.acceptPrice}}</div>
                         </div></td>
 
                     <td>     <div class="row_define"><div class="cargo_detail"> {{data.cargo.cargoType.typeCargoName}} {{data.cargo.weight}} Ton</div></div></td>
                     <td>     <div class="row_define"><div class="truck_type">  {{data.truck.truckType.typeTruckName}} </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details"><a>View Details</a> </div></div> </td>
+                    <td>   <div class="row_define">
+                        <div class="view_details"><a  ng-click="sendData(data)" ui-sref="customer.confirmShipment">View Details</a></div>
+                        <br>
+
+                        <div class="text-center">{{data.bookingStatus}}</div>
+                    </div></td>
 
                 </tr>
-                <!--<tr>
-                    <td>
-                        <div class="row_define">
-                            <div class="company_vendor">Tata Moters </div>
-                            <div class="driver_number">9780289100</div>
-                            <div class="star_rating">
-                                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>    <div class="row_define">345678</div></td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dirver_pic"><img src="img/profile_pic.jpg"></div>
-                            <div class="dirver_name">Sumit Verma</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="dilivery_shdule"><span class="time_est">Chandigarh<br>
-                <i class="fa fa-calendar-o"></i><br>29th may<br>(4 PM- 8 PM)
-
-                </span>
-                    <span class="time_estm">Delhi<br>
-
-                <i class="fa fa-calendar-o"></i><br>
-                29th may<br>
-                    (4 PM- 8 PM)
-                </span>
-
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="row_define">
-                            <div class="final_cost">Rs 10,000</div>
-                        </div></td>
-
-                    <td>     <div class="row_define"><div class="cargo_detail"> Chemical 10 Ton</div></div></td>
-                    <td>     <div class="row_define"><div class="truck_type"> Tata Ace-1 </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details"><a>View Details</a> </div></div> </td>
-
-                </tr>-->
-
-
-                <!-- -->
-
 
 
                 </tbody>
             </table>
+            <pagination total-items="totalItems" ng-change="pageChanged(currentPage)" items-per-page="itemsPerPage" ng-model="currentPage" max-size="maxSize" class="pagination-sm pull-right" boundary-links="true"></pagination>
+        </div>
+        <div ng-if="!ConfirmedList.length" class="container text-center">
+            <h3 style="color: #b1b1b1;padding-left: 0px;padding-right: 35px;">No records found</h3>
+        </div>
+    </div>
+</div>
+<div id="viewDetailsModal" class="modal" role="dialog" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()" style="margin-top:-25px;font-size: 2em">&times;</button>
+
+            </div>
+            <div class="modal-footer">
+                <div class="view_details"><button class="pull-right" type="button" data-dismiss="modal" ng-click="">Download POD</button></div>
+            </div>
         </div>
     </div>
 </div>

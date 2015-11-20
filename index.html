@@ -55,7 +55,8 @@
     <script src="bower_components/angular-route/angular-route.js"> </script>
     <script src="bower_components/angular-cookies/angular-cookies.js"> </script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"> </script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"> </script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"> </script><!--
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.9.0.js"></script>-->
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"> </script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/nprogress/nprogress.js"> </script>
@@ -81,6 +82,8 @@
 <!-- ========================  angular app Files =================================================== -->
 <script src="app/app.js"></script>
 <script src="app/config.js"></script>
+<script src="app/validations.js"></script>
+
 <script src="app/welcomeScreen/welcomeScreen.ctrl.js"></script>
 
 
@@ -93,6 +96,10 @@
 <script src="app/customer/contact/contact.ctrl.js"></script>
 <script src="app/customer/payment/payment.ctrl.js"></script>
 <script src="app/customer/promo/promo.ctrl.js"></script>
+<script src="app/customer/track/track.ctrl.js"></script>
+<script src="app/customer/confirmShipment/confirmShipment.ctrl.js"></script>
+<script src="app/customer/ongoingShipment/ongoingShipment.ctrl.js"></script>
+<script src="app/customer/pastShipment/pastShipment.ctrl.js"></script>
 <script src="app/customer/shipments/shipment.ctrl.js"></script>
 <script src="app/customer/shipments/ongoing/ongoing.ctrl.js"></script>
 <script src="app/customer/shipments/upcoming/upcoming.ctrl.js"></script>
@@ -107,15 +114,26 @@
 <script src="app/shipper/requests/pending_assignments/pending_assignments.js"></script>
 <script src="app/shipper/requests/pending_requests/pending_requests.js"></script>
 <script src="app/shipper/requests/pending_quotes/pending_quotes.js"></script>
+<script src="app/shipper/bookings/upcoming/upcoming_booking.js"></script>
+<script src="app/shipper/bookings/ongoing/ongoing_booking.js"></script>
+<script src="app/shipper/bookings/past/past_booking.js"></script>
+<script src="app/shipper/bookings/booking_home.js"></script>
+<script src="app/shipper/bookings/booking_home.js"></script>
+
+
 <script src="app/shipper/trucks/truck_home.js"></script>
 <script src="app/shipper/trucks/truck_info/trucks.js"></script>
 <script src="app/shipper/trucks/truck_info/add_truck.js"></script>
-<script src="app/shipper/trucks/truck_info/truck_detail.js"></script>
+<script src="app/shipper/upcoming_detail/upcoming_booking_detail.js"></script>
 
 
 <script src="app/shipper/driver/driver_home.js"></script>
+<script src="app/shipper/driver/driver_info.js"></script>
+
 <script src="app/shipper/driver/driver_info/driver.js"></script>
 <script src="app/shipper/driver/driver_info/add_driver.js"></script>
+<script src="app/shipper/driver/driver_info/driver_detail.js"></script>
+
 <script src="app/shipper/requests/abc.js"></script>
 <script src="app/shipper/shipper_welcome.js"></script>
 <script src="app/shipper/home/shipper_home.js"></script>
@@ -338,7 +356,7 @@
 
     });
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
 
 

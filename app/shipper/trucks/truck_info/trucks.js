@@ -98,15 +98,19 @@ angular.module('carrus').controller('trucks',['$scope','$cookies','$cookieStore'
                     d.insurance_validity=insurance_validity;
                     d.manufacture_date=manufacture_date;
                     d.truck_id=column._id;
+                    d.trucker=column.trucker;
+                    d.typeTruck=column.typeTruck;
 
 
                     dataArray.push(d);
                     $scope.list=dataArray;
+                    $scope.list_length = $scope.list.length;
                 });
             }
 
 
         });
+
     }
 
     getTruckList();

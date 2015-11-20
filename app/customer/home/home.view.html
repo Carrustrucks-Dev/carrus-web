@@ -8,14 +8,28 @@
 
                 <div class="requestTruck">
                     <div ng-show="authMsg" class="alert-success success text-center">{{authMsg}}</div>
+                    <div ng-show="authErrorMsg" class="alert-danger danger text-center">{{authErrorMsg}}</div>
+                    <div id="Error" style="display:none;" class="alert-danger danger text-center"></div>
                     <h2>Request a Truck</h2>
-                    <div class="row_ist">
+
+                        <div class="row_second" ng-click="removeAuth();">
                         <label>Pick up</label><br>
-                        <input style="width: 44%" type="text" ng-model="bid.pickUpLocation" placeholder="Location">
+                        <!--<input style="width: 44%" type="text" ng-model="bid.pickUpLocation"   onkeypress="return isText(event)" placeholder="Location">-->
+                            <div class="row_input" style="width: 44%;margin-right: 17px">
+                                <div dropdown="dropdown">
+                            <button dropdown-toggle="" style=" width: 100%;text-align: left;border:0px;color:#b1b1b1;background-color: #f1f1f1;border-radius: 0px;height:45px;" class="btn btn-default" aria-haspopup="true" aria-expanded="true">{{bid.pickUpLocation}}<b class="caret" style="float: right;margin-top: 10px"></b>
+                            </button>
+                            <ul role="menu" class="dropdown-menu half_width no-margin" style="width: 100%;background-color: #f1f1f1;">
+                                <li ng-click="locate('Location')">--</li>
+                                <li ng-repeat="data in locationArray" ng-click="locatePick(data)" >{{data}}</li>    <!--ng-click="addID(data._id,data.model)"-->
+                            </ul>
+                        </div>
+                            </div>
+                        <div class="row_input n-mrgn" style="width: 53%">
                         <!--<input style="width: 20%" id="PickUpDate" type="text" ng-model="bid.pickUpDate" placeholder="Date">-->
-                        <input type="text" style="width: 20%" data-ng-model="bid.pickUpDate" datepicker-popup='yyyy-MM-dd' ng-click="open1($event)" is-open="opened1"
-                               min-date="mytime1"  datepicker-options="dateOptions" show-button-bar="false" ng-change="close1()" placeholder="Date" readonly/>
-                        <select ng-model="bid.pickUpTime" style="width: 30%" >
+                        <input type="text" style="width: 37.5%;margin-right:12px;padding-left: 10px" data-ng-model="bid.pickUpDate" datepicker-popup='dd MMM , yyyy' ng-click="open1($event)" is-open="opened1"
+                               min-date="mytime1"  datepicker-options="dateOptions" show-button-bar="false" ng-change="close1()" placeholder="Date" readonly/><span class="caret" style="margin-left: -27px;color:#b1b1b1;"></span>
+                        <select ng-model="bid.pickUpTime" style="width:56.5%;margin-left:20px;" ng-change="putime()" >
                             <option value="0">Time</option>
                             <option value="1 AM - 4 AM">1 AM - 4 AM</option>
                             <option value="5 AM - 8 AM">5 AM - 8 AM</option>
@@ -24,17 +38,26 @@
                             <option value="5 PM - 8 PM">5 PM - 8 PM</option>
                             <option value="9 PM - 12 PM">9 PM - 12 PM</option>
 
-
                         </select>
+                            </div>
                     </div>
 
-                    <div class="row_ist">
+                    <div class="row_second" ng-click="removeAuth();">
                         <label>Drop off</label><br>
-                        <input style="width: 44%" type="text" ng-model="bid.dropOffLocation" placeholder="Location">
-                        <!--<input style="width: 20%" id="DropOffDate" type="text" ng-model="bid.dropOffDate" placeholder="Date">-->
-                        <input type="text" style="width: 20%" data-ng-model="bid.dropOffDate" datepicker-popup='yyyy-MM-dd' ng-click="open2($event)" is-open="opened2"
-                               min-date="bid.pickUpDate" datepicker-options="dateOptions" show-button-bar="false" ng-change="close2()" placeholder="Date" readonly/>
-                        <select ng-model="bid.dropOffTime" style="width: 30%" >
+                        <div class="row_input" style="width: 44%;margin-right: 17px">
+                            <div dropdown="dropdown">
+                                <button dropdown-toggle="" style=" width: 100%;text-align: left;border:0px;color:#b1b1b1;background-color: #f1f1f1;border-radius: 0px;height:45px;" class="btn btn-default" aria-haspopup="true" aria-expanded="true">{{bid.dropOffLocation}}<b class="caret" style="float: right;margin-top: 10px"></b>
+                                </button>
+                                <ul role="menu" class="dropdown-menu half_width no-margin" style="width: 100%;background-color: #f1f1f1;">
+                                    <li ng-click="locate('Location')">--</li>
+                                    <li ng-repeat="data in locationArray" ng-click="locateDrop(data)" >{{data}}</li>    <!--ng-click="addID(data._id,data.model)"-->
+                                </ul>
+                            </div>
+                        </div>
+                        <!--
+                        <input type="text" style="width: 20%;padding-left: 10px" data-ng-model="bid.dropOffDate" datepicker-popup='dd MMM , yyyy' ng-click="open2($event)" is-open="opened2"
+                               min-date="bid.pickUpDate" datepicker-options="dateOptions" show-button-bar="false" ng-change="close2()" placeholder="Date" readonly/><span class="caret" style="margin-left: -27px;color:#b1b1b1;"></span>
+                        <select ng-model="bid.dropOffTime" class="dropTime" style="width: 30%;margin-left:20px;" >
                             <option value="0">Time</option>
                             <option value="1 AM - 4 AM">1 AM - 4 AM</option>
                             <option value="5 AM - 8 AM">5 AM - 8 AM</option>
@@ -42,16 +65,29 @@
                             <option value='1 PM - 4 PM'>1 PM - 4 PM</option>
                             <option value="5 PM - 8 PM">5 PM - 8 PM</option>
                             <option value="9 PM - 12 PM">9 PM - 12 PM</option>
+                       </select>
 
+-->
+                        <div class="row_input n-mrgn" style="width: 53%">
+                            <!--<input style="width: 20%" id="PickUpDate" type="text" ng-model="bid.pickUpDate" placeholder="Date">-->
+                            <input type="text" style="width: 37.5%;margin-right:12px;padding-left: 10px" data-ng-model="bid.dropOffDate" datepicker-popup='dd MMM , yyyy' ng-click="open2($event)" is-open="opened2"
+                                   min-date="bid.pickUpDate"  datepicker-options="dateOptions" show-button-bar="false" ng-change="close2()" placeholder="Date" readonly/><span class="caret" style="margin-left: -27px;color:#b1b1b1;"></span>
+                            <select ng-model="bid.dropOffTime" class="dropTime" style="width:56.5%;margin-left:20px;"  >
+                                <option value="0">Time</option>
+                                <option value="1 AM - 4 AM">1 AM - 4 AM</option>
+                                <option value="5 AM - 8 AM">5 AM - 8 AM</option>
+                                <option value='9 AM - 12 AM'>9 AM - 12 AM</option>
+                                <option value='1 PM - 4 PM'>1 PM - 4 PM</option>
+                                <option value="5 PM - 8 PM">5 PM - 8 PM</option>
+                                <option value="9 PM - 12 PM">9 PM - 12 PM</option>
 
-                        </select>
-
-
+                            </select>
+                        </div>
                     </div>
-                    <div class="row_second">
+                    <div class="row_second" ng-click="removeAuth();">
                         <label>cargo details</label><br>
                         <div class="row_input">
-                            <input type="number" min="0" ng-model="bid.cargoWeight" placeholder="Weight(in Ton)">
+                            <input type="number" min="0" ng-model="bid.cargoWeight" style="padding-right: 50px" onkeypress="return isNumberKey(event)" placeholder="Weight (in Ton)" ><span ng-show="bid.cargoWeight" style="margin-left: -40px;color: #b1b1b1">Ton</span>
                         </div>
                         <div class="row_input n-mrgn">
                             <div dropdown="dropdown" >
@@ -65,7 +101,7 @@
                         </div>
                     </div>
                     &nbsp;&nbsp;&nbsp;
-                    <div class="row_second">
+                    <div class="row_second" ng-click="removeAuth();">
                         <div class="row_input">
                             <label>Type of truck</label>
                             <div dropdown="dropdown" >
@@ -79,13 +115,13 @@
                         </div>
                         <div class="row_input n-mrgn">
                             <label>Number of Trucks</label><br>
-                            <input type="text" ng-model="bid.numberTrucks" placeholder="0">
+                            <input type="text" ng-model="bid.numberTrucks"  onkeypress="return isNumberKey(event)" onblur="truckNum(this)" placeholder="Number of Trucks">
                         </div>
                     </div>
-                    &nbsp;&nbsp;&nbsp;
-                    <div class="row_second">
+                    &nbsp;&nbsp;
+                    <div class="row_second" ng-click="removeAuth();">
                         <label>Budget</label>
-                        <input type="number" min="0" ng-model="bid.budget" placeholder="Enter Amount">
+                        <input type="number" min="0" id="budget" ng-model="bid.budget" style="padding-left: 15px" placeholder="Enter Amount" onkeypress="isNumberKey(event)" ng-keyup="budget(bid.budget)"><span ng-show="bid.budget" style="margin-left: -99%;color: #b1b1b1;vertical-align: middle">Rs</span>
                     </div>
                     <div class="row_second">
                         <label>Notes</label>

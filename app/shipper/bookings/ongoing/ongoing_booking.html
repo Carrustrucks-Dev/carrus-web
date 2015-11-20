@@ -1,0 +1,91 @@
+<div class="container" >
+    <div class="row" style="margin-top: 8%;" ng-show="list_length != 0">
+        <div class="table-responsive ongoing_view" >
+
+            <table id="table-pagination" class="table table-striped" >
+                <thead>
+
+                <tr>
+                    <th class="text-center">Shiper Name</th>
+                    <th class="text-center">CRN</th>
+                    <th class="text-center">Driver</th>
+                    <th class="text-center">Schedule</th>
+                    <th class="text-center">Final Cost</th>
+                    <th class="text-center">Cargo Detail</th>
+                    <th class="text-center">Truck Type</th>
+                    <th class="text-center">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--<div style="text-align: center"><img src="img/icon-no_pending_quote.png" style="height: 150px; width:150px;"  ></div>-->
+                <tr ng-repeat="data in list">
+                    <td>
+                        <div class="row_define">
+                            <div class="company_vendor">{{data.shipper_name}} </div>
+                            <div class="driver_number">{{data.shipper_mobile}}</div>
+                            <rating ng-model="data.shipper_rating" max="5" readonly="true"
+                                    state-on="'fa fa-star text-yellow'"
+                                    state-off="'fa fa-star-o'"></rating>
+                        </div>
+                    </td>
+                    <td>     <div class="row_define"><div class="truck_type"> {{data.crn}} </div></div></td>
+
+                    <td>
+                    <div class="row_define">
+                    <div class="dirver_pic"><img src="img/profile_pic.jpg"></div>
+                    <div class="dirver_name">{{data.driver_name}}</div>
+                    </div>
+                    </td>
+
+                    <td>
+                        <div class="row_define">
+                            <div class="dilivery_shdule">
+                                <span class="time_est">
+                <!--<i class="glyphicon glyphicon-map-marker"></i>-->
+                                    <img src="img/icon_location.png" >
+                                    <br>{{data.pickup_date}}<br> {{data.pickup_time}}
+
+                </span>
+                    <span class="time_estm">
+
+                <!--<i class="glyphicon glyphicon-map-marker"></i>-->
+                         <img src="img/icon_location.png" >
+                        <br>{{data.dropoff_date}}<br>
+                    {{data.dropoff_time}}
+                </span>
+
+                            </div>
+                        </div>
+                    </td>
+                    <!--<td>-->
+                    <!--<div class="row_define">-->
+                    <!--<div class="final_cost">Rs 10,000</div>-->
+                    <!--</div></td>-->
+
+                    <td>
+                        <div class="row_define">
+                            <div class="cargo_detail"> Final Cost Rs {{data.final_cost}}</div> </div>
+
+
+                    </td>
+                    <td>     <div class="row_define"><div class="view_details">{{data.cargo_details}} <br> {{data.cargo_weight}} Ton </div></div> </td>
+                    <td>     <div class="row_define"><div class="cargo_detail"> {{data.truck_type}}</div></div></td>
+
+
+                    <td>     <div class="row_define">
+                        <div class="cargo_detail" style="margin-bottom: 15px;text-align: center;color:#4DADFB;"> {{data.status}}</div>
+                        <div class="view_details">
+                            <a href="" ng-click="Quote();">View Details</a>
+                        </div>
+                    </div>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 10%; " ng-show="list_length == 0"><img src="img/icn_no_ongoing_booking.png"><br>
+        <div class="no_request_text">No Ongoing Bookings</div>
+    </div>
+</div>

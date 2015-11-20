@@ -1,8 +1,8 @@
 /**
  * Created by clicklabs08 on 10/13/15.
  */
-angular.module('carrus').controller('pending_requests',['$scope','CONSTANT','$cookies', '$cookieStore','$http',  function($scope,CONSTANT,$cookies, $cookieStore,$http) {
-
+angular.module('carrus').controller('pending_requests',['$rootScope','$scope','CONSTANT','$cookies','$timeout', '$cookieStore','$http', '$state','$window','$location', function($rootScope,$scope,CONSTANT,$cookies,$timeout, $cookieStore,$http,$state,$window,$location) {
+    $scope.list_length=0;
     console.log("pending_requests called ");
 
     $scope.Quote = function(json){
@@ -24,6 +24,10 @@ angular.module('carrus').controller('pending_requests',['$scope','CONSTANT','$co
             $('#confirm_quote').modal(options);
             $('#quote').modal('hide');
         }
+
+
+
+
     var get_requests = function ()
     {
         var access_token = $cookieStore.get('obj');
@@ -37,33 +41,17 @@ angular.module('carrus').controller('pending_requests',['$scope','CONSTANT','$co
             }
         }).success(function (data, status) {
 
+
             console.log(data);
             data = data.data;
             console.log(data.length);
-
-
             data.forEach(function (column) {
 
-                var d = {
-                    shipper_rating: "",
-                    budget: "",
-                    pickup_date: "",
-                    pickup_time: "",
-                    pickup_location: "",
-                    //gender: "",
-                    dropoff_time: "",
-                    dropoff_location: "",
-                    dropoff_date: "",
-                    truck_type: "",
-                    cargo_details: "",
-                    cargo_weight:"",
-                    notes:"",
-                    bid_id:""
-                };
+                var d = {};
                 var date = column.pickUp.date.toString().split("T")[0];
                 var drop_date = column.dropOff.date.toString().split("T")[0];
 
-                d.shipper_rating = column.shipper._id;
+                d.shipper_rating = column.shipper.rating;
                 d.budget = column.budget;
                 d.pickup_date = date;
                 d.pickup_time = column.pickUp.time;
@@ -76,33 +64,43 @@ angular.module('carrus').controller('pending_requests',['$scope','CONSTANT','$co
                 d.cargo_weight = column.cargo.weight;
                 d.notes= column.note;
                 d.bid_id=column._id;
-
-
                 dataArray.push(d);
+
                 $scope.list = dataArray;
+                $scope.list_length = $scope.list.length;
+
+
 
             })
-            $scope.list_length = $scope.list.length;
+            //$scope.$apply(function()
+            //{
+            //
+            //})
+
         })
                 .error(function (data, status) {
                 $scope.loading = false;
-
+                console.log(data.message);
+                if(data.message=="Access Denied." && data.statusCode == 401)
+                {
+                    $state.go('welcomeScreen')
+                }
 
             });
 
-
-
-
-
     }
+
     get_requests();
+
+
 
     $scope.submit_quote = function () {
 
         var access_token = $cookieStore.get('obj');
         var dataArray = [];
         access_token = access_token.accesstoken;
-        var bid_id =  [$scope.json.bid_id]
+        $scope.bid_id =  [$scope.json.bid_id];
+      
         $http({
             method: 'POST',
             url: CONSTANT.apiURL +'api/v1/fleetOwner/quote',
@@ -113,36 +111,42 @@ angular.module('carrus').controller('pending_requests',['$scope','CONSTANT','$co
                 offerCost:$scope.quote.cost,
                 note:$scope.quote.note,
                 tracking: 'YES',
-                bidId: bid_id
+                bidId: $scope.bid_id
             }
 
         }).success(function (data, status) {
             console.log(data);
+            alert('You have successfully quoted for this bid!!')
+            $state.reload();
 
     })
     }
 
-    $scope.ignore_quote = function () {
-        alert('You are sure to ignore this quote')
+    $scope.ignore_quote = function (json) {
+                    alert('Do you want to ignore this bid')
+
         var access_token = $cookieStore.get('obj');
         access_token = access_token.accesstoken;
-        var bid_id =  $scope.json.bid_id;
+        $rootScope._id=json.bid_id;
+       
         $.ajax({
             method: 'PUT',
-            url: CONSTANT.apiURL +'api/v1/fleetOwner/ignoreRequest/{bidId}',
+            url: CONSTANT.apiURL +'api/v1/fleetOwner/ignoreRequest/'+ $rootScope._id,
             headers: {
                 "authorization": access_token
             },
-            data:{
-                bidId: bid_id
-            }
 
         }).success(function (data, status) {
             console.log(data);
+            alert('The bid has been successfully ignored !!')
+        }).error(function(data,status){
+            if(data.message=="Access Denied." && data.statusCode == 401)
+                {
+                    $state.go('welcomeScreen')
+                }
         })
     }
 
 }]);
-
 
 

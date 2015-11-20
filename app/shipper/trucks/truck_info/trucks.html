@@ -5,7 +5,7 @@
     <!--</div>-->
 <!--</div>-->
 <div class="container" ng-controller="trucks" >
-    <div class="row" style="margin-top: 8%;">
+    <div class="row" style="margin-top: 8%;" ng-show="list_length != 0">
         <div class="table-responsive ongoing_view" >
 
             <table id="table-pagination" class="table table-striped" >
@@ -52,5 +52,8 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div style="text-align: center; margin-top: 10%; " ng-show="list_length == 0"><img src="img/icon_no_pending_request.png"><br>
+        <div class="no_request_text">No Trucks</div>
     </div>
 </div>

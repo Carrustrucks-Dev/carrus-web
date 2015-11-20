@@ -1,5 +1,8 @@
+
+
+
 <div class="container" >
-    <div class="row" style="margin-top: 8%;"  >
+    <div class="row" style="margin-top: 8%;" ng-show="list_length != 0" >
         <div class="table-responsive ongoing_view" >
 
             <table id="table-pagination" class="table table-striped" >
@@ -65,10 +68,10 @@
                     <td>     <div class="row_define"><div class="view_details">{{data.cargo_details}} <br> {{data.cargo_weight}} </div></div> </td>
                     <td>     <div class="row_define">
                         <div class="view_details">
-                            <a href="#" ng-click="Quote(data);">Quote</a>
+                            <a  ng-click="Quote(data);">Quote</a>
                         </div>
                         <div class="view_details" style="margin-top: 20px; color:#515356 ">
-                            <a href="#" ng-click="ignore_quote();" >Ignore</a>
+                            <a  ng-click="ignore_quote(data);" >Ignore</a>
                         </div>
                     </div>
                     </td>
@@ -78,7 +81,9 @@
             </table>
         </div>
     </div>
-    <div style="text-align: center" ng-show='list_length = 0'><img src="img/icon_no_pending_request.png"> </div>
+    <div style="text-align: center; margin-top: 10%; " ng-show="list_length == 0"><img src="img/icon_no_pending_request.png"><br>
+        <div class="no_request_text">No Pending Requests</div>
+    </div>
 </div>
 
 
@@ -91,73 +96,66 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title" > </h4>
                 <div class="row_define">
-                    <div class="star_rating" style="">
-                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                    <div class="star_ratingTA" style="margin-left: 20px">
+                        <rating ng-model="json.shipper_rating" max="5" readonly="true"
+                                state-on="'fa fa-star text-yellow'"
+                                state-off="'fa fa-star-o'"></rating>
                     </div>
                 </div>
 
                 <div class="row" >
-                <div class="col-md-6" style="border-right: 1px solid #000; " > Pick Up <br> {{json.pickup_date}}, {{json.pickup_time}}</div>
-                    <div class="col-md-6" style="padding-left: 30px" > Drop Off <br> {{json.dropoff_date}}, {{json.dropoff_time}}</div>
+                    <div class="col-md-6" style="border-right: 1px solid #000; margin-left: 20px;margin-top: 10px;width: 45%;float: left;" > Pick Up <br> {{json.pickup_date}}, {{json.pickup_time}}</div>
+                    <div class="col-md-6" style="padding-left: 30px; margin:10px 0 ;" > Drop Off <br> {{json.dropoff_date}}, {{json.dropoff_time}}</div>
 
                 </div>
                 <div style="background-color: #339cf2; min-height: 76px; margin-top: 20px; " >
-                    <p style="font-size: 20px; color: #ffffff; margin-left:45px;">{{json.pickup_location}}- - - - <img src="img/icon_truck.png" > - - - - {{json.dropoff_location}} </p>
+                    <p style="font-size: 20px; color: #ffffff; margin-left:45px; padding:20px 0 0 25px; ">{{json.pickup_location}}- - - - <img src="img/icon_truck.png" > - - - - {{json.dropoff_location}} </p>
                 </div>
             </div>
+            <div class="modal-body ">
+                <div class="modal1">
+                    <div class="modal2">
+                        <div style="float: left;  "><span>Weight</span>  </div>
+                        <div style="float: right;"><span>{{json.cargo_weight}} Ton</span></div>
+
+                    </div>
+                    <div class="modal2">
+                        <div style="float: left;  "><span>Type of Cargo</span>  </div>
+                        <div style="float: right;"><span>{{json.cargo_details}}</span></div>
+
+                    </div>
+                    <div class="modal2">
+                        <div style="float: left;  "><span>Type of Truck</span>  </div>
+                        <div style="float: right;"><span>{{json.truck_type}}</span></div>
+
+                    </div>
+                    <div class="modal2">
+                        <div style="float: left;  "><span>Budget</span>  </div>
+                        <div style="float: right;"><span>{{json.budget}}</span></div>
+
+                    </div>
+                    <div class="modal2">
+                        <div style="float: left;  "><span>Notes</span>  </div>
+                        <div style="float: right;"><span>{{json.notes}}</span></div>
+
+                    </div>
+
+                </div>
 
 
+                <div style="margin: 20px 0 20px 0 "> <p style="float: left ; padding: 20px 0 10px 0;"> Tracking Available</p>
+                    <div style="float: right;">
+                        <div style="float: left" ><label class="radio-inline" style="padding-top: 20px;"><input type="radio" class="outler" name="optradio" checked><span>Yes</span></label></div>
+                        <div style="float: left" ><label class="radio-inline" style="padding-top: 20px;"><input type="radio" name="optradio"><span>No</span></label></div>
 
-            <div class="modal-body " style=" border: 1px solid #000;">
-                <div class="row" style="padding: 10px; border-bottom: 1px solid #000; margin: 0px; "  >
-
-                    <div class="col-xs-4" style="float: left; width:40%;">Weight  </div>
-                    <div class="col-xs-4" style="margin-left: 80%; margin-top: 2%;">
-                        {{json.cargo_weight}}
                     </div>
                 </div>
-                <div class="row" style=" padding: 10px; border-bottom: 1px solid #000; "  >
-
-                    <div class="col-xs-4" style="float: left; width:40%;"> Type of Cargo</div>
-                    <div class="col-xs-4" style="margin-left: 80%; margin-top: 2%;">
-                        {{json.cargo_details}}
-                    </div>
-                </div>
-                <div class="row" style="padding: 10px; border-bottom: 1px solid #000; "  >
-
-                    <div class="col-xs-4" style="float: left; width:40%;">Type of Truck  </div>
-                    <div class="col-xs-4" style="margin-left: 80%; margin-top: 2%;">
-                        {{json.truck_type}}
-                    </div>
-                </div>
-                <div class="row" style="padding: 10px; border-bottom: 2px solid #000; "  >
-
-                    <div class="col-xs-8" style="float: left; width:40%;"> Budget</div>
-                    <div class="col-xs-4" style="margin-left: 80%; margin-top: 2%;">
-                        {{json.budget}}
-                    </div>
-                </div>
-                <div class="row" style="padding: 10px; border-bottom: 2px solid #000; "  >
-
-                    <div class="col-xs-4" style="float: left; width:40%;"> Notes </div>
-                    <div class="col-xs-8" style="margin-left: 80%; margin-top: 2%;">
-                        {{json.notes}}
-                    </div>
-                </div>
-
-            <div style="margin: 20px 0 20px 0 "> <p style="float: left"> Tracking Available</p>
-                <div style="float: right;">
-                    <div style="float: left" ><label class="radio-inline"><input type="radio" class="outler" name="optradio" checked><span>Yes</span></label></div>
-                    <div style="float: left" ><label class="radio-inline"><input type="radio" name="optradio"><span>No</span></label></div>
-
-                </div>
-            </div>
 
             <input  class="full_width"  placeholder="Offered Cost"     type="number" ng-model="quote.cost">
             <input  class="full_width"  placeholder="Notes"   type="text" ng-model="quote.note">
 
 
-            <button id="next_otp" type="submit" ng-click="submit_quote();" data-dismiss="modal" style="width: 80%; margin-left: 10%;">Submit</button>
+            <button id="next_otp" class="login_button" type="submit" ng-click="submit_quote();" data-dismiss="modal" style="width: 80%; margin-left: 10%;">Submit</button>
             </div>
                 <!-- =========================Use odd even of angular to give color to background ===================-->
             </div>
@@ -168,3 +166,5 @@
 
 
 </div>
+
+

@@ -1,5 +1,5 @@
 <div class="container" ng-controller="driver" >
-    <div class="row" style="margin-top: 8%;">
+    <div class="row" style="margin-top: 8%;" ng-show="list_length != 0">
         <div class="table-responsive ongoing_view" >
 
             <table id="table-pagination" class="table table-striped" >
@@ -21,7 +21,7 @@
 
                     <td>
                     <div class="row_define">
-                    <div class="dirver_pic"><img src="img/profile_pic.jpg"></div>
+                    <div class="dirver_pic"><img src="{{data.profile_pic}}"></div>
                     <div class="dirver_name">{{data.driver_name}}</div>
                     </div>
                     </td>
@@ -29,12 +29,15 @@
 
                     <td>     <div class="row_define"><div class="truck_type"> {{data.driver_id}} </div></div></td>
                     <td>     <div class="row_define"><div class="truck_type"> {{data.mobile_number}} </div></div></td>
-                    <td>     <div class="row_define"><div class="view_details">{{data.rating}} </div></div> </td>
-                    <td>     <div class="row_define"><div class="view_details">Status</div></div> </td>
+                  {{data.rating}}
+                    <td>     <div class="row_define"><div class="view_details">  <rating ng-model="data.rating" max="5" readonly="true"
+                            state-on="'fa fa-star text-yellow'"
+                            state-off="'fa fa-star-o'"></rating> </div></div> </td>
+                    <td>     <div class="row_define"><div class="view_details">{{data.aviability}}</div></div> </td>
 
                     <td>     <div class="row_define">
                         <div class="view_details">
-                            <a href="" ui-sref="shipper.driver.driver_detail" ng-click="view_profile(data);">View Profile</a>
+                            <a href="" ui-sref="shipper.driver_info.driver_detail" ng-click="view_driver_detail(data);">View Profile</a>
                         </div>
 
                     </div>
@@ -44,6 +47,9 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div style="text-align: center; margin-top: 10%; " ng-show="list_length == 0"><img src="img/icon_no_driver.png"><br>
+        <div class="no_request_text">No Drivers</div>
     </div>
 </div>
 

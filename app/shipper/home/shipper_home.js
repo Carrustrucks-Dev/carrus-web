@@ -1,7 +1,7 @@
 /**
  * Created by clicklabs08 on 10/13/15.
  */
-angular.module('carrus').controller('shipper_home', ['$scope', '$cookies', '$cookieStore', 'CONSTANT', function ($scope, $cookies, $cookieStore, CONSTANT) {
+angular.module('carrus').controller('shipper_home', ['$scope', '$cookies', '$cookieStore', 'CONSTANT','$rootScope', function ($scope, $cookies, $cookieStore, CONSTANT,$rootScope) {
 
     console.log("shipper ohem controller callled ");
     $scope.data1 = '';
@@ -24,7 +24,7 @@ angular.module('carrus').controller('shipper_home', ['$scope', '$cookies', '$coo
 
                 data = data.data;
                 console.log(data);
-                cons
+
 
             })
 
@@ -38,6 +38,10 @@ angular.module('carrus').controller('shipper_home', ['$scope', '$cookies', '$coo
                 companyName:data.getFleetOwner[0].companyName,
                 numberOfTrucks:data.getFleetOwner[0].numberOfTrucks,
                 address:data.getFleetOwner[0].addressDetails.address,
+                city:data.getFleetOwner[0].addressDetails.city,
+                state:data.getFleetOwner[0].addressDetails.state,
+                country:data.getFleetOwner[0].addressDetails.country,
+                pinCode:data.getFleetOwner[0].addressDetails.pinCode,
                 panCardNumber:data.getFleetOwner[0].doc.panCardNumber,
                 tinNumber:data.getFleetOwner[0].doc.tinNumber,
                 serviceTaxNumber:data.getFleetOwner[0].doc.serviceTaxNumber,
@@ -49,8 +53,12 @@ angular.module('carrus').controller('shipper_home', ['$scope', '$cookies', '$coo
                 panCard:data.getFleetOwner[0].doc.panCard,
                 tin:data.getFleetOwner[0].doc.tin,
                 serviceTax:data.getFleetOwner[0].doc.serviceTax,
-                tradeLicence:data.getFleetOwner[0].doc.tradeLicence
+                tradeLicence:data.getFleetOwner[0].doc.tradeLicence,
+                areaofOperation:data.getFleetOwner[0].areaOfOperation[0],
+                typeOfCargo:data.getFleetOwner[0].typeOfCargo[0],
+                userType:data.getFleetOwner[0].userType
             };
+            console.log( $scope.fleetowner.areaofOperation)
             //$scope.fleetowner.fullName = ;
             $scope.$apply(function () {
 
@@ -61,6 +69,8 @@ angular.module('carrus').controller('shipper_home', ['$scope', '$cookies', '$coo
             dataArray.push(d);
             $scope.list = dataArray;
             //    });
+            $rootScope.fleet_owner_name= $scope.fleetowner.fullName;
+            console.log($rootScope.fleet_owner_name);
 
 
         }
@@ -88,15 +98,15 @@ angular.module('carrus').controller('shipper_home', ['$scope', '$cookies', '$coo
         $scope.formData.append("phoneNumber", $scope.fleetowner.phoneNumber);
 
         $scope.formData.append("fullName", $scope.fleetowner.fullName);
-        //$scope.formData.append("country", 'india');
+        $scope.formData.append("country", 'india');
         $scope.formData.append("companyName", $scope.fleetowner.companyName);
         //$scope.formData.append("areaOfOperation", area);
         //$scope.formData.append("typeOfCargo", $cookieStore.get('typeOfCargo'));
         $scope.formData.append("numberOfTrucks",$scope.fleetowner.numberOfTrucks);
         $scope.formData.append("address", $scope.fleetowner.address);
-        //$scope.formData.append("city", $scope.fleetowner.city);
-        //$scope.formData.append("state", $scope.fleetowner.state);
-        //$scope.formData.append("pinCode",$scope.fleetowner.pinCode);
+        $scope.formData.append("city", $scope.fleetowner.city);
+        $scope.formData.append("state", $scope.fleetowner.state);
+        $scope.formData.append("pinCode",$scope.fleetowner.pinCode);
         $scope.formData.append("bankName", $scope.fleetowner.bankName);
         $scope.formData.append("accountNumber", $scope.fleetowner.accountNumber);
         $scope.formData.append("rtgsCode", $scope.fleetowner.rtgsCode);

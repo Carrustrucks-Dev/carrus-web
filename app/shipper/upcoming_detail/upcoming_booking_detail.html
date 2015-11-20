@@ -1,0 +1,160 @@
+
+<div class="confirmShipment_banner">
+    <div class="container">
+
+        <table class="pull-left" style="margin-top: 30px;margin-bottom: 30px;color: white">
+            <tr>
+                <td>   <div class="dirver_pic" style="display: inline"><img style="height: 72px;width: 72px" src="img/profile_pic.jpg">
+                </div>
+                </td>
+                <td style="text-align: left;padding-left: 20px">
+                    <div>{{driver}}</div>
+                    <div>{{drivernum}}</div>
+                    <div class="star_ratingTA">
+                        <rating1 ng-model="rate" max="5" aria-disabled="true" disabled aria-labelledby="default-rating"></rating1>
+                    </div>
+                </td>   <!--{{data.pickUp.name}} {{data.pickUp.contactNumber}}    -->
+            </tr>
+        </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="color: white;">
+            <h4>CRN {{upcoming_detail.crn}}</h4>
+            <h5>{{upcoming_detail.status}}</h5>
+            <h4>{{upcoming_detail.pickup_location}} - - <img src="img/bannerLogo.png" width="80px" height="35px"> - - {{upcoming_detail.dropoff_location}}</h4>
+        </div>
+
+    </div>
+</div>
+<!--<div id="map" style="height: 200px"></div>-->
+
+<div class="container" style="margin-top: 35px">
+
+    <div class="row">
+        <h3 class="fleet_title" style="padding-left: 35px">Shipper
+            <div class="star_ratingTA" style="max-height: 20px">
+                <rating1 ng-model="rate" max="max" aria-disabled="true" aria-labelledby="default-rating"></rating1>
+            </div></h3>
+        <div class="col-lg-6">
+            <div class="shipment-container">
+                <div class="head-container" style="font-weight: normal;"><span>Pick Up</span></div>
+
+                <div class="input-group profileShipper" style="width: 100%;padding-left: 20px" >
+                    <h4>Truck Type</h4>
+                    <i class="fa fa-user"></i> {{upcoming_detail.shipper_name}}<br><br>
+                    <!--<div style="border-left: 1px solid #000; height:10px;"></div>-->
+                    <i class="fa fa-map-marker"></i> {{upcoming_detail.pickup_address}} {{upcoming_detail.pickup_location}} {{upcoming_detail.pickup_state}} {{upcoming_detail.pickup_zipcode}} <br><br><!--<img src="img/icon_location.png">-->
+                    <i class="fa fa-calendar-o"></i> {{upcoming_detail.pickup_date|date:'dd MMMM'}}<br><br>
+                    <i class="fa fa-clock-o"></i> {{upcoming_detail.pickup_time}} <br><br>
+                    <i class="fa fa-phone"></i> {{upcoming_detail.pickup_contact}} <br><br>
+                    <i class="fa fa-slack"></i> {{upcoming_detail.pickup_zipcode}}<br>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="shipment-container">
+                <div class="head-container" style="font-weight: normal;"><span>Drop Off</span></div>
+                <div class="input-group profileShipper" style="width: 100%;padding-left: 20px" >
+                    <h4>Truck Type</h4>
+                    <i class="fa fa-user"></i> {{upcoming_detail.dropOff.name}} <br><br>
+                    <i class="fa fa-map-marker"></i> {{upcoming_detail.dropoff_address}}  {{upcoming_detail.dropoff_location}} {{upcoming_detail.dropoff_state}} {{upcoming_detail.dropoff_zipCode}}<br><br><!--<img src="img/icon_location.png">-->
+                    <i class="fa fa-calendar-o"></i> {{upcoming_detail.dropoff_date|date:'dd MMMM'}}<br><br>
+                    <i class="fa fa-clock-o"></i> {{upcoming_detail.dropoff_time}} <br><br>
+                    <i class="fa fa-phone"></i> {{upcoming_detail.dropoff_contact}} <br><br>
+                    <i class="fa fa-slack"></i> {{upcoming_detail.dropoff_zipcode}}<br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="shipment-container">
+                <div class="head-container" style="font-weight: normal;"><span>Cargo Details</span></div>
+                <div class="input-group profileShipper" style="width: 100%" >
+                    {{upcoming_detail.cargo_details}}<br>{{upcoming_detail.cargo_weight}} Ton
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="shipment-container">
+                <div class="head-container" style="font-weight: normal;"><span>Truck Details</span></div>
+                <div class="input-group profileShipper" style="width: 100%" >
+                    {{upcoming_detail.truck_type}}
+                    <br>
+                    {{upcoming_detail.truck_number}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="shipment-container">
+                <div class="head-container" style="font-weight: normal;"><span> Notes</span></div>
+                <div class="input-group profileShipper" style="width: 100%" >
+                    {{upcoming_detail.jobNote}}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="shipment-container">
+                <div class="head-container" style="font-weight: normal;"><span>Payment Method</span></div>
+                <div class="input-group profileShipper" style="width: 100%" >
+                    {{upcoming_detail.paymentMode}} &nbsp;&nbsp;&nbsp; {{upcoming_detail.paymentOn}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row">-->
+        <!--<div class="col-lg-6">-->
+            <!--<div class="shipment-container">-->
+                <!--<div class="head-container" style="font-weight: normal;"><span>Payment Method</span></div>-->
+                <!--<div class="input-group profileShipper" style="width: 100%" >-->
+                    <!--{{upcoming_detail.paymentMode}}-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-lg-6">-->
+            <!--<div class="shipment-container">-->
+                <!--<div class="head-container" style="font-weight: normal;"><span>Promo Code</span></div>-->
+                <!--<div id="promoBox2" class="input-group profileShipper" style="width: 100%;" >-->
+                    <!--Promo code {{promo}} for Rs {{amount}} has been successfully applied.-->
+                    <!--<button onclick="hide('#promoBox2');show('#promoBox')" type="button" class="close"  style="margin-top:-10px;font-size: 2em">&times;</button>-->
+                <!--</div>-->
+                <!--<div id="promoBox" class="input-group profileShipper view_details" style="width: 100%;border-radius: 20px;padding: 0px;" >-->
+                    <!--<input placeholder="Enter Promo Code" class="confirmPromo" ng-model="promo">-->
+                    <!--<button onclick="hide('#promoBox');show('#promoBox2')" type="button" style="float: right;width: 112px">Apply</button>-->
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="row">
+        <div class="col-lg-offset-3 col-lg-6" style="border:1px dashed #b1b1b1;margin-top: 30px">
+            <div class="pull-left"><h3 style="margin-top: 15px">Total Fare</h3></div>
+            <div class="pull-right"><h3 style="font-family: bold;margin-top: 15px">Rs {{upcoming_detail.final_cost}}</h3></div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 5%">
+        <div class="col-lg-offset-3 col-lg-6 text-center" >
+            <!--<button class="modify" style="background-color: #339CF2" type="button">MAKE PAYMENT</button>-->
+            <button class="modify" style="width: 200px" type="button">CONSIGNMENT NOTE</button>
+        </div>
+    </div>
+</div>
+<script>
+    function hide(id){
+        $(id).hide();
+    }
+    $('#promoBox2').hide();
+
+
+    function show(id){
+        $(id).show();
+    }
+</script>

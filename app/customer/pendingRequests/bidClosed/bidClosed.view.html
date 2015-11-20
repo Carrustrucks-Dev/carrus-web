@@ -1,65 +1,93 @@
-<style>
+<!--<style>
 
 .table-striped>tbody>tr:nth-child(4n-3)>td,.table-striped>tbody>tr:nth-child(4n-2)>td,
 .table-striped>tbody>tr:nth-child(4n-3)>th,.table-striped>tbody>tr:nth-child(4n-2)>th {
 background-color: #E9EBEF;
 }
+</style>-->
+<style>
+    span.time_est:after{
+        left:70px;
+    }
+    span.time_estm{
+        margin-left:30px
+    }
+
 </style>
 <div class="container">
-    <div class="row">
+    <div ng-if="mesg=='No Record Found.'">
+        <br>
+        <img style="margin-left: 40%;" src="img/icon_quote.png" >
+        <h3 style="text-align: center;color:#b1b1b1">No Bids</h3>
+    </div>
+    <div class="row" ng-if="mesg!='No Record Found.'">
         <div class="ongoing_view">
 
             <table id="table-pagination" class="table table-striped">
 
                 <thead>
                 <tr>
-                    <th>Shipper Name</th>
-                    <th>Schedule</th>
-                    <th>Est. Cost</th>
-                    <th>Truck Type</th>
-                    <th>Route</th>
-                    <th>Weight</th>
-                    <th>Action</th>
+                    <th class="text-center">Shipper Name</th>
+                    <th class="text-center">Schedule</th>
+                    <th class="text-center">Est. Cost</th>
+                    <th class="text-center">Truck Type</th>
+                    <th class="text-center">Route</th>
+                    <th class="text-center">Weight</th>
+                    <th class="text-center">Action</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                <tr>
+                <tr ng-repeat="data in closedArray">
                     <td>
                         <div class="row_define">
-                            <div class="company_vendor">Vikas Sharma</div>
+                            <div class="company_vendor">{{data.fleetOwner.fullName}}</div>
+                            <div class="driver_number">{{data.fleetOwner.phoneNumber}}</div>
+                            <div class="star_ratingTA">
+                                <rating ng-model="rate" max="max" aria-disabled="true" aria-labelledby="default-rating"></rating>
+                            </div>
                         </div>
                     </td>
                     <td>
-                        <div class="row_define">
+                        <!--<div class="row_define">
                             <div class="dilivery_shdule">
-                                <p class="text-center" style="margin-bottom: -10px;">29th may-29th may</p>
-                                <p class="text-center"style="margin-bottom: -10px;"><br></i>(4 PM- 8 PM) to </i>(4 PM- 8 PM)</p>
+                                <p class="text-center" style="margin-bottom: -10px;">{{data.pickUp.date|date2:"ddoo MMM"}}-{{data.dropOff.date|date2:"ddoo MMM"}}</p>
+                                <p class="text-center"style="margin-bottom: -10px;"><br></i>({{data.pickUp.time}}) to </i>({{data.dropOff.time}})</p>
+                            </div>
+                        </div>-->
+
+                        <div class="row_define">
+                            <div class="dilivery_shdule" style="text-align: center;"><span class="time_est">
+                <img src="img/icon_location.png"><br>{{data.pickUp.date|date2:'ddoo MMM'}}<br>({{data.pickUp.time}})</span>
+                    <span class="time_estm">
+                <img src="img/icon_location.png"><br>{{data.dropOff.date|date2:'ddoo MMM'}}<br>({{data.dropOff.time}})</span>
                             </div>
                         </div>
                     </td>
                     <td>
                         <div class="row_define">
-                            <div class="final_cost">Rs 10,000</div>
+                            <div class="final_cost">Rs {{data.acceptPrice}}</div>
                         </div></td>
-                    <td>     <div class="row_define"><div class="truck_type"> Tata Ace-1 </div></div></td>
-                    <td>     <div class="row_define"><div class="truck_type">Chandigarh to Delhi</div></div></td>
+                    <td>     <div class="row_define"><div class="truck_type"> {{data.truck.truckType.typeTruckName}} </div></div></td>
+                    <td>     <div class="row_define">{{data.pickUp.location}} to {{data.dropOff.location}}</div></td>
 
-                    <td>     <div class="row_define"><div class="cargo_detail">10 Ton</div></div></td>
+                    <td>     <div class="row_define"><div class="cargo_detail">{{data.cargo.weight}} Ton</div></div></td>
 
                     <td>     <div class="row_define">
-                        <div class="modify" ng-click="addDetailsModal();"><a>Add Details</a></div><br>
+                        <div class="modify" ng-click="addDetailsModal(data);"><a style="color: white">Add Details</a></div><br>
 
                     </div> </td>
 
                 </tr>
-                <tr> <td colspan="7" ><p style="margin-bottom: -5px;margin-top: -5px;">
+                <!--<tr> <td colspan="7" ><p style="margin-bottom: -5px;margin-top: -5px;">
                     <span style="color:dodgerblue">Note</span>: We tried to make it as versatile as possible, at the same time getting rid of all the redundant features to help you save time and focus on your project.
-                </p></td></tr>
+                </p></td></tr>-->
 
 
                 </tbody>
             </table>
+            <pagination total-items="totalItems" ng-change="pageChanged(currentPage)" items-per-page="itemsPerPage" ng-model="currentPage" max-size="maxSize" class="pagination-sm pull-right" boundary-links="true"></pagination>
+
         </div>
     </div>
 </div>
@@ -73,15 +101,16 @@ background-color: #E9EBEF;
                 <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()" style="margin-top:-50px;font-size: 2em">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="row_second">
+                <div ng-show="authErrorMsg" class="alert-danger danger text-center">{{authErrorMsg}}</div>
+                <div class="row_second" ng-click="removeAuth();">
                 <label>Pick Up</label><br>
                 <input  class="half_width "  placeholder="Company Name"   type="text" ng-model="details.puCompanyName">
-                <input  class="half_width no-margin"  placeholder="Name"    type="text" ng-model="details.puName">
-                <input  class="half_width"  placeholder="TIN"     type="text" ng-model="details.puTin">
-                <input  class="half_width no-margin"  placeholder="Contact Number"   type="text" ng-model="details.puContactNumber">
+                <input  class="half_width no-margin"  placeholder="Name"  onkeypress='return isText(event)'  type="text" ng-model="details.puName">
+                <input  class="half_width"  placeholder="TIN"   onkeypress="return isNumberKey(event)"  type="text" ng-model="details.puTin">
+                <input  class="half_width no-margin"  placeholder="Mobile Number" minlength="0" maxlength="10" onkeypress="return isNumberKey(event)"   ng-blur="mobileCheckPU(this)" type="text" ng-model="details.puContactNumber">
                 <input  class="half_width "  placeholder="Address"    type="text" ng-model="details.puAddress">
-                <input  class="half_width no-margin"  placeholder="City"    type="text" ng-model="details.puCity">
-                <select ng-model="details.poState" class="half_width" style="height: 45px;padding: 0 50px 0 15px;">
+                <input  class="half_width no-margin"  placeholder="City"  onkeypress='return isText(event)'  type="text" ng-model="details.puCity" readonly>
+                <select ng-model="details.puState" class="half_width" style="height: 45px;padding: 0 50px 0 15px;">
                         <option value="0">State</option>
                         <option disabled>--------------</option>
 
@@ -117,16 +146,16 @@ background-color: #E9EBEF;
                         <option value="Uttar Pradesh">Uttar Pradesh</option>
                         <option value="Uttarakhand">Uttarakhand</option>
                         <option value="West Bengal">West Bengal</option>
-                </select><input  class="half_width no-margin"  placeholder="Zip Code"    type="text" ng-model="details.puZipCode">
+                </select><input  class="half_width no-margin"  placeholder="Zip Code" minlength="0" maxlength="6" onkeypress="return isNumberKey(event)"   ng-blur="zipCheckPU(this)"  type="text" ng-model="details.puZipCode">
                 </div>
-                <div class="row_second">
+                <div class="row_second" ng-click="removeAuth();">
                     <label>Drop Off</label><br>
                     <input  class="half_width "  placeholder="Company Name"   type="text" ng-model="details.doCompanyName">
-                    <input  class="half_width no-margin"  placeholder="Name"    type="text" ng-model="details.doName">
-                    <input  class="half_width"  placeholder="TIN"     type="text" ng-model="details.doTin">
-                    <input  class="half_width no-margin"  placeholder="Contact Number"   type="text" ng-model="details.doContactNumber">
+                    <input  class="half_width no-margin"  placeholder="Name" onkeypress='return isText(event)'   type="text" ng-model="details.doName">
+                    <input  class="half_width"  placeholder="TIN"   onkeypress="return isNumberKey(event)"   type="text" ng-model="details.doTin">
+                    <input  class="half_width no-margin"  placeholder="Mobile Number"  onkeypress="return isNumberKey(event)" minlength="0" maxlength="10"  ng-blur="mobileCheckDO(this)" type="text" ng-model="details.doContactNumber">
                     <input  class="half_width "  placeholder="Address"    type="text" ng-model="details.doAddress">
-                    <input  class="half_width no-margin"  placeholder="City"    type="text" ng-model="details.doCity">
+                    <input  class="half_width no-margin"  placeholder="City" onkeypress='return isText(event)'   type="text" ng-model="details.doCity" readonly>
                     <select ng-model="details.doState" class="half_width" style="height: 45px;padding: 0 50px 0 15px;">
                         <option value="0">State</option>
                         <option disabled>--------------</option>
@@ -163,9 +192,9 @@ background-color: #E9EBEF;
                         <option value="Uttar Pradesh">Uttar Pradesh</option>
                         <option value="Uttarakhand">Uttarakhand</option>
                         <option value="West Bengal">West Bengal</option>
-                    </select><input  class="half_width no-margin"  placeholder="Zip Code"    type="text" ng-model="details.doZipCode">
+                    </select><input  class="half_width no-margin"  placeholder="Zip Code" minlength="0" maxlength="6" onkeypress="return isNumberKey(event)"   ng-blur="zipCheckDO(this)"  type="text" ng-model="details.doZipCode">
                 </div>
-                <div class="row_second" >
+                <div class="row_second" ng-click="removeAuth();">
                     <label>Payment Mode</label><br>
                     <div class="radio_section full_width no-margin pull-right" style="border-bottom: 1px solid #b1b1b1">
                         <div class="pull-right">
@@ -173,13 +202,13 @@ background-color: #E9EBEF;
                         <label class="radio-inline"><input ng-model="details.paymentMode" type="radio" name="payment" value="ONLINE"><span style="color: #b1b1b1">Online</span></label>
                     </div></div>
                 </div>
-                <div class="row_second">
+                <div class="row_second" ng-click="removeAuth();">
                     <div class="radio_section full_width pull-right" style="border-bottom: 1px solid #b1b1b1">
                         <label class="radio-details"><input type="radio" ng-model="details.paymentOn" class="outler" name="paymentBy" value="PICK" checked><span style="font-size: smaller;color: #b1b1b1">By consignor (100% payment to be paid at the time of the cargo pick up.)</span></label>
                         <label class="radio-details"><input type="radio" ng-model="details.paymentOn" name="paymentBy" value="DELIVERY"><span style="font-size: smaller;color: #b1b1b1">By consignee (100% payment to be paid at the time of the cargo delivery.)</span></label>
                     </div>
                 </div>
-                <div class="row_second">
+                <div class="row_second" ng-click="removeAuth();">
                     <textarea class="textArea" ng-model="details.jobNote" style="padding-right: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 5px" maxlength="400" placeholder="Enter other cargo details"></textarea>
                 </div>
                 <button class="next_otp" type="submit" ng-click="addDetails()">Submit</button>
